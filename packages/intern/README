@@ -1,0 +1,37 @@
+# Installation der LaTeX4EI Build Umgebung
+
+.:: Stand: 2.6.2013
+.:: Author: Martin Zellner
+
+
+## Mac OS X
+
+- Installiere MacTex 2012 oder neuer
+- Erzeuge einen symbolischen Link um die Pakete einzubinden:
+
+		cd /usr/local/texlive/2012/texmf-dist/tex/latex/
+		sudo ln -s " %Pfad zur Dropbox%/packages/intern/" latex4ei
+- Aktualisiere die LaTeX Umgebung:
+
+		sudo texhash
+		sudo mktexlsr
+---
+
+## Linux
+
+	cd /usr/share/texlive/texmf-dist/tex/latex
+	sudo ln -s PATHTOFOLDER/packages/intern/ latex4ei
+	sudo texhash
+	sudo mktexlsr
+
+
+## Windows (f¸r MiKTeX)
+- Installiere die aktuellste MiKTeX Version
+- ÷ffne Start -> Alle Programme -> MiKTeX x.x -> Maintenance (Admin) -> Settings (Admin)
+- Gehe zu Registerkarte "Roots"
+- Klicke auf "Add"
+- Suche in secret LaTeX Dropbox -> packages -> edit -> miktex structure
+- Klicke auf "OK" und nochmals auf "OK".
+- Fertig
+
+---
