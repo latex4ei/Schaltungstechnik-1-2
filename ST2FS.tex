@@ -240,6 +240,7 @@ Vorgehen:
 	\pbox{5.0cm}{ Zustandsgleichung: \\[0.2em] \boxed{ \dot x(t) = - \frac{x(t)}{\tau} + \frac{x_\infty}{\tau} } \\[0.5em] $\tau > 0:$ System stabil \\ $\tau < 0:$ System instabil \\ } \qquad 
 	\pbox{5.0cm}{ \includegraphics{./img/char/char_Schaltung1Grad.pdf} } \\
 	\boxed{ \text{Lösung:}\quad x(t) = x_\infty + (x_0 - x_\infty) \exp\left(- \frac{t-t_0}{\tau}\right) }\\
+	Mit Parameter aus ESB: C: $x_\infty = U_0(t)$, L: $x_\infty = I_0(t)$
 	\\
 	Beispiele: \hspace{3cm} $u_C(t) = A \cdot \sin(\omega t)$\\
 	\pbox{5.0cm}{ \includegraphics[scale = 0.8]{./img/Schaltung1Grad.pdf} \\ \\ $\dot u(t) = - \frac{u(t)}{RC} + \frac{U_0 + RI_0}{RC}$ }
@@ -293,7 +294,7 @@ Vorgehen:
 	 \lambda_{1/2} = \frac{\mathrm{sp} \ma A}{2} \pm \sqrt{ \left( \frac{\mathrm{sp} \ma A}{2} \right)^2 - \det \ma A } } \quad \boxed{ \begin{array}{ll} \text{Wähle} \\ \bigl| \lambda_1 \bigr| < \bigl|\lambda_2 \bigr|  \end{array}}\\[0.5em]
 	$\mathrm{Sp } \ma A = T = a_{11} + a_{22}$, \quad $\det \ma A = \Delta = a_{11} a_{22} - a_{12} a_{21}$\\
 	\\
-	Zeitkonstante $\tau = -\frac{1}{\lambda}$
+	Zeitkonstante $\tau = RC = GL$ % = -\frac{1}{\lambda}$
 
 
 	\subsection{Eigenvektoren(EV) $\vec q$ bestimmen}
@@ -308,7 +309,8 @@ Vorgehen:
 	\end{tabular}\\
 	\\
 	Falls $a_{12} = a_{21} = 0:$ $q_1 = \mvect{1 \\ 0} \quad q_2 = \mvect{0 \\ 1}$
-	\fbox{ Eigenschaften EV:  $\vec q_1 \perp \vec q_2 $}
+	\fbox{ Eigenschaften EV (falls gefragt kann man das prüfen):  $\vec q_1 \perp \vec q_2 $}
+	
 	\subsection{Gleichgewichtspunkte(GGP) $\vec x_\infty$ bestimmen}
 	$\vec x_\infty$: $\bs{ \dot {\vec x}} = 0 = \ma A \vec x_\infty + \ma B \vec v \quad \Ra \quad$ \boxed { \vec x_\infty = - \ma A^{-1} \ma B \vec v }\\[0.5em]
 	Oder aus Schaltbild berechnen:\\
@@ -531,10 +533,57 @@ $\mat{0 & 1 \\ 0 & 0}$ & $\lambda = 0$ & instabil & Knoten & \pbox{3.0cm}{ \incl
 \end{tabular}
 
 
+
 % Ende der Spalten
 \end{multicols}
 
+\hrule \hrule
 
+\begin{multicols}{3}
+\section{Anhang}
+
+	\subsection{Mathematik}
+		Matritzen:\\
+		$\ma{A} = \frac{1}{\det \ma{A} } \begin{bmatrix}
+		a_{22} & -a_{12}\\ 
+		-a_{21} & a_{11}
+		\end{bmatrix}$
+		\\ \\
+		%\subsection{Quadratische Lösungsformel}
+		Quadratische Lösungsformel: \\
+		$ax^2+ bx + c = 0$ :\\
+		\boxed{x_{1/2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} } \\ \\
+		Einfache quadratische Lösungsformel: \\
+		$x^2 + px + q = 0$ :\\
+		\boxed{x_{1/2} = -\frac{p}{2} \pm \sqrt{\left (  \frac{p}{2}\right )^2 - q}} \\
+
+	\subsection{Ohmsches Gesetz}
+	\begin{tabular}{ll}
+		Basis:  & \\
+		$U = R \cdot I$  &  $I = G \cdot U$ \\
+		& \\
+		Spannungsteiler:  &  Stromteiler: \\
+		$u_2 = \frac{R_2}{R_1+R_2} \cdot  u_1$  &   $\frac{i_1}{i_ges} = \frac{R-ges}{ R_1} = \frac{G_1}{u}$ \\
+	\end{tabular}
+	
+	\subsection{Zweitorbeschreibungen}
+	\begin{tabular}{cll}
+	I & Widerstandsbeschreibung:\\
+	& $\left.\begin{matrix} u_1\\ u_2\end{matrix}\right]=\left.\begin{matrix} r_1(i_1,i_2)\\ r_2(i_1,i_2) \end{matrix}\right] = \ma{R} \cdot \left.\begin{matrix} i_1\\ i_2 \end{matrix}\right]$\\
+	II & Leitwertsbeschreibung:\\
+	& $\left.\begin{matrix} i_1\\ i_2\end{matrix}\right]=\ma{G} \cdot \left.\begin{matrix} u_1\\ u_2 \end{matrix}\right]$\\
+	III & Hybridebeschreibung:\\
+	& $\left.\begin{matrix} u_1\\ i_2\end{matrix}\right]=\ma{H} \cdot \left.\begin{matrix} i_1\\ u_2 \end{matrix}\right]$\\
+	IV & Inverse Hybridbeschreibung:\\
+	& $\left.\begin{matrix} i_1\\ u_2\end{matrix}\right]=\ma{H'} \cdot \left.\begin{matrix} u_1\\ i_2 \end{matrix}\right]$\\
+	V & Kettenbeschreibung:\\
+	& $\left.\begin{matrix} u_1\\ i_1\end{matrix}\right]=\ma{A} \cdot \left.\begin{matrix} u_2\\ -i_2 \end{matrix}\right]$\\
+	VI & Inverse Kettenbeschreibung:\\
+	& $\left.\begin{matrix} u_2\\ i_2\end{matrix}\right]=\ma{A'} \cdot \left.\begin{matrix} u_1\\ -i_1 \end{matrix}\right]$\\
+	\end{tabular}
+
+% Ende der Spalten
+\end{multicols}
 
 % Dokumentende
 % ======================================================================
