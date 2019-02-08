@@ -1,3 +1,8 @@
+build/
+
+ST2FS.pdf
+Schaltungstechnik.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -107,3 +112,4 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+StochastischeSignale.pdf
