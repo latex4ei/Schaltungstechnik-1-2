@@ -84,17 +84,7 @@ $d = $ Größe der Schaltung, Wellenlänge $\lambda = c T$ \\
 	\end{tabular*}
 }
 
-Knoteninzidenzmatrix: $\ma A' = \mat{\alpha_{11} &  \ldots & \alpha_{1b} \\ \vdots & &  \\ \alpha_{n1} & \ldots & \alpha_{nb}}$ $n$ Knoten
-
-Spaltensummen von $A'$ sind immer $= 0$ \\
-$\Ra$ Zeile des Bezugsknotens streichen $\Ra$ \\
-$\ma A \vec i =0$ (reduzierte Knoteninzidenzmatrix)
-
-$\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL in Matrixform: $\vec u - \ma A^{\top} \vec u_{k} = 0$
-
 }
-
-
 
 \sectionbox{
 	\subsection{Schaltung und Netzwerkgraph}
@@ -110,6 +100,28 @@ $\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL 
 }
 
 \sectionbox{
+	\subsection{Baumkonzept}
+	\textbf{Baum}: zusammenhängender azyklischer Teilgraph des Netzwerkgraphen, der alle Knoten enthält.\\
+	\textbf{Nummerierung}: erst Baumkanten nummerieren, dann übrige.\\
+	\textbf{KVL}: Pro Verbindungskante eine Masche, die sonst nur Baumkanten enthält:	$\mat{\ma B_b& \ma 1_s}\mat{\vec u_b\\ \vec u_v} = \vec{0}$\\
+	\textbf{KCL}: Pro Baumkante je einen Superknoten, der sonst nur Verbindungskanten enthält, Vorzeichen der Baumkante ist positiv: $\mat{\ma 1_{n-1}&\ma A_v}\mat{\vec i_b\\ \vec i_v} = \vec 0$
+}
+
+\sectionbox{
+	\subsection{Knoteninzidenzmatrix}
+	Knoteninzidenzmatrix: $\ma A = \mat{\alpha_{11} &  \ldots & \alpha_{1b} \\ \vdots & &  \\ \alpha_{n-1,1} & \ldots & \alpha_{n-1,b}}$ $n$ Knoten
+	\textbf{Aufstellen}
+	\begin{itemize}\itemsep0pt
+		\item Wählen des Bezugsknotens
+		\item Für alle Knoten außer Bezugsknoten:
+		\item[-] Herausgehende Kante $\Rightarrow \alpha = +1$
+		\item[-] Hereingehende Kante $\Rightarrow \alpha = -1$
+	\end{itemize}
+	KCL: $\ma A \vec i = \vec 0$\quad
+	KVL: $\vec u = \ma A^T\vec u_k$
+}
+
+\sectionbox{
 	\subsection{Eintorverschaltungen}
 	\tablebox{
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{\hspace{1em}}|ll@{}} \ctrule
@@ -122,23 +134,6 @@ $\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL 
 	\end{tabular*} }
 
 	\emphbox{$\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} \quad \Ra \quad R = R_1 \parallel R_2 = \frac{R_1 \cdot R_2}{R_1 + R_2}$}
-}
-
-\sectionbox{
-	\subsection{Linearisierung}
-	\begin{tabular}{ll}
-		Großsignal & Kleinsignal\\
-		$i=I_{\ir AP}+\Delta i$ \ &  \ $\Delta i= i - I_{\ir AP}$\\
-		$u=U_{\ir AP}+\Delta u$ \ &  \ $\Delta u= u - U_{\ir AP}$\\
-	\end{tabular}
-	\\
-	$\Delta \vec i \approx \ma G \cdot \Delta \vec u$ \qquad $\ma G$ ist die Jakobimatrix $\left. \frac{\partial g_i(\vec u)}{\partial u_j} \right|_{U_{\ir AP}}$\\
-	$\Delta \vec u \approx \ma R \cdot \Delta \vec u$\\
-	Großsignal: $i \approx I_{\ir AP} + G(U_{\ir AP}) \cdot (u - U_{\ir AP})$\\[1em]
-
-	Implizite Liniarisierung: $\Delta \vec f(\Delta \vec u, \Delta \vec i) = \ma M \Delta \vec u + \ma N \Delta \vec i$\\
-	$\ma M := \mat{ \frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} \\[0.5em] \frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} }$ \quad
-	$\ma N := \mat{ \frac{\partial f_1}{\partial i_1} & \frac{\partial f_1}{\partial i_2} \\[0.5em] \frac{\partial f_2}{\partial i_1} & \frac{\partial f_2}{\partial i_2} }$
 }
 
 \sectionbox{
@@ -166,11 +161,14 @@ Eigenschaften von $F$:
 \tablebox{
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}}
 	\ctrule
+		F stromgesteuert & $\exists r_F(i)$\\
+		F spannungsgesteuert & $\exists g_F(i)$\\
 		F ungepolt & Kennlinie punktsymm. zum Ursprung \\
 		F aktiv & mind. 1 Pkt. in II. od. IV. Quadr. \\
 		F verlustfrei & nur auf Koordinatenachsen \\
 		F quellenfrei & enthält den Ursprung \\
 		F streng linear & $(ku, ki) \in F$ \quad $ (u_1 + u_2, i_1 + i_2) \in F$ \\
+		F stückweise linear & Kennlinie besteht aus linearen Abschnitten\\
 		\cbrule
 	\end{tabular*}
 }
@@ -188,11 +186,30 @@ Eigenschaften von $F$:
 	Serienschaltung $\leftrightarrow$ Parallelschaltung
 }
 
+\sectionbox{
+	\subsection{Teilerregeln}
+	\textbf{Spannungsteiler}: $R_1$ in Serie mit $R_2$ $\Rightarrow$ $u_{R_1} = \frac{R_1}{R_1+R_2}u_{ges}$\\
+	\textbf{Stromteiler}: $G_1$ in Serie mit $G_2$ $\Rightarrow$ $i_{G_1} = \frac{G_1}{G_1+G_2}i_{ges}$
+}
+
+\sectionbox{
+	\subsection{Arbeitspunktbestimmung}
+	$\mathcal Q$: Quelleneintor\\
+	$\mathcal Q^x$: Quelleneintor mit externer Kennlinie (gespiegelt an der u-Achse)\\
+	$\mathcal F$: Lasteintor\\
+	\textbf{Graphisch}: $AP = \mathcal F \cap \mathcal Q^x$\\
+	\textbf{Rechnerisch}:
+	$\begin{array}{l}
+	i_Q = -i_F \Rightarrow u_{AP}\\
+	u_Q = u_F \Rightarrow i_{AP}
+	\end{array}$
+}
+
 % SECTION ====================================================================================
 \section{Resistive Eintore}
 % ============================================================================================
 
-
+\subsection{Liste}
 	\begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
 		\parbox{1.3cm}{ Leerlauf \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
 		\parbox{1.3cm}{ Kurzschluss \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\	\mrule
@@ -207,7 +224,20 @@ Eigenschaften von $F$:
 	\end{tabular}
 
 
+\sectionbox{
+	\subsection{Kennlinienbestimmung von verschalteten Bauteilen}
+	\textbf{Parallel}: Kennlinien entlang der i-Achse addieren (Spannungen sind gleich, Ströme addieren sich\\
+	\textbf{Seriell}: Kennlinien entlang der u-Achse addieren (Ströme sind gleich, Spannungen addieren sich
+}
 
+\sectionbox{
+	 \subsection{Linearisierung}
+	 Beispiel spannungsgesteuert, stromgesteuert analog\\
+	 $g_{lin} = \left. \frac{\partial i_F}{\partial u_F} \right|_{AP}$\\
+	 $\Delta i = i - I_{AP}$ \quad $\Delta u = u - U_{AP}$\\
+	 $\Delta i = g_{lin} \Delta u$\\
+	 $i_{F,lin} = \Delta i + I_{AP} = \Delta u \cdot g_{lin} + U_{AP} = g_{lin}(u_f - U_{AP}) + I_{AP}$
+}
 
 
 \columnbreak
@@ -219,15 +249,15 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	\subsection{Beschreibungsformen von Zweitoren}
 	\begin{tabular}{@{}p{1.3cm}|ll@{}}
 		Beschreibung	& nicht linear & linear \\ \mrule
-		\textbf{Implizit} & $f_{\mathcal F}( \ul u, \underline i) = \ul 0$ & $\mat{ \utilde{ \bf M}\ \utilde{ \bf N}} \cdot \left. \begin{matrix} \ul u \\ \ul i \end{matrix}  \right] = 0$ \\ \mrule
-		\textbf{Parametrisch} & $\begin{array}{@{}l} \ul u = u_{\mathcal F}(\ul \lambda) \\ \ul i=i_{\mathcal F}(\ul \lambda) \end{array}$ & $\mvect{ \ul u \\ \ul i } = \begin{bmatrix}  \utilde{ \bf U} \\ \utilde{ \bf I} \end{bmatrix} \cdot \ul \lambda$  \vspace{2em} \\
+		\textbf{Implizit} & $f_{\mathcal F}( \ul u, \underline i) = \ul 0$ & $\mat{ \ma M& \ma N} \cdot \mat{\ul u \\ \ul i} = 0$ \\ \mrule
+		\textbf{Parametrisch} & $\begin{array}{@{}l} \ul u = u_{\mathcal F}(\ul \lambda) \\ \ul i=i_{\mathcal F}(\ul \lambda) \end{array}$ & $\mat{ \ul u \\ \ul i } = \mat{\utilde{ \bf U} \\ \utilde{ \bf I}} \cdot \ul \lambda$  \vspace{2em} \\
 		\textbf{Explizit} &  nicht linear & linear \\\mrule
-		Widerstand-beschreibung &  $\mvect{ u_1\\ u_2} = \mvect{ r_1(i_1,i_2)\\ r_2(i_1,i_2) }$ & $= \mvect{ U_0 \\ U_0} + \utilde{ \bf R} \mvect{ i_1 \\ i_2} $ \\ \mrule
-		Leitwert-beschreibung	& $\mvect{ i_1\\ i_2} = \mvect{g_1(u_1,u_2) \\ g_2(u_1,u_2)}$ & $= \mvect{ I_0 \\ I_0} + \utilde{ \bf G} \mvect{ u_1 \\ u_2} $ \\ \mrule
-		Hybrid-beschreibung & $\mvect{ u_1\\ i_2} = \mvect{h_1(i_1,u_2) \\ h_2(i_1,u_2)} $ & $= \ma{H} \cdot \mvect{ i_1\\ u_2 }$\\ \mrule
-		Inver. Hybrid- beschreibung & $\mvect{ i_1\\ u_2} = \mvect{h'_1(u_1,i_2) \\ h'_2(u_1,i_2)}$ & $= \ma{H'} \cdot \mvect{ u_1\\ i_2 }$ \\ \mrule
-		Ketten-beschreibung & $\mvect{ u_1\\ i_1} = \mvect{a_1(u_2,-i_2) \\ a_2(u_2,-i_2)}$ & $= \ma{A} \cdot \mvect{ u_2\\ -i_2 }$\\ \mrule
-		Inver. Ketten- beschreibung & $\mvect{ u_2\\ i_2} = \mvect{a'_1(u_1,-i_1) \\ a'_2(u_1,-i_1)}$ &  $= \ma{A'} \cdot \mvect{ u_1\\ -i_1 }$
+		Widerstand-beschreibung &  $\mat{ u_1\\ u_2} = \mat{ r_1(i_1,i_2)\\ r_2(i_1,i_2) }$ & $= \mat{ U_0 \\ U_0} + \utilde{ \bf R} \mat{ i_1 \\ i_2} $ \\ \mrule
+		Leitwert-beschreibung	& $\mat{ i_1\\ i_2} = \mat{g_1(u_1,u_2) \\ g_2(u_1,u_2)}$ & $= \mat{ I_0 \\ I_0} + \utilde{ \bf G} \mat{ u_1 \\ u_2} $ \\ \mrule
+		Hybrid-beschreibung & $\mat{ u_1\\ i_2} = \mat{h_1(i_1,u_2) \\ h_2(i_1,u_2)} $ & $= \ma{H} \cdot \mat{ i_1\\ u_2 }$\\ \mrule
+		Inver. Hybrid- beschreibung & $\mat{ i_1\\ u_2} = \mat{h'_1(u_1,i_2) \\ h'_2(u_1,i_2)}$ & $= \ma{H'} \cdot \mat{ u_1\\ i_2 }$ \\ \mrule
+		Ketten-beschreibung & $\mat{ u_1\\ i_1} = \mat{a_1(u_2,-i_2) \\ a_2(u_2,-i_2)}$ & $= \ma{A} \cdot \mat{ u_2\\ -i_2 }$\\ \mrule
+		Inver. Ketten- beschreibung & $\mat{ u_2\\ i_2} = \mat{a'_1(u_1,-i_1) \\ a'_2(u_1,-i_1)}$ &  $= \ma{A'} \cdot \mat{ u_1\\ -i_1 }$
 
 	\end{tabular}\\
 
@@ -256,11 +286,9 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 		\parbox{3cm}{Kette Inv: $a'_{ges}=a'_{\mathcal F2} \cdot a'_{\mathcal F1}$ \\ linear: $\ma A'_{\ir ges} = \ma A'_2 \cdot \ma A'_1$} & \parbox{2.5cm}{\includegraphics{./img/ztv_kette_inv.pdf}}\\
 	\end{tabular}
 
- \newpage
-
 	\subsection{Liste von Zweitoren}
 
-		\subsubsection{Übertrager (z.B. Transformator}
+		\subsubsection{Übertrager (z.B. Transformator)}
 		$A=\begin{bmatrix} \text{ü} & 0 \\ 0 & \frac{1}{\text{ü}} \end{bmatrix}$\\
 		$R_{in}=\frac{u_1}{i_1}=\text{ü}^2 R_L$\\
 		Eigenschaften: verlustlos(ideal)
@@ -289,6 +317,30 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	\end{tabular}
 }
 
+\subsection{Dualwandlung}
+	$\mat{\ma U\\\ma I}^d = \mat{R_d\ma I\\\frac{1}{R_d}\ma U}$\\
+	$\ma G^d = \frac{1}{R_d^2} \ma R$ \quad $\ma R^d = R_d^2 \ma G$
+
+\subsection{Linearisierung}
+	\begin{tabular}{ll}
+		Großsignal & Kleinsignal\\
+		$i=I_{\ir AP}+\Delta i$ \ &  \ $\Delta i= i - I_{\ir AP}$\\
+		$u=U_{\ir AP}+\Delta u$ \ &  \ $\Delta u= u - U_{\ir AP}$\\
+	\end{tabular}
+	\\
+	$\vec i = \vec g(\vec u)$\quad$\Delta \vec i \approx \ma G \cdot \Delta \vec u$\\
+	$\ma G$ ist die Jakobimatrix $\left. \frac{\partial g_i(\vec u)}{\partial u_j} \right|_{U_{\ir AP}} = \left. \mat{
+	\frac{\partial g_1}{\partial u_1} & \frac{\partial g_1}{\partial u_2}\\
+	\frac{\partial g_2}{\partial u_1} & \frac{\partial g_2}{\partial u_2}
+	}\right|_{U_{AP}}$\\
+	$\Delta \vec u \approx \ma R \cdot \Delta \vec u$\\
+	Großsignal: $i \approx I_{\ir AP} + G(U_{\ir AP}) \cdot (u - U_{\ir AP})$\\[1em]
+
+	Implizite Liniarisierung: $\Delta \vec f(\Delta \vec u, \Delta \vec i) = \ma M \Delta \vec u + \ma N \Delta \vec i$\\
+	$\ma M := \mat{ \frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} \\[0.5em] \frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} }$ \quad
+	$\ma N := \mat{ \frac{\partial f_1}{\partial i_1} & \frac{\partial f_1}{\partial i_2} \\[0.5em] \frac{\partial f_2}{\partial i_1} & \frac{\partial f_2}{\partial i_2} }$
+
+
 
 % SECTION ====================================================================================
 \section{Eigenschaften von Ein- und Mehrtoren}
@@ -298,7 +350,7 @@ Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 	\textbf{Resistiv}: Gedächtnislos; nur von $u$ und $i$ abhängig\\
 	\textbf{Zeitvariant}: Betriebsraum kann sich ändern\\
 	\textbf{Rezeprozität}: $\ma G^T$ = $\ma G$, $\ma R^T$ = $\ma R$, $\det (\ma A)$ = 1, $\det (\ma {A'})$ = 1, $h_{21} = -h_{12}$, $h'_{21} = -h'_{12}$, $\ma U^T\ma I$ = $\ma I^T\ma U$\\
-	\textbf{Symmetrie}: $r_{11} = r_{22}$, $\ma R = \ma P\ma R\ma P$ mit $\ma P = \mat{0 & 1 \\ 1 & 0}$
+	\textbf{Symmetrie}: $r_{11} = r_{22}$, $\ma R = \ma P\ma R\ma P$, $\ma G = \ma P \ma G \ma P$ mit $\ma P = \mat{0 & 1 \\ 1 & 0}$, $\ma A = \ma A'$
 
 \tablebox{
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}}
@@ -367,6 +419,9 @@ Vorgehen:
 
 \end{enumerate}
 Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
+
+	\subsubsection{Aufstellen der Knotenleitwertsmatrix}
+	TODO
 
 
 % SECTION ====================================================================================
