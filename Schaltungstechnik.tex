@@ -579,6 +579,16 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 	-\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
 	-\ Cram'sche Regel: $u_{ki} = \frac{det(\ma {Y_{ki}})}{det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
 
+	\subsection{Dualwandlung}
+	$\vec u \xrightarrow{R_d} R_d\vec i^d$\qquad$\vec i \xrightarrow{R_d} \frac{1}{R_d}\vec u^d$\\
+	$\ma A\vec i = \vec 0 \xrightarrow{R_d} \ma A\vec u^d = \vec 0$ Knoten werden zu Maschen\\
+	$\ma B\vec u = \vec 0 \xrightarrow{R_d} \ma B\vec i^d = \vec 0$ Maschen werden zu Knoten\\
+	\begin{tabular}{cc}
+	\includegraphics[width=.4\columnwidth]{img/dual_start}&
+	\includegraphics[width=.6\columnwidth]{img/dual_end}
+	\end{tabular}
+	$\mat{\vec u^d\\\vec i^d}=\mat{0&R_d\\\frac{1}{R_d}&0}\mat{\vec u\\\vec i}$
+
 
 % SECTION ====================================================================================
 \section{Operationsverstärker (OpAmp)}
