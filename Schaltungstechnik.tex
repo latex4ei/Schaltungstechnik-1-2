@@ -261,15 +261,22 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 
 	\end{tabular}\\
 
-
-	\subsection{Kurzschluss-Leerlauf-Methode}
+	\subsection{Aufstellen der Zweitormatrix}
+	\subsubsection{By Inspection}
+	Gleichungen aufstellen und gesuchte Matrix daraus ableiten.
+	\subsubsection{Kurzschluss-Leerlauf-Methode}
 	Für jede steuernde Größe:
 	\begin{itemize}
 		\item steuernde Größe einprägen
 		\item restliche steuernde Größen auf 0 setzen (mit KS oder LL)
 		\item gesteuerte Größen ermitteln
 	\end{itemize}
-
+	\subsubsection{Quellenbehaftete lineare Zweitore}
+	\begin{enumerate}\itemsep0pt
+		\item Matrix des quellenfreien Zweitors bestimmen
+		\item Quellvektor bestimmen (beide steuernden Größen auf null setzen)
+		\item Schaltbild mit externen Quellen zeichnen je nach Beschreibungsform
+	\end{enumerate}
 
 
 
@@ -287,16 +294,37 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	\end{tabular}
 
 	\subsection{Liste von Zweitoren}
+		\subsubsection{VCCS}
+		$\ma A = \mat{0&-\frac{1}{g}\\0&0}$\quad
+		$\ma G = \mat{0&0\\g&0}$
+		\subsubsection{CCCS}
+		$\ma A = \mat{0&0\\0&-\frac{1}{\beta}}$\quad
+		$\ma H = \mat{0&0\\\beta&0}$
+		\subsubsection{VCVS}
+		$\ma A = \mat{\frac{1}{\mu}&0\\0&0}$\quad
+		$\ma H' = \mat{0&0\\\mu&0}$
+		\subsubsection{CCVS}
+		$\ma A = \mat{0&0\\\frac{1}{r}&0}$\quad
+		$\ma R = \mat{0&0\\r&0}$
+
+		\subsubsection{Nullor}
+		$\ma A = \mat{0&0\\0&0}$\quad
+		$\ma M = \mat{1&0\\0&0}$\quad
+		$\ma N = \mat{0&0\\1&0}$\\
+		Eigenschaften: Quellenfrei, streng linear
 
 		\subsubsection{Übertrager (z.B. Transformator)}
 		$A=\begin{bmatrix} \text{ü} & 0 \\ 0 & \frac{1}{\text{ü}} \end{bmatrix}$\\
 		$R_{in}=\frac{u_1}{i_1}=\text{ü}^2 R_L$\\
 		Eigenschaften: verlustlos(ideal)
 
+
 		\subsubsection{Gyrator}
 		Der Gyrator wandelt das an Tor 1 geschaltete Bauteil in das duale Bauteil an Tor 2 um.\\
-		\includegraphics{./img/symb/symb_gyrator.pdf} \qquad $\mathcal F_{in}=\mathcal F^d$
-		$A=\begin{bmatrix} 0 & R_1 \\ \frac{1}{R_2} & 0 \end{bmatrix}$\\
+		\includegraphics[scale=.8]{./img/symb/symb_gyrator.pdf}
+		$\begin{array}{l}
+			\ma A=\mat{0 & R_d \\ \frac{1}{R_d} & 0}\mathrm{\quad}\ma R = \mat{0&-R_d\\R_d&0}\\ \mathrm{\quad} G = \mat{0&G_d\\-G_d&0}\mathrm{\quad}\mathcal F_{in}=\mathcal F^d
+		\end{array}$\\
 		Eigenschaften: streng linear, verlustlos für $R_1=R_2$\\
 
 		\subsubsection{Negativ-Immitanz-Konverter}
@@ -340,8 +368,41 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	$\ma M := \mat{ \frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} \\[0.5em] \frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} }$ \quad
 	$\ma N := \mat{ \frac{\partial f_1}{\partial i_1} & \frac{\partial f_1}{\partial i_2} \\[0.5em] \frac{\partial f_2}{\partial i_1} & \frac{\partial f_2}{\partial i_2} }$
 
+\section{Resistive Mehrtore}
+	\subsection{Beschreibungsformen}
+	Analog zu Zweitoren, nur mit mehr Dimensionen und es gibt sehr viele, nicht mehr benannte Hybridbeschreibungen.
+	\subsection{Spezielle Mehrtore}
+	\subsubsection{Mehrtorübertrager}
+	$\ma H_{\text{Übertrager}} = \mat{\ma 0 & \ma H_{a,b}\\-\ma H^T_{a,b}&\ma 0}$\\
+	$\ma H'_{\text{Übertrager}} = \mat{
+	0 & -\frac{1}{"u_2} & -\frac{1}{"u_3} & \cdots & -\frac{1}{"u_p}\\
+	\frac{1}{"u_2} & 0 & 0 & \cdots & 0\\
+	\frac{1}{"u_3} & 0 & 0 & \cdots & 0\\
+	\vdots & \vdots & \vdots & \ddots & \vdots\\
+	\frac{1}{"u_p} & 0 & 0 & \cdots & 0}$\\
+	Eigenschaften: Verlustlos und Reziprok
 
+	\subsubsection{Zirkulator}
+	$\ma M = \ma 1$ \quad $\ma N = \mat{
+		 0 & -R & +R\\
+		+R &  0 & -R\\
+		-R & +R &  0}$\\
+	$\ma R = -\ma M^{-1}\ma N = -\ma N = \mat{
+		0 & +R & -R\\
+		-R &  0 & +R\\
+		+R & -R &  0} = -\ma R^T$\\
+	Eigenschaften: Verlustlos, Nicht reziprok, Schiefsymmetrisch\\
+	$p_1 = u_1i_1 = \frac{u_0^2}{4R} \geq 0W$\\
+	$p_2 = u_2i_2 = -\frac{u_0^2}{4R} = -p_1 \leq 0W$\\
+	$P_3 = u_3i_3 = 0W$\\
+	Die an einem Tor aufgenommene Leistung wird in Pfeilrichtung an das nächste weitergegeben.
 
+	\subsubsection{Multiplizierer}
+	$\mat{i_1\\i_2\\u_3} = h\left(\mat{u_1\\u_2\\i_3}\right) = \mat{0\\0\\\frac{u_1u_2}{U_M}}$\quad$u_3=\frac{u_1u_2}{U_M}$, $U_M$ Multipliziererkonstante
+
+	\subsubsection{Dividierer}
+	$\mat{i_1\\i_2\\u_3} = h\left(\mat{u_1\\u_2\\i_3}\right) = \mat{0\\0\\\frac{u_1}{u_2}U_D}$\quad$u_3=\frac{u_1}{u_2}U_D$, $U_D$ Dividiererkonstante, $U_D = -U_M$\\
+	Realisierung z.B. mit Multiplizierer in Rückkopplungspfad von OpAmp.
 % SECTION ====================================================================================
 \section{Eigenschaften von Ein- und Mehrtoren}
 % ============================================================================================
@@ -399,10 +460,15 @@ Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 \section{Allgemeine Analyseverfahren}
 % ============================================================================================
 
+	\subsection{Tellegenscher Satz}
+	$u^Ti = 0$\\
+	Der Spannungsvektor steht immer senkrecht zum Stromvektor ($\ma A\ma B^T = \vec 0$ bzw. $\ma B\ma A^T = \vec 0$).
 
 	\subsection{Die Tableau-Gleichung}
-	... beschreibt ein Netzwerk vollständig bezüglich Verschaltung und Bauteilverhalten.
-	$\ma T = \mat{ \ma A & \ma 0 \\ \ma 0 & \ma B \\ \ma M & \ma N}$
+	... beschreibt ein Netzwerk vollständig bezüglich Verschaltung und Bauteilverhalten.\\
+	$\mat{\ma B&\ma 0\\\ma 0&\ma A\\\ma M & \ma N}\mat{\vec u\\\vec i} = \mat{\vec 0\\\vec 0\\\vec e}$\qquad
+	$\ma T = \mat{ \ma B & \ma 0 \\ \ma 0 & \ma A \\ \ma M & \ma N}$\\
+	($e = 0 \Leftrightarrow$ keine Quellen enthalten)
 
 
 
@@ -590,7 +656,8 @@ $Kern\mat{\ma U&\ma I} = \left\{\mat{\vec u\\ \vec i}|\mat{\ma M&\ma N}\cdot\mat
 }
 
 
-
+\section{Umrechnung von Zweitormatrizen}
+\textbf{Explizit $\ra$ Explizit}\\
 {
 \setlength{\tabcolsep}{30pt}
 \renewcommand{\arraystretch}{1.3}
@@ -598,7 +665,6 @@ $Kern\mat{\ma U&\ma I} = \left\{\mat{\vec u\\ \vec i}|\mat{\ma M&\ma N}\cdot\mat
 \arraycolsep=3pt
 \tabcolsep=5pt
 \renewcommand{\frac}{\dfrac}
-		\section{Zweitormatrizen}
 		\rotatebox{270}{
 		\begin{tabular}{ccccccc}	% {c|c|c|c|c|c|c}	%
 		In $\rightarrow$ & $\ma R$ & $\ma G$ & $\ma H$ & $\ma H'$ & $\ma A$ & $\ma A'$ \\ \mrule
@@ -612,6 +678,24 @@ $Kern\mat{\ma U&\ma I} = \left\{\mat{\vec u\\ \vec i}|\mat{\ma M&\ma N}\cdot\mat
 		\end{tabular}
 }
 }
+\textbf{Implizit $\ra$ Explizit}\\
+$\ma R = -\ma M^{-1}\ma N$\quad
+$\ma G = -\ma N^{-1}\ma M$\\
+\textbf{Explizit $\ra$ Implizit}\\
+$\ma 1 \vec u - \ma R \vec i = \vec 0$\quad
+$-\ma G \vec u + \ma 1 \vec i = \vec 0$\\
+\textbf{Parametrisch $\ra$ Explizit}\\
+$\ma R = \ma U \ma I^{-1}$\quad
+$\ma G = \ma I \ma U^{-1}$\\
+\textbf{Implizit $\ra$ Parametrisch}\\
+$\mat{\ma U\\\ma I} = \mat{-\ma M^{-1}\ma N\\\ma 1}$\quad
+$\mat{\ma U\\\ma I} = \mat{\ma 1\\-\ma N^{-1}\ma M}$\\
+\textbf{Parametrisch $\ra$ Implizit}\\
+$-\ma I \ma U^{-1} \vec u + \ma 1 \vec i = 0$\quad
+$\ma 1 \vec u - \ma U \ma I^{-1} \vec i = 0$
+
+
+
 
 % Ende der Spalten
 \end{multicols*}
