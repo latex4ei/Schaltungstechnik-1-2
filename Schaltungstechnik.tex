@@ -633,48 +633,13 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 
 
 		\subsubsection{Arten von Bauelementen}
-		\begin{tabular}{l|l|l|l|l}
-			Art & Symbol & Beschr. & linear & Beispiel\\ \hline
-			Resistivität & \includegraphics[height=0.4cm]{./img/Resistivitat.pdf} & $f_R(u,i)$  & $u = U_0 + R \cdot i$ & PN-Diode\\
-			Kapazität & \includegraphics[height=0.4cm]{./img/Kapazivitat.pdf} & $f_C(u,q)$ & $q = Q_0 + C \cdot u$ & Kondensator\\
-			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$ & Spule\\
-			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$ & Memristor\\
+		\begin{tabular}{l|l|l|l}
+			Art & Symbol & Beschr. & linear\\ \hline
+			Resistivität & \includegraphics[height=0.4cm]{./img/Resistivitat.pdf} & $f_R(u,i)$  & $u = U_0 + R \cdot i$\\
+			Kapazität & \includegraphics[height=0.4cm]{./img/Kapazivitat.pdf} & $f_C(u,q)$ & $q = Q_0 + C \cdot u$\\
+			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$\\
+			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$\\
 		\end{tabular}
-
-
-
-
-
-\sectionbox{
-	\subsection{Komplexe Wechselstromrechnung}
-	% ---------------------------------------------------------
-	Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
-	Effektivwert $X = \frac{\hat x}{\sqrt{2}}$\\
-	Differentialoperator: $\frac{\diff}{\diff t} = \i \omega$\\
-	\emphbox{
-	\begin{tabular}{ll}
-		Reeles Zeitsignal: &\!\!\!\!\!\! $x(t) = \hat x \cdot \cos(\omega t + \varphi_x)$\\[0.5em]
-		Effektiver Zeiger: &\!\!\!\!\!\! $\cx X = X_w + \i X_b = X \exp(\i \varphi_x)$\\[0.5em]
-		Scheitel Zeiger: &\!\!\!\!\!\! $\boldsymbol{\hat X} = \sqrt{2} \cx X = \hat X \exp(\i \varphi_x)$\\[0.5em]
-		Kompl. Zeitsignal: &\!\!\!\!\!\! $\cx x(t) = \boldsymbol{\hat X} \cdot e^{\i \omega t} = \hat x \cdot e^{\i(\omega t + \varphi_x)}$\\[0.5em]
-		Phase: &\!\!\!\!\!\! $\varphi_x := \arg \cx X = \arctan \frac{X_b}{X_w}$\\
-	\end{tabular} }	\\
-	\framebox[\columnwidth]{
-		\begin{tabular}{l@{\hspace{4em}}l}
-		$\underset{\text{Impedanz}}{\cx Z(j\omega)} = \underset{\text{Resistanz}}{R(j\omega)} + \underset{\text{Reaktanz}}{jX(j\omega)}$ & $\cx U = \cx Z \cdot \cx I$\\[0.5em]
-		$\underset{\text{Admittanz}}{\cx Y(j\omega)} = \underset{\text{Konduktanz}}{G(j\omega)} + \underset{\text{Suszeptanz}}{jB(j\omega)}$ & $\cx I = \cx Y \cdot \cx U$\\
-		\end{tabular}
-	}
-
-	\tablebox{
-	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
-	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
-	$Z=$ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$ & $M$\\[0.5em]
-	$Y=$ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ & $\frac{1}{M}$\\[0.5em]
-	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ & ?\\ \cbrule
-	\end{tabular*} }
-}
-
 
 
 Merke: Am Kondensa\textsl{tor}, eilt der Strom \textsl{vor}, bei Induktivi\textsl{täten}, wird er sich ver\textsl{späten}\\
@@ -706,6 +671,47 @@ Merke: Ist das Mädchen brav, bleibt der Bauch konkav, hat das Mädchen Sex, wir
 	$u_L = -u$ \quad $u_L = L \cdot \dot i_L$ \quad $u_L = L \cdot \dot i_L$ \\  \\
 	$i_L (t_\infty) = I_0$ \quad
 	Zeitkonstante: $\tau = G \cdot L$
+}
+
+\section{Komplexe Wechselstromrechnung}
+Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
+\sectionbox{
+\subsection{Komplexe Zeigergrößen}
+\emphbox{
+	\begin{tabular}{ll}
+	\textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\phi)$\\
+	\textbf{Zeiger} & $A = \alpha + i\beta = A_m \cdot e^{i\phi} = A_m \cdot (\cos \phi+j\sin \phi)$\\
+	\textbf{Maximum} & $A_m = |A| = \sqrt{\alpha^2+\beta^2} = \sqrt{AA^*}$\\
+	\textbf{Phase} & $\phi = \begin{cases}
+	\arctan\frac{\beta}{\alpha}&\alpha>0\\
+	\arctan\frac{\beta}{\alpha}+\pi&\alpha<0
+	\end{cases}$
+	\end{tabular}
+}
+
+	% ---------------------------------------------------------
+	Differentialoperator: $\frac{\diff}{\diff t} = j \omega$\qquad
+	$\frac{d}{dt} e^{j(\omega t + \phi)} = j\omega\cdot e^{j(\omega t + \phi)}$\\
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
+	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
+	$\frac{U}{I} =$ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$ & $M$\\[0.5em]
+	$\frac{I}{U} =$ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ & $\frac{1}{M}$\\[0.5em]
+	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ & ?\\ \cbrule
+	\end{tabular*} }
+	}
+
+\sectionbox{
+	\subsection{Komplexe Leistungsrechnung}
+	$U_{eff} = \frac{1}{\sqrt{2}}U_m$\quad
+	$I_{eff} = \frac{1}{\sqrt{2}}I_m$\\
+	\textbf{Momentanleistung}: $p(t) = u(t)i(t)$\\
+	\textbf{Energie einer Periode}: $E=\int_0^Tu(t)i(t)dt$\\
+	\textbf{Leistungsmittelwert}: $P_w = \frac{1}{T} \int_0^T u(t)i(t)dt$\\
+	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\phi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{eff}\cdot I_{eff}\cdot e^{j(\phi_u-\phi_i)}$\\
+	\textbf{Scheinleistung}: $S = |P|$\\
+	\textbf{Wirkleistung}: $P_w = Re{P}$\\
+	\textbf{Blindleistung}: $P_B = Im{P}$
 }
 
 \section{Mathe}
@@ -759,6 +765,7 @@ $Kern\mat{\ma U&\ma I} = \left\{\mat{\vec u\\ \vec i}|\mat{\ma M&\ma N}\cdot\mat
 		\end{tabular}
 }
 }
+\sectionbox{
 \textbf{Implizit $\ra$ Explizit}\\
 $\ma R = -\ma M^{-1}\ma N$\quad
 $\ma G = -\ma N^{-1}\ma M$\\
@@ -774,7 +781,7 @@ $\mat{\ma U\\\ma I} = \mat{\ma 1\\-\ma N^{-1}\ma M}$\\
 \textbf{Parametrisch $\ra$ Implizit}\\
 $-\ma I \ma U^{-1} \vec u + \ma 1 \vec i = 0$\quad
 $\ma 1 \vec u - \ma U \ma I^{-1} \vec i = 0$
-
+}
 
 
 
