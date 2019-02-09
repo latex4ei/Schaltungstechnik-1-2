@@ -467,6 +467,7 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 		\alpha & \ldots & G & \ldots \\
 		& & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/conductance_a_gnd.png} }\\
 	\end{tabular}
+
 	\begin{tabular}{ll}
 		$\ \ \ \ \ma {Y_k}$ = 	
 		$\kbordermatrix{ & \gamma & & \delta \\
@@ -475,7 +476,7 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 		 & \vdots & & \vdots \\
 		\beta & -g_m & \ldots & g_m \\
 		 & \vdots &  & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_d.png} }\\ 
-	
+
 		$\ \ \ \ \ma {Y_k}$ = 		 
 		$\kbordermatrix{ & \gamma & \\
 		& \vdots & \\
@@ -484,25 +485,25 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 		& \vdots & \\
 		\beta & -g_m & \ldots \\
 		& \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_gnd.png} }\\
-		
+
 		$\ \ \ \ \ma {Y_k}$ = 	
 		$\kbordermatrix{ & \gamma & & \delta & \\
 		 & \vdots &  & \vdots & \\
 		\alpha & g_m & \ldots & -g_m & \ldots \\
 		 & \vdots & & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_d_gnd.png} }\\
-		 
+
 		 $\ \ \ \ \ma {Y_k}$ = 		 
 		$\kbordermatrix{ & \gamma & \\
 		& \vdots & \\
 		\alpha & g_m & \ldots \\
 		& \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }\\
-		
-	\end{tabular}\\
 
-	
-	
-		  	  
+	\end{tabular}\\	  	  
 	\normalsize
+	\subsubsection{Berechnen der Knotenspannungen}
+	-\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
+	-\ Cram'sche Regel: $u_{ki} = \frac{det(\ma {Y_{ki}})}{det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
+
 
 % SECTION ====================================================================================
 \section{Operationsverstärker (OpAmp)}
