@@ -550,7 +550,7 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 		\alpha & g_m & \ldots & -g_m \\
 		 & \vdots & & \vdots \\
 		\beta & -g_m & \ldots & g_m \\
-		 & \vdots &  & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_d.png} }\\
+		 & \vdots &  & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_d.png} }\\
 
 		$\ \ \ \ \ma {Y_k}$ =
 		$\kbordermatrix{ & \gamma & \\
@@ -559,19 +559,19 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 		& \vdots & \\
 		& \vdots & \\
 		\beta & -g_m & \ldots \\
-		& \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_gnd.png} }\\
+		& \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_gnd.png} }\\
 
 		$\ \ \ \ \ma {Y_k}$ =
 		$\kbordermatrix{ & \gamma & & \delta & \\
 		 & \vdots &  & \vdots & \\
 		\alpha & g_m & \ldots & -g_m & \ldots \\
-		 & \vdots & & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_d_gnd.png} }\\
+		 & \vdots & & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_d_gnd.png} }\\
 
 		 $\ \ \ \ \ma {Y_k}$ =
 		$\kbordermatrix{ & \gamma & \\
 		& \vdots & \\
 		\alpha & g_m & \ldots \\
-		& \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }\\
+		& \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }\\
 
 	\end{tabular}\\
 	\normalsize
@@ -579,6 +579,63 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 	-\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
 	-\ Cram'sche Regel: $u_{ki} = \frac{det(\ma {Y_{ki}})}{det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
 
+	\subsection{Dualwandlung}
+	$\vec u \xrightarrow{R_d} R_d\vec i^d$\qquad$\vec i \xrightarrow{R_d} \frac{1}{R_d}\vec u^d$\\
+	$\ma A\vec i = \vec 0 \xrightarrow{R_d} \ma A\vec u^d = \vec 0$ Knoten werden zu Maschen\\
+	$\ma B\vec u = \vec 0 \xrightarrow{R_d} \ma B\vec i^d = \vec 0$ Maschen werden zu Knoten\\
+	\begin{tabular}{cc}
+	\includegraphics[width=.295\columnwidth]{img/dual_start}&
+	\includegraphics[width=.595\columnwidth]{img/dual_end}
+	\end{tabular}
+	$\mat{\vec u^d\\\vec i^d}=\mat{0&R_d\\\frac{1}{R_d}&0}\mat{\vec u\\\vec i}$
+
+	\subsection{Substitutionstheorem}
+	\includegraphics[scale=.27]{img/subst}\\
+	Wenn $\mathcal N_1$ zu allen Zeitpunkten spannungsgesteuert:\\
+	\begin{tabular}{cc}
+			\multicolumn{2}{c}{Wenn $\mathcal N_1$ zu allen Zeitpunkten}\\
+			spannungsgestuert & stromgesteuert\\
+		\includegraphics[scale=.25]{img/subst-u}&
+		\includegraphics[scale=.25]{img/subst-i}
+	\end{tabular}
+
+	\subsection{Superpositionsprinzip}
+	Sei eine lineare eindeutig lösbare Schaltung mit mehreren Erregungen gegeben, so setzt sich die Gesamtlösung aus den einzelnen Teillösungen zusammen.
+	\begin{enumerate}\itemsep0pt
+		\item Setze alle bis auf eine unabhängige Quelle $U_k$ bzw. $I_k$ zu Null
+		\item Berechne die gesuchten Größen $u_{z_k}$ bzw. $i_{y_k}$
+		\item Wiederhole Schritte 1 und 2 $\forall$ unabhängige Quellen
+		\item Gesamtlösung ergibt sich zu $u_z = \sum_ku_{z_k}$ und $i_y = \sum_ki_{y_k}$
+	\end{enumerate}
+
+	\sectionbox{
+	\subsection{Zweipolersatzschaltungen}
+	Eine beliebe Eintorschaltung $\mathcal F$ aus linearen resistiven
+Netzwerkelementen lässt sich durch mindestens eine
+der beiden folgenden Ersatzeintore beschreiben.\\
+	\begin{tabular}{cc}
+		\textbf{Helmholz / Thévenin ESB}&
+		\textbf{Mayer / Norton ESB}\\
+		\hspace{-1.5em}\begin{circuitikz}
+		\draw (0,0) to[R, l=R, i_<=$i$, -o] (2,0);
+		\draw (2,-2) to[short, o-] (0, -2) to[V, v<=$U_0$] (0,0);
+		\draw (2,0) to[open, v^>=$u$] (2, -2);
+		\end{circuitikz}&
+		\hspace{-.5em}\begin{circuitikz}
+		\draw (0,0) -- (1,0) to[short, i^<=$i$, -o] (2,0);
+		\draw (2, -2) to[short, o-] (1, -2) --(0, -2) to[I, i<^=$I_0$] (0,0);
+		\draw (1,0) to[R, l = G] (1, -2);
+		\draw (2,0) to[open, v^>=$u$] (2,-2);
+		\end{circuitikz}\\
+	\end{tabular}
+	Umrechnung durch Quellwandlung:\\
+	$\begin{array}{lcl}
+		R_i = \frac{1}{G_i}&\Leftrightarrow&G_i=\frac{1}{R_i}\\
+		u_0 = -\frac{i_0}{G_i}&\Leftrightarrow&i_0=-\frac{u_0}{R_i}
+	\end{array}$
+	\textbf{Bestimmen von $u_0$/$i_0$}: Leerlaufspannung bzw. Kurzschlussstrom von $\mathcal F$ bestimmen\\
+	\textbf{Bestimmen von $R_i$/$G_i$}: Unabhängige Quellen in $\mathcal F$ durch entsprechende Nullquellen ersetzen und dann eine Torgröße in Abhängigkeit der anderen bestimmen.
+}
 
 % SECTION ====================================================================================
 \section{Operationsverstärker (OpAmp)}
@@ -655,32 +712,6 @@ Merke: Am Kondensa\textsl{tor}, eilt der Strom \textsl{vor}, bei Induktivi\texts
 Merke: Ist das Mädchen brav, bleibt der Bauch konkav, hat das Mädchen Sex, wird der Bauch konvex.\\
 % Liste mit Eselsbrücken für Ingenieure
 % selbstausdenken begriffspaare
-
-
-\sectionbox{
-	\subsection{Ersatzschaltbilder}
-\subsubsection{Helmholz / Thévenin ESB}
-	\begin{circuitikz}
-		\draw (0,0) to[R, l=R, i_<=$i$, -o] (2,0) to[short, i_>=$i_c$] (3,0) to[C, v^>=$u_C$] (3,-2) -- (3,-2) to[short, o-] (0, -2) to[V, v<=$U_0$] (0,0);
-		\draw (1.8,0) to[open, v^>=$u$] (1.8, -2);
-	\end{circuitikz}
-
-	$i_C = -i$ \quad $i_C = C \cdot \dot u_C$ \quad
-	$u_C (t_\infty) = U_0$ \\ \\
-	Zeitkonstante: $\tau = R \cdot C$ \\
-
-	\subsubsection{Mayer / Norton ESB}
-
-	\begin{circuitikz}
-	\draw (0,0) -- (1,0) to[short, i^<=$i$, -o] (2,0) to[short, i^<=$i_L$] (3,0) to[L, l_=L, v^<=$u_L$] (3,-2) to (2, -2) to[short, o-] (1, -2) --(0, -2) to[I, i<^=$I_0$] (0,0);
-	\draw (1,0) to[R, l = G] (1, -2);
-	\draw (1.8,0) to[open, v^>=$u$] (1.8,-2);
-	\end{circuitikz}
-
-	$u_L = -u$ \quad $u_L = L \cdot \dot i_L$ \quad $u_L = L \cdot \dot i_L$ \\  \\
-	$i_L (t_\infty) = I_0$ \quad
-	Zeitkonstante: $\tau = G \cdot L$
-}
 
 \section{Komplexe Wechselstromrechnung}
 Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
