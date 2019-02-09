@@ -630,7 +630,9 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 	\textbf{Magnetischer Fluss \textit{$\Phi$}}: Grundeigenschaft von elektr. magn. Feldern\\
 		\subsubsection{Allgemeine Zusammenhänge $u,i,q,\Phi$}
 		Ladung und Strom beschreiben den Zustand der Materie.\\
-		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\ \\
+		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\
+		Kondensator ist u-gesteuert (q-gesteuert), falls für ein u (q) nur ein q (u)  existiert. \\
+		Induktivität ist i-gesteuert ($\phi$-gesteuert), falls für ein i ($\phi$) nur ein $\phi$ (i) existiert. \\
 		\begin{tabular}{l|l}
 			$i(t) = \dot q(t)$ & $[i]=A$\\
 			$q(t) = q(t_0) + \int_{t_0}^t i(\tau) \mathrm d\tau$	& $[q]=As=C$ \\ \hline
@@ -649,6 +651,60 @@ Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
 			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$\\
 			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$\\
 		\end{tabular}
+		\subsubsection{Zusammenhang der Bauelemente}
+		\begin{center}
+			\includegraphics[scale=0.3]{./img/reactance_overview.pdf}
+		\end{center}
+		\subsubsection{Eigenschaften von Reaktanzen}
+		\textbf{Linearität}: siehe Eintore\\
+		\textbf{Differentialgleichung}: $i(t) = C \frac{\mathrm du(t)}{\mathrm dt}, u(t) = L \frac{\mathrm di(t)}{\mathrm dt}$\\
+		\textbf{Gedächtnis}: Verhalten durch vorhergehende Klemmengrößen bestimmt.\\
+		\textbf{Stetigkeit}: $u_C(t)$, $i_L(t)$ stetig in $(t_a, t_b)$, wenn Torgrößen endlich\\
+		\textbf{Verlustfreiheit}: $W_C(t_1, t_2) = \int_{t_1}^{t_2}\! u(t)i(t)\,\mathrm dt = \int_{q_1}^{q_2}\! \mathrm{X}(q)\,\mathrm{d}t$ (Arbeit)\\
+		Falls linear: $W = \frac{Cu^2}{2} = \frac{Li^2}{2}$\\
+		Periodisch: $u(t+T) = u(t)$, $q(t+T) = q(t)$\\
+		Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hystenesefrei)\\
+		\textbf{Energie (nicht linearer Fall)}:\\
+		- Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! u(q)\, \mathrm dq$\\
+		- Induktiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! i(\Phi)\, \mathrm d\Phi$\\
+		\textbf{Energie (linearer Fall)}:\\
+		- Kapazitiv: $W_C = \frac{1}{2C}u^2 = \frac{1}{2C}q^2$\\
+		- Induktiv: $W_L = \frac{1}{2L}i^2 = \frac{1}{2L} \Phi^2$\\
+		Graphisch: Fläche zwischen der Kennlinie und der q-/$\Phi$-Achse\\
+		\textbf{Relaxationspunkte (=Ruhepunkte)}: Betriebspunkte, in dem die in einer Reaktanz gespeicherte Energie minimal ist. Kandidaten sind: Extremwerte, Wendepunkte, Knicke, Schnittpunkte mit Achsen\\
+		\subsubsection{Verschaltung von Reaktanzen}
+		- Parallelschaltung: $C_p = C_1 + C_2$, $L_p = L_1 || L_2 = \frac{L_1L_2}{L_1+L_2}$\\
+		- Serienschaltung: $C_p = C_1 || C_2 = \frac{C_1C_2}{C_1+C_2}$, $L_p = L_1 + L_2$\\
+\sectionbox{
+	\subsection{Komplexe Wechselstromrechnung}
+	% ---------------------------------------------------------
+	Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
+	Effektivwert $X = \frac{\hat x}{\sqrt{2}}$\\
+	Differentialoperator: $\frac{\diff}{\diff t} = \i \omega$\\
+	\emphbox{
+	\begin{tabular}{ll}
+		Reeles Zeitsignal: &\!\!\!\!\!\! $x(t) = \hat x \cdot \cos(\omega t + \varphi_x)$\\[0.5em]
+		Effektiver Zeiger: &\!\!\!\!\!\! $\cx X = X_w + \i X_b = X \exp(\i \varphi_x)$\\[0.5em]
+		Scheitel Zeiger: &\!\!\!\!\!\! $\boldsymbol{\hat X} = \sqrt{2} \cx X = \hat X \exp(\i \varphi_x)$\\[0.5em]
+		Kompl. Zeitsignal: &\!\!\!\!\!\! $\cx x(t) = \boldsymbol{\hat X} \cdot e^{\i \omega t} = \hat x \cdot e^{\i(\omega t + \varphi_x)}$\\[0.5em]
+		Phase: &\!\!\!\!\!\! $\varphi_x := \arg \cx X = \arctan \frac{X_b}{X_w}$\\
+	\end{tabular} }	\\
+	\framebox[\columnwidth]{
+		\begin{tabular}{l@{\hspace{4em}}l}
+		$\underset{\text{Impedanz}}{\cx Z(j\omega)} = \underset{\text{Resistanz}}{R(j\omega)} + \underset{\text{Reaktanz}}{jX(j\omega)}$ & $\cx U = \cx Z \cdot \cx I$\\[0.5em]
+		$\underset{\text{Admittanz}}{\cx Y(j\omega)} = \underset{\text{Konduktanz}}{G(j\omega)} + \underset{\text{Suszeptanz}}{jB(j\omega)}$ & $\cx I = \cx Y \cdot \cx U$\\
+		\end{tabular}
+	}
+
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
+	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
+	$Z=$ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$ & $M$\\[0.5em]
+	$Y=$ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ & $\frac{1}{M}$\\[0.5em]
+	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ & ?\\ \cbrule
+	\end{tabular*} }
+}
+
 
 
 Merke: Am Kondensa\textsl{tor}, eilt der Strom \textsl{vor}, bei Induktivi\textsl{täten}, wird er sich ver\textsl{späten}\\
