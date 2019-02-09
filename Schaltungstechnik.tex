@@ -3,6 +3,7 @@
 \usepackage[european]{circuitikz}
 
 \usepackage{multirow}
+\usepackage{kbordermatrix}
 
 
 
@@ -10,11 +11,13 @@
 % ======================================================================
 \begin{document}
 
+\titlespacing*{\subsubsection} {0pt}{0.5ex}{2.0ex}
+\titlespacing*{\subsection} {0pt}{0.5ex}{2.0ex}
 
 % Aufteilung in Spalten
 \vspace{-4mm}
 \begin{multicols*}{4}
-	\fstitle{Schaltungstechnik 1}
+	\fstitle{Schaltungstheorie}
 
 	\emphbox{
 	\textbf{Wichtiger Hinweis}
@@ -35,7 +38,7 @@
 $x$ & $0$ & $\pi / 6$ & $\pi / 4$ & $\pi / 3$ & $\frac{1}{2}\pi$ & $\pi$ & $1\frac{1}{2}\pi$ & $2 \pi$ \\
 $\scriptstyle{ \varphi }$ & $\scriptstyle{0^\circ}$ & $\scriptstyle{30^\circ}$ & $\scriptstyle{45^\circ}$ & $\scriptstyle{60^\circ}$ & $\scriptstyle{90^\circ}$ & $\scriptstyle{180^\circ}$ & $\scriptstyle{270^\circ}$ & $\scriptstyle{360^\circ}$ \\ \cmrule
 $\sin$ & $0$ & $\frac{1}{2}$ & $\frac{1}{\sqrt{2}}$ & $\frac{\sqrt 3}{2}$ & $1$ & $0$ & $-1$ & $0$ \\
-$\cos$ & $1$ & $\frac{\sqrt 3}{2}$ & $\frac{1}{\sqrt 2}$ & $\frac{1}{2}$ & $0$ & $-1$ & $0$ & $1$ \\     
+$\cos$ & $1$ & $\frac{\sqrt 3}{2}$ & $\frac{1}{\sqrt 2}$ & $\frac{1}{2}$ & $0$ & $-1$ & $0$ & $1$ \\
 $\tan$ & $0$ & $\frac{\sqrt{3}}{3}$ &	$1$	&	$\sqrt{3}$ & $\pm \infty$ & $0$ & $\mp \infty$ & $0$\\ \cbrule
 \end{tabular*} }
 }
@@ -56,7 +59,7 @@ In den meisten Fachgebieten wird im Verbrauchersystem gerechnet.
 		\item[Leerlauf (LL):] ideal isolierende Luft. $u_{\ir LL}=\; \mathrm{beliebig}$, $i_{\ir LL} = 0$
 		\item[Tor:] Ein Tor bilden zwei Anschlüsse bei denen der Stromzufluss des einen Anschluss gleich dem Stromabfluss des anderen Anschluss entspricht. $i_{\ir in} = i_{\ir out}$
 		\item[Arbeitspunnkt (AP):] Betriebspunkt bei dem alle Kleinsignalquellen Null sind.
-	\end{description}	
+	\end{description}
 }
 
 % SECTION ====================================================================================
@@ -84,19 +87,9 @@ $d = $ Größe der Schaltung, Wellenlänge $\lambda = c T$ \\
 	\end{tabular*}
 }
 
-Knoteninzidenzmatrix: $\ma A' = \mat{\alpha_{11} &  \ldots & \alpha_{1b} \\ \vdots & &  \\ \alpha_{n1} & \ldots & \alpha_{nb}}$ $n$ Knoten
-
-Spaltensummen von $A'$ sind immer $= 0$ \\
-$\Ra$ Zeile des Bezugsknotens streichen $\Ra$ \\
-$\ma A \vec i =0$ (reduzierte Knoteninzidenzmatrix)
-
-$\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL in Matrixform: $\vec u - \ma A^{\top} \vec u_{k} = 0$
-
 }
 
-
-
-\sectionbox{	
+\sectionbox{
 	\subsection{Schaltung und Netzwerkgraph}
 	% Verbindet man mehrere Bauelemente zu einer Schaltung ergibt sich eine eindeutige Verbindungsstruktur.\\
 	Der gerichtete Netzwerkgraph stellt die Verbindungsstruktur einer Schaltung durch $n$ Knoten (node) und $b$ Verbindungskanten (branch) mit Richtungspfeilen dar.\\
@@ -107,6 +100,28 @@ $\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL 
 	Um die Betriebspunkte einer Schaltung zu bestimmen sind $2b$ linear unabhängige Gleichungen nötig. Man erhält diese $2b$ Gleichungen aus den Beschreibungen der Bauelemente und den Kirchoff Gleichungen.
 
 
+}
+
+\sectionbox{
+	\subsection{Baumkonzept}
+	\textbf{Baum}: zusammenhängender azyklischer Teilgraph des Netzwerkgraphen, der alle Knoten enthält.\\
+	\textbf{Nummerierung}: erst Baumkanten nummerieren, dann übrige.\\
+	\textbf{KVL}: Pro Verbindungskante eine Masche, die sonst nur Baumkanten enthält:	$\mat{\ma B_b& \ma 1_s}\mat{\vec u_b\\ \vec u_v} = \vec{0}$\\
+	\textbf{KCL}: Pro Baumkante je einen Superknoten, der sonst nur Verbindungskanten enthält, Vorzeichen der Baumkante ist positiv: $\mat{\ma 1_{n-1}&\ma A_v}\mat{\vec i_b\\ \vec i_v} = \vec 0$
+}
+
+\sectionbox{
+	\subsection{Knoteninzidenzmatrix}
+	Knoteninzidenzmatrix: $\ma A = \mat{\alpha_{11} &  \ldots & \alpha_{1b} \\ \vdots & &  \\ \alpha_{n-1,1} & \ldots & \alpha_{n-1,b}}$ \quad$n$ Knoten\\
+	\textbf{Aufstellen}
+	\begin{itemize}\itemsep0pt
+		\item Wählen des Bezugsknotens
+		\item Für alle Knoten außer Bezugsknoten:
+		\item[-] Herausgehende Kante $\Rightarrow \alpha = +1$
+		\item[-] Hereingehende Kante $\Rightarrow \alpha = -1$
+	\end{itemize}
+	KCL: $\ma A \vec i = \vec 0$\quad
+	KVL: $\vec u = \ma A^T\vec u_k$
 }
 
 \sectionbox{
@@ -125,53 +140,38 @@ $\ma M = \ma A^{'\top} $ mit $\vec u = \ma M^{'} \vec u^{'}_{\ir k}$ $\Ra $ KVL 
 }
 
 \sectionbox{
-	\subsection{Linearisierung}
-	\begin{tabular}{ll}
-		Großsignal & Kleinsignal\\
-		$i=I_{\ir AP}+\Delta i$ \ &  \ $\Delta i= i - I_{\ir AP}$\\
-		$u=U_{\ir AP}+\Delta u$ \ &  \ $\Delta u= u - U_{\ir AP}$\\
-	\end{tabular}
-	\\
-	$\Delta \vec i \approx \ma G \cdot \Delta \vec u$ \qquad $\ma G$ ist die Jakobimatrix $\left. \frac{\partial g_i(\vec u)}{\partial u_j} \right|_{U_{\ir AP}}$\\
-	$\Delta \vec u \approx \ma R \cdot \Delta \vec u$\\	
-	Großsignal: $i \approx I_{\ir AP} + G(U_{\ir AP}) \cdot (u - U_{\ir AP})$\\[1em]
-
-	Implizite Liniarisierung: $\Delta \vec f(\Delta \vec u, \Delta \vec i) = \ma M \Delta \vec u + \ma N \Delta \vec i$\\
-	$\ma M := \mat{ \frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} \\[0.5em] \frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} }$ \quad
-	$\ma N := \mat{ \frac{\partial f_1}{\partial i_1} & \frac{\partial f_1}{\partial i_2} \\[0.5em] \frac{\partial f_2}{\partial i_1} & \frac{\partial f_2}{\partial i_2} }$
-}
-
-
-\sectionbox{
 \subsection{Resistive Eintore}
 
 \begin{itemize}
 	\item Implizite Darstellung: $f_F (u,i) = 0$
-	\item Parameterdarstellung: $u = u_F ( \lambda )$ \quad $ i = i_F (\lambda )$ 
+	\item Parameterdarstellung: $u = u_F ( \lambda )$ \quad $ i = i_F (\lambda )$
 	\item Explizite Darstellung: $\underset{\ir Leitwertdarstellung}{i = g_F (u)}$ \quad $\underset{\ir Widerstandsdarstellung}{u = r_F (i)}$
-	\item Umpolung: $\overline F$ entsteht durch Punktspiegelung von $F$ am Unsprung: $(\overline u, \overline i) = (- u, - i) \in \overline F$
+	\item Umpolung: $\overline F$ entsteht durch Punktspiegelung von $F$ am Ursprung: $(\overline u, \overline i) = (- u, - i) \in \overline F$
 	\item Dualität: $(u,i) \in F \Leftrightarrow ( R_d i, \frac{ u}{ R_d}) \in F^d$
 	\item Parallelschaltung von Widerstandsgeraden: $G = G_1 + G_2$ \\
 	$\Ra \frac 1 R = \frac 1 R_1 + \frac 1 R_2 \Ra R = R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2}$
 	\item Serienschaltung von Widerstandsgeraden: genauso wie Parallelschaltung nur $R$ statt $G$
 	\item Arbeitspunkt ermitteln:
 		\begin{enumerate}
-			\item Schaltungs aufteilen in Quelle $Q$ und Last $L$
+			\item Schaltung aufteilen in Quelle $Q$ und Last $L$
 			\item Parameterdarstellung $\Ra$ Kennlinien zeichnen
-			\item Lösung: Schnittpunkte der Kennlinien! $\Ra$ ist die Funktion im AP stetig und diffbar, kann man sie dort \emph{linearisieren}
+			\item Lösung: Schnittpunkte der Kennlinien! $\Ra$ ist die Funktion im AP stetig und diff'bar, kann man sie dort \emph{linearisieren}
 		\end{enumerate}
-\end{itemize} 
+\end{itemize}
 
 Eigenschaften von $F$:
 
 \tablebox{
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}}
 	\ctrule
-		F ungepolt & Kennlinie punktsymm. zum Ursprung \\ 
+		F stromgesteuert & $\exists r_F(i)$\\
+		F spannungsgesteuert & $\exists g_F(i)$\\
+		F ungepolt & Kennlinie punktsymm. zum Ursprung \\
 		F aktiv & mind. 1 Pkt. in II. od. IV. Quadr. \\
 		F verlustfrei & nur auf Koordinatenachsen \\
 		F quellenfrei & enthält den Ursprung \\
 		F streng linear & $(ku, ki) \in F$ \quad $ (u_1 + u_2, i_1 + i_2) \in F$ \\
+		F stückweise linear & Kennlinie besteht aus linearen Abschnitten\\
 		\cbrule
 	\end{tabular*}
 }
@@ -179,13 +179,40 @@ Eigenschaften von $F$:
 
 }
 
+\sectionbox{
+	\subsection{Dualwandlung}
+	$u \rightarrow R_d\cdot i$\qquad $i \rightarrow \frac{1}{R_d	}\cdot u$
+	\\
+	Im Schaltbild:\\
+	$R \rightarrow G = \frac{R}{R_d^2}$\qquad $G \rightarrow R = R_d^2G$
+	\\
+	Serienschaltung $\leftrightarrow$ Parallelschaltung
+}
 
+\sectionbox{
+	\subsection{Teilerregeln}
+	\textbf{Spannungsteiler}: $R_1$ in Serie mit $R_2$ $\Rightarrow$ $u_{R_1} = \frac{R_1}{R_1+R_2}u_{ges}$\\
+	\textbf{Stromteiler}: $G_1$ in Serie mit $G_2$ $\Rightarrow$ $i_{G_1} = \frac{G_1}{G_1+G_2}i_{ges}$
+}
+
+\sectionbox{
+	\subsection{Arbeitspunktbestimmung}
+	$\mathcal Q$: Quelleneintor\\
+	$\mathcal Q^x$: Quelleneintor mit externer Kennlinie (gespiegelt an der u-Achse)\\
+	$\mathcal F$: Lasteintor\\
+	\textbf{Graphisch}: $AP = \mathcal F \cap \mathcal Q^x$\\
+	\textbf{Rechnerisch}:
+	$\begin{array}{l}
+	i_Q = -i_F \Rightarrow u_{AP}\\
+	u_Q = u_F \Rightarrow i_{AP}
+	\end{array}$
+}
 
 % SECTION ====================================================================================
 \section{Resistive Eintore}
 % ============================================================================================
 
-
+\subsection{Liste}
 	\begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
 		\parbox{1.3cm}{ Leerlauf \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
 		\parbox{1.3cm}{ Kurzschluss \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\	\mrule
@@ -200,12 +227,23 @@ Eigenschaften von $F$:
 	\end{tabular}
 
 
+\sectionbox{
+	\subsection{Kennlinienbestimmung von verschalteten Bauteilen}
+	\textbf{Parallel}: Kennlinien entlang der i-Achse addieren (Spannungen sind gleich, Ströme addieren sich\\
+	\textbf{Seriell}: Kennlinien entlang der u-Achse addieren (Ströme sind gleich, Spannungen addieren sich
+}
+
+\sectionbox{
+	 \subsection{Linearisierung}
+	 Beispiel spannungsgesteuert, stromgesteuert analog\\
+	 $g_{lin} = \left. \frac{\partial i_F}{\partial u_F} \right|_{AP}$\\
+	 $\Delta i = i - I_{AP}$ \quad $\Delta u = u - U_{AP}$\\
+	 $\Delta i = g_{lin} \Delta u$\\
+	 $i_{F,lin} = \Delta i + I_{AP} = \Delta u \cdot g_{lin} + U_{AP} = g_{lin}(u_f - U_{AP}) + I_{AP}$
+}
 
 
-
-
-
-
+\columnbreak
 % SECTION ====================================================================================
 \section{Resistive Zweitore}
 % ============================================================================================
@@ -214,18 +252,34 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	\subsection{Beschreibungsformen von Zweitoren}
 	\begin{tabular}{@{}p{1.3cm}|ll@{}}
 		Beschreibung	& nicht linear & linear \\ \mrule
-		\textbf{Implizit} & $f_{\mathcal F}( \ul u, \underline i) = \ul 0$ & $\mat{ \utilde{ \bf M}\ \utilde{ \bf N}} \cdot \left. \begin{matrix} \ul u \\ \ul i \end{matrix}  \right] = 0$ \\ \mrule
-		\textbf{Parametrisch} & $\begin{array}{@{}l} \ul u = u_{\mathcal F}(\ul \lambda) \\ \ul i=i_{\mathcal F}(\ul \lambda) \end{array}$ & $\mvect{ \ul u \\ \ul i } = \begin{bmatrix}  \utilde{ \bf U} \\ \utilde{ \bf I} \end{bmatrix} \cdot \ul \lambda$  \vspace{2em} \\
+		\textbf{Implizit} & $f_{\mathcal F}( \ul u, \underline i) = \ul 0$ & $\mat{ \ma M& \ma N} \cdot \mat{\ul u \\ \ul i} = 0$ \\ \mrule
+		\textbf{Parametrisch} & $\begin{array}{@{}l} \ul u = u_{\mathcal F}(\ul \lambda) \\ \ul i=i_{\mathcal F}(\ul \lambda) \end{array}$ & $\mat{ \ul u \\ \ul i } = \mat{\utilde{ \bf U} \\ \utilde{ \bf I}} \cdot \ul \lambda$  \vspace{2em} \\
 		\textbf{Explizit} &  nicht linear & linear \\\mrule
-		Widerstand-beschreibung &  $\mvect{ u_1\\ u_2} = \mvect{ r_1(i_1,i_2)\\ r_2(i_1,i_2) }$ & $= \mvect{ U_0 \\ U_0} + \utilde{ \bf R} \mvect{ i_1 \\ i_2} $ \\ \mrule
-		Leitwert-beschreibung	& $\mvect{ i_1\\ i_2} = \mvect{g_1(u_1,u_2) \\ g_2(u_1,u_2)}$ & $= \mvect{ I_0 \\ I_0} + \utilde{ \bf G} \mvect{ u_1 \\ u_2} $ \\ \mrule
-		Hybrid-beschreibung & $\mvect{ u_1\\ i_2} = \mvect{h_1(i_1,u_2) \\ h_2(i_1,u_2)} $ & $= \ma{H} \cdot \mvect{ i_1\\ u_2 }$\\ \mrule
-		Inver. Hybrid- beschreibung & $\mvect{ i_1\\ u_2} = \mvect{h'_1(u_1,i_2) \\ h'_2(u_1,i_2)}$ & $= \ma{H'} \cdot \mvect{ u_1\\ i_2 }$ \\ \mrule
-		Ketten-beschreibung & $\mvect{ u_1\\ i_1} = \mvect{a_1(u_2,-i_2) \\ a_2(u_2,-i_2)}$ & $= \ma{A} \cdot \mvect{ u_2\\ -i_2 }$\\ \mrule
-		Inver. Ketten- beschreibung & $\mvect{ u_2\\ i_2} = \mvect{a'_1(u_1,-i_1) \\ a'_2(u_1,-i_1)}$ &  $= \ma{A'} \cdot \mvect{ u_1\\ -i_1 }$
+		Widerstand-beschreibung &  $\mat{ u_1\\ u_2} = \mat{ r_1(i_1,i_2)\\ r_2(i_1,i_2) }$ & $= \mat{ U_0 \\ U_0} + \utilde{ \bf R} \mat{ i_1 \\ i_2} $ \\ \mrule
+		Leitwert-beschreibung	& $\mat{ i_1\\ i_2} = \mat{g_1(u_1,u_2) \\ g_2(u_1,u_2)}$ & $= \mat{ I_0 \\ I_0} + \utilde{ \bf G} \mat{ u_1 \\ u_2} $ \\ \mrule
+		Hybrid-beschreibung & $\mat{ u_1\\ i_2} = \mat{h_1(i_1,u_2) \\ h_2(i_1,u_2)} $ & $= \ma{H} \cdot \mat{ i_1\\ u_2 }$\\ \mrule
+		Inver. Hybrid- beschreibung & $\mat{ i_1\\ u_2} = \mat{h'_1(u_1,i_2) \\ h'_2(u_1,i_2)}$ & $= \ma{H'} \cdot \mat{ u_1\\ i_2 }$ \\ \mrule
+		Ketten-beschreibung & $\mat{ u_1\\ i_1} = \mat{a_1(u_2,-i_2) \\ a_2(u_2,-i_2)}$ & $= \ma{A} \cdot \mat{ u_2\\ -i_2 }$\\ \mrule
+		Inver. Ketten- beschreibung & $\mat{ u_2\\ i_2} = \mat{a'_1(u_1,-i_1) \\ a'_2(u_1,-i_1)}$ &  $= \ma{A'} \cdot \mat{ u_1\\ -i_1 }$
 
 	\end{tabular}\\
 
+	\subsection{Aufstellen der Zweitormatrix}
+	\subsubsection{By Inspection}
+	Gleichungen aufstellen und gesuchte Matrix daraus ableiten.
+	\subsubsection{Kurzschluss-Leerlauf-Methode}
+	Für jede steuernde Größe:
+	\begin{itemize}
+		\item steuernde Größe einprägen
+		\item restliche steuernde Größen auf 0 setzen (mit KS oder LL)
+		\item gesteuerte Größen ermitteln
+	\end{itemize}
+	\subsubsection{Quellenbehaftete lineare Zweitore}
+	\begin{enumerate}\itemsep0pt
+		\item Matrix des quellenfreien Zweitors bestimmen
+		\item Quellvektor bestimmen (beide steuernden Größen auf null setzen)
+		\item Schaltbild mit externen Quellen zeichnen je nach Beschreibungsform
+	\end{enumerate}
 
 
 
@@ -240,23 +294,42 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 		\parbox{3.5cm}{Hybrid Inv.: $h'_{ges}=h_{\mathcal F1}+h'_{\mathcal F2}$ \\ linear: $\ma H'_{\ir ges} = \ma H'_1 + \ma H'_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_hybrid_inv.pdf}}\\[2em]
 		\parbox{3cm}{Kette: $a_{ges}=a_{\mathcal F1} \cdot a_{\mathcal F2}$ \\ linear: $\ma A_{\ir ges} = \ma A_1 \cdot \ma A_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_kette.pdf}}\\[2em]
 		\parbox{3cm}{Kette Inv: $a'_{ges}=a'_{\mathcal F2} \cdot a'_{\mathcal F1}$ \\ linear: $\ma A'_{\ir ges} = \ma A'_2 \cdot \ma A'_1$} & \parbox{2.5cm}{\includegraphics{./img/ztv_kette_inv.pdf}}\\
-	\end{tabular}	
-
-
+	\end{tabular}
 
 	\subsection{Liste von Zweitoren}
-	
-		\subsubsection{Übertrager (z.B. Transformator}
+		\subsubsection{VCCS}
+		$\ma A = \mat{0&-\frac{1}{g}\\0&0}$\quad
+		$\ma G = \mat{0&0\\g&0}$
+		\subsubsection{CCCS}
+		$\ma A = \mat{0&0\\0&-\frac{1}{\beta}}$\quad
+		$\ma H = \mat{0&0\\\beta&0}$
+		\subsubsection{VCVS}
+		$\ma A = \mat{\frac{1}{\mu}&0\\0&0}$\quad
+		$\ma H' = \mat{0&0\\\mu&0}$
+		\subsubsection{CCVS}
+		$\ma A = \mat{0&0\\\frac{1}{r}&0}$\quad
+		$\ma R = \mat{0&0\\r&0}$
+
+		\subsubsection{Nullor}
+		$\ma A = \mat{0&0\\0&0}$\quad
+		$\ma M = \mat{1&0\\0&0}$\quad
+		$\ma N = \mat{0&0\\1&0}$\\
+		Eigenschaften: Quellenfrei, streng linear
+
+		\subsubsection{Übertrager (z.B. Transformator)}
 		$A=\begin{bmatrix} \text{ü} & 0 \\ 0 & \frac{1}{\text{ü}} \end{bmatrix}$\\
 		$R_{in}=\frac{u_1}{i_1}=\text{ü}^2 R_L$\\
 		Eigenschaften: verlustlos(ideal)
-	
+
+
 		\subsubsection{Gyrator}
 		Der Gyrator wandelt das an Tor 1 geschaltete Bauteil in das duale Bauteil an Tor 2 um.\\
-		\includegraphics{./img/symb/symb_gyrator.pdf} \qquad $\mathcal F_{in}=\mathcal F^d$
-		$A=\begin{bmatrix} 0 & R_1 \\ \frac{1}{R_2} & 0 \end{bmatrix}$\\
+		\includegraphics[scale=.8]{./img/symb/symb_gyrator.pdf}
+		$\begin{array}{l}
+			\ma A=\mat{0 & R_d \\ \frac{1}{R_d} & 0}\mathrm{\quad}\ma R = \mat{0&-R_d\\R_d&0}\\ \mathrm{\quad} G = \mat{0&G_d\\-G_d&0}\mathrm{\quad}\mathcal F_{in}=\mathcal F^d
+		\end{array}$\\
 		Eigenschaften: streng linear, verlustlos für $R_1=R_2$\\
-		
+
 		\subsubsection{Negativ-Immitanz-Konverter}
 		$A=\begin{bmatrix} -k & 0 \\ 0 & \frac{1}{k} \end{bmatrix}$\\
 		$R_{in}=\frac{u_1}{i_1}=-k^2R$ \quad $-k^2 R:$\ negativer Widerstand(et voilà xD)\\
@@ -275,18 +348,73 @@ Ein Zweitor besteht aus zwei Eintoren.\\
 	\end{tabular}
 }
 
+\subsection{Dualwandlung}
+	$\mat{\ma U\\\ma I}^d = \mat{R_d\ma I\\\frac{1}{R_d}\ma U}$\\
+	$\ma G^d = \frac{1}{R_d^2} \ma R$ \quad $\ma R^d = R_d^2 \ma G$
 
+\subsection{Linearisierung}
+	\begin{tabular}{ll}
+		Großsignal & Kleinsignal\\
+		$i=I_{\ir AP}+\Delta i$ \ &  \ $\Delta i= i - I_{\ir AP}$\\
+		$u=U_{\ir AP}+\Delta u$ \ &  \ $\Delta u= u - U_{\ir AP}$\\
+	\end{tabular}
+	\\
+	$\vec i = \vec g(\vec u)$\quad$\Delta \vec i \approx \ma G \cdot \Delta \vec u$\\
+	$\ma G$ ist die Jakobimatrix $\left. \frac{\partial g_i(\vec u)}{\partial u_j} \right|_{U_{\ir AP}} = \left. \mat{
+	\frac{\partial g_1}{\partial u_1} & \frac{\partial g_1}{\partial u_2}\\
+	\frac{\partial g_2}{\partial u_1} & \frac{\partial g_2}{\partial u_2}
+	}\right|_{U_{AP}}$\\
+	$\Delta \vec u \approx \ma R \cdot \Delta \vec u$\\
+	Großsignal: $i \approx I_{\ir AP} + G(U_{\ir AP}) \cdot (u - U_{\ir AP})$\\[1em]
+
+	Implizite Liniarisierung: $\Delta \vec f(\Delta \vec u, \Delta \vec i) = \ma M \Delta \vec u + \ma N \Delta \vec i$\\
+	$\ma M := \mat{ \frac{\partial f_1}{\partial u_1} & \frac{\partial f_1}{\partial u_2} \\[0.5em] \frac{\partial f_2}{\partial u_1} & \frac{\partial f_2}{\partial u_2} }$ \quad
+	$\ma N := \mat{ \frac{\partial f_1}{\partial i_1} & \frac{\partial f_1}{\partial i_2} \\[0.5em] \frac{\partial f_2}{\partial i_1} & \frac{\partial f_2}{\partial i_2} }$
+
+\section{Resistive Mehrtore}
+	\subsection{Beschreibungsformen}
+	Analog zu Zweitoren, nur mit mehr Dimensionen und es gibt sehr viele, nicht mehr benannte Hybridbeschreibungen.
+	\subsection{Spezielle Mehrtore}
+	\subsubsection{Mehrtorübertrager}
+	$\ma H_{\text{Übertrager}} = \mat{\ma 0 & \ma H_{a,b}\\-\ma H^T_{a,b}&\ma 0}$\\
+	$\ma H'_{\text{Übertrager}} = \mat{
+	0 & -\frac{1}{"u_2} & -\frac{1}{"u_3} & \cdots & -\frac{1}{"u_p}\\
+	\frac{1}{"u_2} & 0 & 0 & \cdots & 0\\
+	\frac{1}{"u_3} & 0 & 0 & \cdots & 0\\
+	\vdots & \vdots & \vdots & \ddots & \vdots\\
+	\frac{1}{"u_p} & 0 & 0 & \cdots & 0}$\\
+	Eigenschaften: Verlustlos und Reziprok
+
+	\subsubsection{Zirkulator}
+	$\ma M = \ma 1$ \quad $\ma N = \mat{
+		 0 & -R & +R\\
+		+R &  0 & -R\\
+		-R & +R &  0}$\\
+	$\ma R = -\ma M^{-1}\ma N = -\ma N = \mat{
+		0 & +R & -R\\
+		-R &  0 & +R\\
+		+R & -R &  0} = -\ma R^T$\\
+	Eigenschaften: Verlustlos, Nicht reziprok, Schiefsymmetrisch\\
+	$p_1 = u_1i_1 = \frac{u_0^2}{4R} \geq 0W$\\
+	$p_2 = u_2i_2 = -\frac{u_0^2}{4R} = -p_1 \leq 0W$\\
+	$P_3 = u_3i_3 = 0W$\\
+	Die an einem Tor aufgenommene Leistung wird in Pfeilrichtung an das nächste weitergegeben.
+
+	\subsubsection{Multiplizierer}
+	$\mat{i_1\\i_2\\u_3} = h\left(\mat{u_1\\u_2\\i_3}\right) = \mat{0\\0\\\frac{u_1u_2}{U_M}}$\quad$u_3=\frac{u_1u_2}{U_M}$, $U_M$ Multipliziererkonstante
+
+	\subsubsection{Dividierer}
+	$\mat{i_1\\i_2\\u_3} = h\left(\mat{u_1\\u_2\\i_3}\right) = \mat{0\\0\\\frac{u_1}{u_2}U_D}$\quad$u_3=\frac{u_1}{u_2}U_D$, $U_D$ Dividiererkonstante, $U_D = -U_M$\\
+	Realisierung z.B. mit Multiplizierer in Rückkopplungspfad von OpAmp.
 % SECTION ====================================================================================
 \section{Eigenschaften von Ein- und Mehrtoren}
 % ============================================================================================
 Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 
-	Resistiv: Gedächtnislos; nur von $u$ und $i$ abhängig\\
-	Zeitvariant: Betriebsraum kann sich ändern\\
-	Reziprok: 
-
-	Rezeprozität, Matrix transponierbar(r12=r21). Stärker: Symmetrie: r11=r22
-	Merke: Alle Mehrtore die nur aus R, L, C bestehen sind reziprok!
+	\textbf{Resistiv}: Gedächtnislos; nur von $u$ und $i$ abhängig\\
+	\textbf{Zeitvariant}: Betriebsraum kann sich ändern\\
+	\textbf{Rezeprozität}: $\ma G^T$ = $\ma G$, $\ma R^T$ = $\ma R$, $\det (\ma A)$ = 1, $\det (\ma {A'})$ = 1, $h_{21} = -h_{12}$, $h'_{21} = -h'_{12}$, $\ma U^T\ma I$ = $\ma I^T\ma U$\\
+	\textbf{Symmetrie}: $r_{11} = r_{22}$, $\ma R = \ma P\ma R\ma P$, $\ma G = \ma P \ma G \ma P$ mit $\ma P = \mat{0 & 1 \\ 1 & 0}$, $\ma A = \ma A'$
 
 \tablebox{
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}}
@@ -297,11 +425,11 @@ Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 		\cbrule
 		\\
 		Nur für Eintore:\\
-		ungepolt & Kennlinie punktsymm. zum Ursprung \\	
-			& $\mathcal F(u,i)=\mathcal F(-u,-i)$	
+		ungepolt & Kennlinie punktsymm. zum Ursprung \\
+			& $\mathcal F(u,i)=\mathcal F(-u,-i)$
 	\end{tabular*}
 }
- 
+
 	\subsection{Liniarität}
 	Linear: $(ku, ki) \in F$ \quad $(u_1 + u_2, i_1 + i_2) \in F$ (Kennlinie gerade) \\
 	Streng Linear: linear + quellenfrei, (Gerade durch Ursprung)\\
@@ -318,6 +446,7 @@ Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 	\end{tabular*}
 
 	\subsection{Leistungsbetrachtung}
+	Verlustlosigkeit: $\ma U^T\ma I + \ma U\ma I^T = 0$\\
 	Leistung: $P(t)=\ul u^T \cdot \ul i=u_1 i_1 + \dotsc + u_n i_n$ \\
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}}
 		Passiv: & $\forall \mathcal F(u,i): P(t)\ge 0$ & Kennlinie nur I. oder III. Quadrant\\
@@ -328,39 +457,198 @@ Ein Mehrtor $\mathcal F(\vec u, \vec i)$ ist ...
 	inkremental passiv:\\
 	letztendlich passiv: $\exists U,I>0 \ \forall (u,i) \in \mathcal F : (|u| > U \lor |i| > I \ \Rightarrow \ ui > 0)$\\
 	Alle realen Bauteile sind letztendlich passiv, da sonst unendlich viel Energie entstehen würde.\\
-	
-	
-
 
 
 % SECTION ====================================================================================
-\section{Transistoren}
+\section{Allgemeine Analyseverfahren}
 % ============================================================================================
-Ein \textbf{Trans}fer Res\textbf{istor} ist ein elektronisch gesteuerter Widerstand zum verstärken bzw. schalten von Strömen.
-Eigenschaften: passiv,
 
-\sectionbox{
-	\subsection{Emitterschaltung}
-	\includegraphics{./img/npn-emitter.pdf} \quad \includegraphics{./img/pnp-emitter.pdf}\\[1em]
+	\subsection{Tellegenscher Satz}
+	$u^Ti = 0$\\
+	Der Spannungsvektor steht immer senkrecht zum Stromvektor ($\ma A\ma B^T = \vec 0$ bzw. $\ma B\ma A^T = \vec 0$).
 
-	\emphbox{
-	$i_{\ir b} = I_{\ir S} \left( \exp\left( \frac{u_{\ir be}}{U_{\ir T}} \right) - 1 \right)$ \qquad\qquad $u_{\ir be} = U_{\ir T} \ln\left( \frac{i_{\ir b}}{I_{\ir S}} + 1 \right)$ \\[0.5em]
-	$i_{\ir c} = \beta i_{\ir b}$\\
-	
-	}
+	\subsection{Die Tableau-Gleichung}
+	... beschreibt ein Netzwerk vollständig bezüglich Verschaltung und Bauteilverhalten.\\
+	$\mat{\ma B&\ma 0\\\ma 0&\ma A\\\ma M & \ma N}\mat{\vec u\\\vec i} = \mat{\vec 0\\\vec 0\\\vec e}$\qquad
+	$\ma T = \mat{ \ma B & \ma 0 \\ \ma 0 & \ma A \\ \ma M & \ma N}$\\
+	($e = 0 \Leftrightarrow$ keine Quellen enthalten)
+
+	\subsection{Newton-Raphson-Algorithmus}
+	... ist ein iterativer numerischer Algorithmus zum Suchen der Nullstellen von nichtlinearen Gleichungen. Algorithmus wählt iterativ die Nullstelle der Taylorentwicklung als nächsten Bezugspunkt.\\
+	Taylorentwicklung zu 0 setzen: $f(x^{(j)}) + J(x^{(j)})(x^{(j+1)}-x^{(j)})=0$\\
+	Iterationsformel: $x^{(j+1)} = x^{(j)} - J^{-1}(x^{(j)})f(x^{(j)})$\\
+	1. Wähle Initialisierung $\mat{\vec u^\textbf{(0)}\\\vec i^ \textbf{(0)}}$ mit $\vec f(\vec u^\textbf{(0)}, \vec u^\textbf{(0)}) = \vec{0}$.\\
+	2. Im n+1-ten Schritt: Linearisieren $\vec f(\vec u, \vec i) = \vec 0$ im n-ten Kandidaten für den AP $\mat{\vec u^\textbf{(n)}\\\vec i^ \textbf{(n)}}$.\\
+	3. Löse das neue lineare Gleichungssystem (z.B. Tableau).\\
+	4. Finde neuen Kandidaten für AP in der Nähe $\mat{u^{(n+1)^T}, i^{(n+1)^T}}$ mit $\vec f(\vec u^\textbf{(n+1)}, \vec i^ \textbf{(n+1)}) = \vec 0$.\\
+	5. Wiederhole Schritt 2. - 4. bis $\left|\left|\mat{\vec u^\textbf{(n+1)}\\\vec i^ \textbf{(n+1)}}-\mat{\vec u^\textbf{(n)}\\\vec i^ \textbf{(n)}}\right|\right| \leq \epsilon$ (Toleranz/Genauigkeit).
+
+
+	\subsection{Knotenspannungsanalyse}
+\boxed{ \underset{\text{Knotenleitwertsmatrix}}{\ma Y_{\ir k}} \cdot \underset{\text{Spannungsvektor}}{\vec u_{\ir k}} = \underset{\text{Stromquellenvektor}}{\vec i_{\ir q}} }\\
+Vorgehen:
+\begin{enumerate}\itemsep0pt
+	\item Nicht lineare Elemente linearisieren
+	\item Nicht spannungsgesteuerte Elemente (dual)wandeln
+	\item Aufstellen der Leitwertsmatrix $\ma Y'_k$
+	\item Bestimmung des Stromquellenvektors $\vec i'_q$
+	\item Einbau des Nullators: Addition der Spalten von $\ma Y'_k$ an denen er anliegt \& eine Spalte streichen
+	\item Einbau des Norators: Addition er Zeilen \& eine Zeile streichen
+
+\end{enumerate}
+Spezialfall: Nullator/Norator mit Masse verbunden: Spalte/Zeile streichen
+	\subsubsection{Aufstellen der Knotenleitwertsmatrix}
+	\tiny
+	\begin{tabular}{ll}
+		$\ma {Y_k} = \kbordermatrix{ & \alpha & & \beta & & \gamma\\
+		\alpha & & & & \ldots & G_d\\
+		& & & & & \vdots\\	
+		\beta & & & & \ldots & -G_d\\
+		& \vdots & & \vdots && \vdots\\
+		\gamma & -G_d & \ldots & G_d & \ldots\\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/gyrator_a_b_y_gnd.png} }\\
+		$\ma {Y_k} = \kbordermatrix{ & \alpha & & \gamma & & \delta\\
+		\alpha & & \ldots & G_d & \ldots & -G_d\\
+		& \vdots && \vdots && \vdots\\
+		\gamma & -G_d & \ldots\\
+		& \vdots\\
+		\delta & G_d & \ldots \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/gyrator_a_y_d_gnd.png} }\\
+		$\ma {Y_k} = \kbordermatrix{ & \alpha & & \gamma\\
+		\alpha & & \ldots & G_d\\
+		& \vdots && \vdots\\
+		\gamma & -G_d & \ldots\\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/gyrator_a_y_gnd_gnd.png} }\\
+	\end{tabular}
+	$\ \ \ \ \ma {Y_k} = \kbordermatrix{ & \alpha & & \beta & & \gamma & & \delta\\
+	\alpha & & & & \ldots & G_d & \ldots & -G_d\\
+	& & & & & \vdots & & \vdots\\
+	\beta & & & & \ldots & -G_d & \ldots & G_d\\
+	& \vdots & & \vdots && \vdots && \vdots\\
+	\gamma & -G_d & \ldots & G_d & \ldots\\
+	& \vdots & & \vdots\\
+	\delta & G_d & \ldots & -G_d & \ldots \\}$ \\
+	\begin{center}
+		\includegraphics[scale=0.15]{./img/nodevoltageanalysis/gyrator_a_b_y_d.png}
+	\end{center}\ \\
+	\hrule
+	\begin{tabular}{ll}
+		$\ \ \ \ \ma {Y_k} = $
+		$\kbordermatrix{ & & \alpha & & \beta & \\
+		 & & \vdots &  & \vdots & \\
+		\alpha & \ldots & G & \ldots & -G & \ldots \\
+		 & & \vdots & & \vdots & \\
+		\beta & \ldots & -G & \ldots & G & \ldots \\
+		 & & \vdots &  & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/conductance_a_b.png} } \\
+
+		$\ \ \ \ \ma {Y_k}$ =
+		$\kbordermatrix{ & & \alpha & \\
+		& & \vdots & \\
+		\alpha & \ldots & G & \ldots \\
+		& & \vdots & \\}$ & \parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/conductance_a_gnd.png} }\\
+	\end{tabular}
+
+	\begin{tabular}{ll}
+		$\ \ \ \ \ma {Y_k}$ =
+		$\kbordermatrix{ & \gamma & & \delta \\
+		 & \vdots &  & \vdots & \\
+		\alpha & g_m & \ldots & -g_m \\
+		 & \vdots & & \vdots \\
+		\beta & -g_m & \ldots & g_m \\
+		 & \vdots &  & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_d.png} }\\
+
+		$\ \ \ \ \ma {Y_k}$ =
+		$\kbordermatrix{ & \gamma & \\
+		& \vdots & \\
+		\alpha & g_m & \ldots \\
+		& \vdots & \\
+		& \vdots & \\
+		\beta & -g_m & \ldots \\
+		& \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_b_y_gnd.png} }\\
+
+		$\ \ \ \ \ma {Y_k}$ =
+		$\kbordermatrix{ & \gamma & & \delta & \\
+		 & \vdots &  & \vdots & \\
+		\alpha & g_m & \ldots & -g_m & \ldots \\
+		 & \vdots & & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_d_gnd.png} }\\
+
+		 $\ \ \ \ \ma {Y_k}$ =
+		$\kbordermatrix{ & \gamma & \\
+		& \vdots & \\
+		\alpha & g_m & \ldots \\
+		& \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }\\
+
+	\end{tabular}\\
+	\normalsize
+	\subsubsection{Berechnen der Knotenspannungen}
+	-\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
+	-\ Cram'sche Regel: $u_{ki} = \frac{det(\ma {Y_{ki}})}{det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
+
+	\subsection{Dualwandlung}
+	$\vec u \xrightarrow{R_d} R_d\vec i^d$\qquad$\vec i \xrightarrow{R_d} \frac{1}{R_d}\vec u^d$\\
+	$\ma A\vec i = \vec 0 \xrightarrow{R_d} \ma A\vec u^d = \vec 0$ Knoten werden zu Maschen\\
+	$\ma B\vec u = \vec 0 \xrightarrow{R_d} \ma B\vec i^d = \vec 0$ Maschen werden zu Knoten\\
+	\begin{tabular}{cc}
+	\includegraphics[width=.295\columnwidth]{img/dual_start}&
+	\includegraphics[width=.595\columnwidth]{img/dual_end}
+	\end{tabular}
+	$\mat{\vec u^d\\\vec i^d}=\mat{0&R_d\\\frac{1}{R_d}&0}\mat{\vec u\\\vec i}$
+
+	\subsection{Substitutionstheorem}
+	\includegraphics[scale=.27]{img/subst}\\
+	\begin{tabular}{cc}
+			\multicolumn{2}{c}{Wenn $\mathcal N_1$ zu allen Zeitpunkten}\\
+			spannungsgestuert & stromgesteuert\\
+		\includegraphics[scale=.25]{img/subst-u}&
+		\includegraphics[scale=.25]{img/subst-i}
+	\end{tabular}
+
+	\subsection{Superpositionsprinzip}
+	Sei eine lineare eindeutig lösbare Schaltung mit mehreren Erregungen gegeben, so setzt sich die Gesamtlösung aus den einzelnen Teillösungen zusammen.
+	\begin{enumerate}\itemsep0pt
+		\item Setze alle bis auf eine unabhängige Quelle $U_k$ bzw. $I_k$ zu Null
+		\item Berechne die gesuchten Größen $u_{z_k}$ bzw. $i_{y_k}$
+		\item Wiederhole Schritte 1 und 2 $\forall$ unabhängige Quellen
+		\item Gesamtlösung ergibt sich zu $u_z = \sum_ku_{z_k}$ und $i_y = \sum_ki_{y_k}$
+	\end{enumerate}
+
+	\sectionbox{
+	\subsection{Zweipolersatzschaltungen}
+	Eine beliebe Eintorschaltung $\mathcal F$ aus linearen resistiven
+Netzwerkelementen lässt sich durch mindestens eine
+der beiden folgenden Ersatzeintore beschreiben.\\
+	\begin{tabular}{cc}
+		\textbf{Helmholz / Thévenin ESB}&
+		\textbf{Mayer / Norton ESB}\\
+		\hspace{-1.5em}\begin{circuitikz}
+		\draw (0,0) to[R, l=R, i_<=$i$, -o] (2,0);
+		\draw (2,-2) to[short, o-] (0, -2) to[V, v<=$U_0$] (0,0);
+		\draw (2,0) to[open, v^>=$u$] (2, -2);
+		\end{circuitikz}&
+		\hspace{-.5em}\begin{circuitikz}
+		\draw (0,0) -- (1,0) to[short, i^<=$i$, -o] (2,0);
+		\draw (2, -2) to[short, o-] (1, -2) --(0, -2) to[I, i<^=$I_0$] (0,0);
+		\draw (1,0) to[R, l = G] (1, -2);
+		\draw (2,0) to[open, v^>=$u$] (2,-2);
+		\end{circuitikz}\\
+	\end{tabular}\\
+	Umrechnung durch Quellwandlung:\\
+	$\begin{array}{lcl}
+		R_i = \frac{1}{G_i}&\Leftrightarrow&G_i=\frac{1}{R_i}\\
+		u_0 = -\frac{i_0}{G_i}&\Leftrightarrow&i_0=-\frac{u_0}{R_i}
+	\end{array}$
+	\textbf{Bestimmen von $u_0$/$i_0$}: Leerlaufspannung bzw. Kurzschlussstrom von $\mathcal F$ bestimmen\\
+	\textbf{Bestimmen von $R_i$/$G_i$}: Unabhängige Quellen in $\mathcal F$ durch entsprechende Nullquellen ersetzen und dann eine Torgröße in Abhängigkeit der anderen bestimmen.
 }
 
 % SECTION ====================================================================================
 \section{Operationsverstärker (OpAmp)}
 % ============================================================================================
 	Der Operationsverstärker ist ein elektronischer Verstärker.
-	
+
 \sectionbox{
 	\subsection{Idealer Operationsverstärker}
-	
+
 	\includegraphics{./img/opamp.pdf} \qquad \includegraphics{./img/char/char_opamp.pdf}\\[2em]
 	\begin{tabular}{lll}
-		\parbox{3cm}{\textbf{\large ESB I} \\ Sättigungsbereich \\ $u_{\ir d} < 0$  \\ $u_{\ir out} = - U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_1.pdf} }\\[4em] 
+		\parbox{3cm}{\textbf{\large ESB I} \\ Sättigungsbereich \\ $u_{\ir d} < 0$  \\ $u_{\ir out} = - U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_1.pdf} }\\[4em]
 		\parbox{3cm}{\large \textbf{ESB II} \\ streng linearer Bereich \\ $u_{\ir d} = 0$ \\ $\abs{ u_{\ir out} } \le \abs{ U_{\ir sat}}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_2.pdf} }\\[4em]
 		\parbox{3cm}{\textbf{\large ESB III} \\ Sättigungsbereich \\ $u_{\ir d} > 0$  \\ $u_{\ir out} = + U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_3.pdf} }
 
@@ -368,150 +656,83 @@ Eigenschaften: passiv,
 }
 
 
-		\begin{tabular}{lll}
-			Invertierender Verstärker & Nichtinvert. Verstärker & Spannungsfolger\\
-			\includegraphics[scale = 0.9]{./img/invamp.pdf} & \includegraphics[scale = 0.9]{./img/notinvamp.pdf} & \includegraphics[scale = 0.9]{./img/voltagefollower.pdf}\\
-			$u_{\ir out} = \frac{-R_0}{R_1} u_{in}$ & $u_{\ir out} = \left( 1+ \frac{R_0}{R_1} \right) u_{in}$ & $u_{\ir out} = u_{in}$ \quad $i_{in} = 0$\\[0.5em] \mrule
-			Differenzierer & Integrierer & Addierer \\
-			\includegraphics[scale = 0.9]{./img/differenzierer.pdf} & \includegraphics[scale = 0.9]{./img/integrierer.pdf} & \\
-			$u_{\ir out} = -RC \cdot \dot u_{in}$ & $u_{\ir out} = -\frac{1}{RC} \int\limits^{t_1}_{t_0} u_{in} \diff t$ & $u_{\ir out} = -R_0 \sum \frac{u_i}{R_i}$\\ \mrule
-			Logarithmierer & Exponenzierer & NIK \\
-			\includegraphics[scale = 0.9]{./img/logarithmierer.pdf} & \includegraphics[scale = 0.9]{./img/exponenzierer.pdf} & \includegraphics[scale = 0.8]{./img/NIK.pdf}\\
-			$u_{\ir out} = -U_T \ln \frac{u_{in}}{R \cdot I_S}$ & $u_{\ir out} = -R \cdot I_S \exp \left( \frac{u_{in}}{U_T} \right)$ & $u = -R_L \cdot i$ \\
+		\begin{tabular}{ll}
+			Invertierender Verstärker & Nichtinvert. Verstärker \\
+			\includegraphics[scale = 0.9]{./img/invamp.pdf} & \includegraphics[scale = 0.9]{./img/notinvamp.pdf} \\
+			$u_{\ir out} = \frac{-R_0}{R_1} u_{in}$ & $u_{\ir out} = \left( 1+ \frac{R_0}{R_1} \right) u_{in}$ \\[0.5em] \mrule
+			Differenzierer & Integrierer \\
+			\includegraphics[scale = 0.9]{./img/differenzierer.pdf} & \includegraphics[scale = 0.9]{./img/integrierer.pdf}\\
+			$u_{\ir out} = -RC \cdot \dot u_{in}$ & $u_{\ir out} = -\frac{1}{RC} \int\limits^{t_1}_{t_0} u_{in} \diff t$\\ \mrule
+			Logarithmierer & Exponenzierer \\
+			\includegraphics[scale = 0.9]{./img/logarithmierer.pdf} & \includegraphics[scale = 0.9]{./img/exponenzierer.pdf}\\
+			$u_{\ir out} = -U_T \ln \frac{u_{in}}{R \cdot I_S}$ & $u_{\ir out} = -R \cdot I_S \exp \left( \frac{u_{in}}{U_T} \right)$\\ \mrule
+			Spannungsfolger & Addierer\\
+		\includegraphics[scale = 0.9]{./img/voltagefollower.pdf} & \\
+		$u_{\ir out} = u_{in}$ \quad $i_{in} = 0$ & $u_{\ir out} = -R_0 \sum \frac{u_i}{R_i}$\\ \mrule
+		NIK & \\
+		\includegraphics[scale = 0.8]{./img/NIK.pdf} & \\
+		$u = -R_L \cdot i$ \\
+
 		\end{tabular}
 
 
-
-
-
-
-% SECTION ====================================================================================
-\section{Allgemeine Analyseverfahren}
-% ============================================================================================
-
-
-	\subsection{Die Tableau-Gleichung}
-	... beschreibt ein Netzwerk vollständig bezüglich Verschaltung und Bauteilverhalten.
-	$\ma T = \mat{ \ma A & \ma 0 \\ \ma 0 & \ma B \\ \ma M & \ma N}$
-
-
-
-	\subsection{Knotenspannungsanalyse}
-\boxed{ \underset{\text{Knotenleitwertsmatrix}}{\ma Y_{\ir k}} \cdot \underset{\text{Spannungsvektor}}{\vec u_{\ir k}} = \underset{\text{Stromquellenvektor}}{\vec i_{\ir q}} }\\
-Vorgehen: 
-\begin{enumerate}\itemsep0pt
-	\item Nicht lineare Elemente linearisieren
-	\item Nicht spannungsgesteuerte Elemente (dual)wandeln
-	\item Aufstellen der Leitwertsmatrix $\ma Y_k$
-	\item Bestimmung des Stromquellenvektors $\vec i_q$
-\end{enumerate}
-
-
-
-% SECTION ====================================================================================
-\section{Digitale Logik}
-% ============================================================================================
-
-\sectionbox{
-	\subsection{CMOS Logik}
-	Komplementäre Logik durch pMos und nMos Transistoren auf einem Substrat.\\
-	\begin{tabular}{ccc}
-		NOT (2 Trans.) & NAND (4 Trans.) & NOR (4 Trans.)\\
-		\includegraphics[scale = 0.9]{./img/mosfet_not.pdf} & \includegraphics[scale = 0.9]{./img/mosfet_nand.pdf} & \includegraphics[scale = 0.9]{./img/mosfet_nor.pdf} \\
-	\end{tabular}\\
-}
-
-
-% -- Seite 1
-
-
-
-
-
-
-
-\newpage
-% -------------------------------------------------------
-% | 		S C H A L T U N G S T E C H N I K 2			|
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%########################################################################################################################################################################################################
-\fstitle{Schaltungstechnik 2}
-
-\emphbox{
-	\textbf{Wichtiger Hinweis}
-	\\ Diese Formelsammlung ist noch in der Entwicklung und nicht Prüfungstauglich ! \\ Allerdings würden wir uns über Unterstützung freuen das zu ändern. Wer Lust hat kann uns über das Kontaktformular auf www.latex4ei.de erreichen.
-	} 
-
-\section{Allgemeines}
+\section{Allgemeines Reaktiver Elemente}
 % ===============================================================================================
-	
+
 	\subsection{Die vier zentralen Größen $u,i,q,\Phi$}
 	% ----------------------------------------------------------------------
 	... beschreiben die Wirkungsweise von elektronischen Bauelementen.\\ \\
-	\begin{tabular}{lc|ll}
-		Größe & & Definition\\ \hline
-		Spannung & $u$ & Potentialdifferenz. Richtung: Von hohem zu niedrigen Potential.\\
-		Stromfluss & $i$ & Bewegte Ladung. Richtung: Bewegungsrichtung positiver Ladung.\\
-		Ladung & $q$ & Grundeigenschaft von Materie. Es gibt positive und negative Ladung.\\
-		Magn. Fluss & $\Phi$ & Grundeigenschaften von elektr. magn. Feldern.\\
-	\end{tabular} 
-	
+	\textbf{Spannung \textit{u}}: Potentialdifferenz. Hohes zu niedrigem Potential\\
+	\textbf{Strom \textit{i}}: Bewegte Ladung. Bewegungsrichtung positiver Ladung\\
+	\textbf{Ladung \textit{q}}: Grundeigenschaft von Materie.\\
+	\textbf{Magnetischer Fluss \textit{$\Phi$}}: Grundeigenschaft von elektr. magn. Feldern\\
 		\subsubsection{Allgemeine Zusammenhänge $u,i,q,\Phi$}
 		Ladung und Strom beschreiben den Zustand der Materie.\\
-		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\ \\
+		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\
+		Kondensator ist u-gesteuert (q-gesteuert), falls für ein u (q) nur ein q (u)  existiert. \\
+		Induktivität ist i-gesteuert ($\phi$-gesteuert), falls für ein i ($\phi$) nur ein $\phi$ (i) existiert. \\
 		\begin{tabular}{l|l}
 			$i(t) = \dot q(t)$ & $[i]=A$\\
 			$q(t) = q(t_0) + \int_{t_0}^t i(\tau) \mathrm d\tau$	& $[q]=As=C$ \\ \hline
 			$u(t) = \dot \Phi(t)$ & $[u]=V$\\
 			$\Phi = \Phi(t_0) + \int_{t_0}^t u(\tau) \mathrm d\tau$ & $[\Phi]=Vs=Wb$ \\
 		\end{tabular}
-	
+
 
 
 
 		\subsubsection{Arten von Bauelementen}
-		\begin{tabular}{l|l|l|l|l}
-			Art & Symbol & Beschr. & linear & Beispiel\\ \hline
-			Resistivität & \includegraphics[height=0.4cm]{./img/Resistivitat.pdf} & $f_R(u,i)$  & $u = U_0 + R \cdot i$ & PN-Diode\\
-			Kapazität & \includegraphics[height=0.4cm]{./img/Kapazivitat.pdf} & $f_C(u,q)$ & $q = Q_0 + C \cdot u$ & Kondensator\\ 
-			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$ & Spule\\
-			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$ & Memristor\\
+		\begin{tabular}{l|l|l|l}
+			Art & Symbol & Beschr. & linear\\ \hline
+			Resistivität & \includegraphics[height=0.4cm]{./img/Resistivitat.pdf} & $f_R(u,i)$  & $u = U_0 + R \cdot i$\\
+			Kapazität & \includegraphics[height=0.4cm]{./img/Kapazivitat.pdf} & $f_C(u,q)$ & $q = Q_0 + C \cdot u$\\
+			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$\\
+			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$\\
 		\end{tabular}
-
-
-
-
-
-\sectionbox{	
-	\subsection{Komplexe Wechselstromrechnung}
-	% ---------------------------------------------------------
-	Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$
-	Effektivwert $X = \frac{\hat x}{\sqrt{2}}$\\
-	Differentialoperator: $\frac{\diff}{\diff t} = \i \omega$\\
-	\emphbox{
-	\begin{tabular}{ll}	
-		Reeles Zeitsignal: &\!\!\!\!\!\! $x(t) = \hat x \cdot \cos(\omega t + \varphi_x)$\\[0.5em]
-		Effektiver Zeiger: &\!\!\!\!\!\! $\cx X = X_w + \i X_b = X \exp(\i \varphi_x)$\\[0.5em]
-		Scheitel Zeiger: &\!\!\!\!\!\! $\boldsymbol{\hat X} = \sqrt{2} \cx X = \hat X \exp(\i \varphi_x)$\\[0.5em]
-		Kompl. Zeitsignal: &\!\!\!\!\!\! $\cx x(t) = \boldsymbol{\hat X} \cdot e^{\i \omega t} = \hat x \cdot e^{\i(\omega t + \varphi_x)}$\\[0.5em]
-		Phase: &\!\!\!\!\!\! $\varphi_x := \arg \cx X = \arctan \frac{X_b}{X_w}$\\
-	\end{tabular} }	\\
-	\framebox[\columnwidth]{
-		\begin{tabular}{l@{\hspace{4em}}l}
-		$\underset{\text{Impedanz}}{\cx Z(j\omega)} = \underset{\text{Resistanz}}{R(j\omega)} + \underset{\text{Reaktanz}}{jX(j\omega)}$ & $\cx U = \cx Z \cdot \cx I$\\[0.5em]
-		$\underset{\text{Admittanz}}{\cx Y(j\omega)} = \underset{\text{Konduktanz}}{G(j\omega)} + \underset{\text{Suszeptanz}}{jB(j\omega)}$ & $\cx I = \cx Y \cdot \cx U$\\
-		\end{tabular}
-	}
-
-	\tablebox{
-	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
-	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
-	$Z=$ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$ & $M$\\[0.5em]
-	$Y=$ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ & $\frac{1}{M}$\\[0.5em]
-	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ & ?\\ \cbrule
-	\end{tabular*} }
-}
-
+		\subsubsection{Zusammenhang der Bauelemente}
+		\begin{center}
+			\includegraphics[scale=0.3]{./img/reactance_overview.pdf}
+		\end{center}
+		\subsubsection{Eigenschaften von Reaktanzen}
+		\textbf{Linearität}: siehe Eintore\\
+		\textbf{Differentialgleichung}: $i(t) = C \frac{\mathrm du(t)}{\mathrm dt}, u(t) = L \frac{\mathrm di(t)}{\mathrm dt}$\\
+		\textbf{Gedächtnis}: Verhalten durch vorhergehende Klemmengrößen bestimmt.\\
+		\textbf{Stetigkeit}: $u_C(t)$, $i_L(t)$ stetig in $(t_a, t_b)$, wenn Torgrößen endlich\\
+		\textbf{Verlustfreiheit}: $W_C(t_1, t_2) = \int_{t_1}^{t_2}\! u(t)i(t)\,\mathrm dt = \int_{q_1}^{q_2}\! \mathrm{X}(q)\,\mathrm{d}t$ (Arbeit)\\
+		Falls linear: $W = \frac{Cu^2}{2} = \frac{Li^2}{2}$\\
+		Periodisch: $u(t+T) = u(t)$, $q(t+T) = q(t)$\\
+		Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hystenesefrei)\\
+		\textbf{Energie (nicht linearer Fall)}:\\
+		- Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! u(q)\, \mathrm dq$\\
+		- Induktiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! i(\Phi)\, \mathrm d\Phi$\\
+		\textbf{Energie (linearer Fall)}:\\
+		- Kapazitiv: $W_C = \frac{C}{2}u^2 = \frac{1}{2C}q^2$\\
+		- Induktiv: $W_L = \frac{L}{2}i^2 = \frac{1}{2L} \Phi^2$\\
+		Graphisch: Fläche zwischen der Kennlinie und der q-/$\Phi$-Achse\\
+		\textbf{Relaxationspunkte (=Ruhepunkte)}: Betriebspunkte, in dem die in einer Reaktanz gespeicherte Energie minimal ist. Kandidaten sind: Extremwerte, Wendepunkte, Knicke, Schnittpunkte mit q-/$\Phi$-Achse\\
+		\subsubsection{Verschaltung von Reaktanzen}
+		- Parallelschaltung: $C_p = C_1 + C_2$, $L_p = L_1 || L_2 = \frac{L_1L_2}{L_1+L_2}$\\
+		- Serienschaltung: $C_p = C_1 || C_2 = \frac{C_1C_2}{C_1+C_2}$, $L_p = L_1 + L_2$\\
 
 
 Merke: Am Kondensa\textsl{tor}, eilt der Strom \textsl{vor}, bei Induktivi\textsl{täten}, wird er sich ver\textsl{späten}\\
@@ -519,161 +740,87 @@ Merke: Ist das Mädchen brav, bleibt der Bauch konkav, hat das Mädchen Sex, wir
 % Liste mit Eselsbrücken für Ingenieure
 % selbstausdenken begriffspaare
 
+\section{Komplexe Wechselstromrechnung}
+Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$\\
+\sectionbox{
+\subsection{Komplexe Zeigergrößen}
+\emphbox{
+	\begin{tabular}{ll}
+	\textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\phi)$\\
+	\textbf{Zeiger} & $A = \alpha + i\beta = A_m \cdot e^{i\phi} = A_m \cdot (\cos \phi+j\sin \phi)$\\
+	\textbf{Maximum} & $A_m = |A| = \sqrt{\alpha^2+\beta^2} = \sqrt{AA^*}$\\
+	\textbf{Phase} & $\phi = \begin{cases}
+	\arctan\frac{\beta}{\alpha}&\alpha>0\\
+	\arctan\frac{\beta}{\alpha}+\pi&\alpha<0
+	\end{cases}$
+	\end{tabular}
+}
+
+	% ---------------------------------------------------------
+	Differentialoperator: $\frac{\diff}{\diff t} = j \omega$\qquad
+	$\frac{d}{dt} e^{j(\omega t + \phi)} = j\omega\cdot e^{j(\omega t + \phi)}$\\
+	\tablebox{
+	\begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
+	 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
+	$\frac{U}{I} =$ & $R$ & $\frac{1}{j \omega C}$ & $j \omega L$ & $M$\\[0.5em]
+	$\frac{I}{U} =$ & $G = \frac{1}{R}$ & $j \omega C$ & $\frac{1}{j \omega L}$ & $\frac{1}{M}$\\[0.5em]
+	$\underset{\varphi_u - \varphi_i}{\Delta \varphi =}$ & 0 & $-\frac{\pi}{2}$ & $\frac{\pi}{2}$ & ?\\ \cbrule
+	\end{tabular*} }
+	}
 
 \sectionbox{
-	\subsection{Schaltungen ersten Grades}
-	\pbox{5.0cm}{ Zustandsgleichung: \\[0.2em] \boxed{ \dot x(t) = - \frac{x(t)}{\tau} + \frac{x_\infty}{\tau} } \\[0.5em] $\tau > 0:$ System stabil \\ $\tau < 0:$ System instabil \\ } \qquad 
-	\pbox{5.0cm}{ \includegraphics{./img/char/char_Schaltung1Grad.pdf} } \\
-	\boxed{ \text{Lösung:}\quad x(t) = x_\infty + (x_0 - x_\infty) \exp\left(- \frac{t-t_0}{\tau}\right) }\\
-	Mit Parameter aus ESB: C: $x_\infty = U_0(t)$, L: $x_\infty = I_0(t)$
+	\subsection{Komplexe Leistungsrechnung}
+	$U_{eff} = \frac{1}{\sqrt{2}}U_m$\quad
+	$I_{eff} = \frac{1}{\sqrt{2}}I_m$\\
+	\textbf{Momentanleistung}: $p(t) = u(t)i(t)$\\
+	\textbf{Energie einer Periode}: $E=\int_0^Tu(t)i(t)dt$\\
+	\textbf{Leistungsmittelwert}: $P_w = \frac{1}{T} \int_0^T u(t)i(t)dt$\\
+	\textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\phi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{eff}\cdot I_{eff}\cdot e^{j(\phi_u-\phi_i)}$\\
+	\textbf{Scheinleistung}: $S = |P|$\\
+	\textbf{Wirkleistung}: $P_w = Re{P}$\\
+	\textbf{Blindleistung}: $P_B = Im{P}$
+}
 
-\ctikzset{voltage/distance from node=.25}% in \pgf@circ@Rlen units 
-\ctikzset{voltage/distance from line=.25}% pos. between 0 and 1 
+\section{Mathe}
+\sectionbox{
+\subsection{2x2-Matrizen}
+$det\mat{a&b\\c&d} = ad-bc$\qquad
+$\begin{bmatrix}
+a&b\\c&d
+\end{bmatrix}^{-1} =\frac{1}{ad-bc} \begin{bmatrix}
+d&-b\\-c&a
+\end{bmatrix}$
+}
 
- \ctikzset{bipoles/length=0.7cm}
-
-\subsubsection{Helmholz / Thévenin ESB}
-	\begin{circuitikz} 
-		\draw (0,0) to[R, l=R, i_<=$i$, -o] (2,0) to[short, i_>=$i_c$] (3,0) to[C, v^>=$u_C$] (3,-2) -- (3,-2) to[short, o-] (0, -2) to[V, v<=$U_0$] (0,0);
-		\draw (1.8,0) to[open, v^>=$u$] (1.8, -2);
-	\end{circuitikz}
-
-	$i_C = -i$ \quad $i_C = C \cdot \dot u_C$ \quad
-	$u_C (t_\infty) = U_0$ \\ \\ 
-	Zeitkonstante: $\tau = R \cdot C$ \\
-
-	\subsubsection{Mayer / Norton ESB}
-
-	\begin{circuitikz}
-	\draw (0,0) -- (1,0) to[short, i^<=$i$, -o] (2,0) to[short, i^<=$i_L$] (3,0) to[L, l_=L, v^<=$u_L$] (3,-2) to (2, -2) to[short, o-] (1, -2) --(0, -2) to[I, i<^=$I_0$] (0,0);
-	\draw (1,0) to[R, l = G] (1, -2);
-	\draw (1.8,0) to[open, v^>=$u$] (1.8,-2);
-	\end{circuitikz}
-
-	$u_L = -u$ \quad $u_L = L \cdot \dot i_L$ \quad $u_L = L \cdot \dot i_L$ \\  \\ 
-	$i_L (t_\infty) = I_0$ \quad
-	Zeitkonstante: $\tau = G \cdot L$
-
-
+\sectionbox{
+\subsection{Raumdarstellungen}
+Parametrische Beschreibung:\\
+$Bild\begin{bmatrix}
+\ma U\\ \ma I
+\end{bmatrix} = \left\{\begin{bmatrix}
+\vec u\\ \vec i
+\end{bmatrix}|\begin{bmatrix}
+\vec u\\ \vec i
+\end{bmatrix}=\begin{bmatrix}
+\ma U\\ \ma I
+\end{bmatrix}\vec c,\vec c \in R^p \right\}$\\
+Implizite Beschreibung:\\
+$Kern\mat{\ma U&\ma I} = \left\{\mat{\vec u\\ \vec i}|\mat{\ma M&\ma N}\cdot\mat{\vec u\\\vec i}=0\right\}$\\
+($\mat{\ma M&\ma N}$ implizite Beschreibung des lin. Zweitors)
 }
 
 
-\sectionbox{
-	\subsection{Dynamischer Pfad}
-	\begin{tabular}{l|l}
-		kapazitiv & induktiv \\ \mrule
-		$u_C$ stetig, $i_C$ springt & $i_L$ stetig, $u_L$ springt \\
-		$\dot u(t) = - \frac{1}{C} \cdot i(t)$ & $\dot i(t) = - \frac{1}{L} \cdot u(t)$ \\ \mrule
-		$i > 0 \Ra \dot u < 0 \Ra u$ fällt & $u > 0 \Ra \dot i < 0 \Ra i$ fällt \\
-		$i < 0 \Ra \dot u > 0 \Ra u$ steigt & $u < 0 \Ra \dot i > 0 \Ra i$ steigt \\
-		$i = 0 \Ra \dot u = 0 \Ra$ GGP & $u = 0 \Ra \dot i = 0 \Ra$ GGP\\
-	\end{tabular}\\
-	\\[0.5em]
-	\pbox{6.0cm}{
-	Zeitdauer auf linearen Pfaden:\\	
-		\boxed{\Delta t = t_1 - t_0 = \tau \ln \left( \frac{x(t_0) - x_\infty}{x(t_1) - x_\infty} \right)} 
-	} \quad
-	\pbox{3.0cm} {
-		\includegraphics{./img/pfaddauer.pdf} }\\
-	$x(t_0)$: Startwert,\quad $x(t_1)$: Zielwert,\quad $x_\infty$: (gedachter) GGP
-}
-
-
-
-\sectionbox{
-	\subsection{Übertragungsfunktion}
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-% Ende der Spalten
-\end{multicols*}
-
-
-
-
-
-\hrule \hrule
-
-\begin{multicols}{3}
-\section{Lösen von homogenen DGLs 2. Ordnung}
-Gegeben: Homogene Differnetialgleichungen der Form $\vec{\dot x} =  \ma A \vec x$ \\
-mit Anfangswerten $x_{0,1}$ und $x_{0,2}$\\[2em]
-\boxed{ \boldsymbol{\lambda_1 \ne \lambda_2 \in \R} } \qquad  \boxed{ \bigl| \lambda_1 \bigr| < \bigl|\lambda_2 \bigr|  \quad \Ra \vec q_2 \text{,,schneller''} } \\[1.5em]
-$\vec x(t) = x_{0,1} \cdot \exp(\lambda_1 t) \cdot \vec q_1 + x_{0,2} \cdot \exp(\lambda_2 t) \cdot \vec q_2$\\[1.5em]
-\begin{tabular}{l|l|l|l|l}
-	Matrix $\Lambda$ & Eigenwerte & $\vec x = 0$ & Name & Portrait\\ \mrule \mrule
-	{$\mat{\lambda_1 & 0 \\ 0 & \lambda_2}$} & $\lambda_1 < 0 < \lambda_2$ & instabil & Sattelpunkt & \pbox{3.0cm}{ \includegraphics{./img/char/PP_Sadle.pdf} }\\ \mrule
-		& $\lambda_2 < 0, \lambda_1 < 0 $ & stabil & Knoten 2 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableNode.pdf} }\\ \mrule
-		& $0 < \lambda_1, 0 < \lambda_2 $ & instabil & Knoten 2 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableNode.pdf} }\\ \mrule
-	\multirow{2}{*}{$\mat{0 & 0 \\ 0 & \lambda_2}$} & $\lambda_1 = 0,\ \lambda_2 < 0$ & stabil & Kamm & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableLine.pdf} }\\ \mrule
-	 & $\lambda_1 = 0,\ \lambda_2 > 0$ & instabil & Kamm & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableLine.pdf} }\\
-\end{tabular}
-\vspace{2em}\\
-
-%\vspace{5em}\\
-
-\boxed{ \boldsymbol{\lambda_1 = \lambda_2 \in \R} }\\
-$\ma Q' = \mat{ \vec q'_1 & \vec q'_2} = \mat{ -a_{12} & -a_{12} \\ \frac{a_{11} - a_{22}}{2} & \frac{a_{11} - a_{22}}{2} -1 } = \mat{ \vect{\text{Eigen-} \\ \text{vektor}} & \vect{\text{Haupt-} \\ \text{vektor}}}$\\
-$\vec x(t) = \left[ \ma 1 + (\ma A - \lambda \ma 1) \cdot t \right] \cdot \exp(\lambda t) \cdot \mvect{x_{0,1} \\ x_{0,2}}$\\[0.5em]
-\begin{tabular}{l|l|l|l|l}
-	Matrix $\Lambda$ & Eigenwerte & $\vec x = 0$ & Name & Portrait\\ \mrule \mrule
-	\multirow{2}{*}{$\mat{\lambda & 0 \\ 0 & \lambda}$} & $\lambda < 0$ & stabil & Knoten 1 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableStarNode.pdf} }\\ \mrule
-	& $\lambda > 0$ & instabil & Knoten 1 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableStarNode.pdf} }\\ \mrule
-	\multirow{2}{*}{$\mat{\lambda & 1 \\ 0 & \lambda}$} & $\lambda < 0$ & stabil & Knoten 3 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableWhirlNode.pdf} }\\ \mrule
-	& $\lambda > 0$ & instabil & Knoten 3 & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableWhirlNode.pdf} }\\ \mrule
-	$\mat{0 & 0 \\ 0 & 0}$ & $\lambda = 0$ & stabil & Ruheebene & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableZero.pdf} }\\ \mrule
-	$\mat{0 & 1 \\ 0 & 0}$ & $\lambda = 0$ & instabil & Ruhegerade & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableZero.pdf} }\\
-\end{tabular}
-
-
-\boxed{ \cx \lambda_1 = \cx \lambda^*_2 = \alpha + \beta j \in \C } \qquad \boxed{ \ma Q' = \mat{\Re{\vec q_1} & \Im{\vec q_1}} = \mat{ \vec q_r & \vec q_j} }\\
-
-$\begin{array}{rl} \vec x(t) & = x_{0,1} \cdot e^{\alpha t} \cdot \left[ \cos (\beta t) \vec q_r - \sin(\beta t) \cdot \vec q_j \right] + \\ & +\, x_{0,2} \cdot e^{\alpha t} \cdot \left[ \sin (\beta t) \vec q_r + \cos(\beta t) \cdot \vec q_j \right] \end{array}$\\
-\begin{tabular}{l|l|l|l|l}
-	Matrix $\Lambda$ & Eigenwerte & $\vec x = 0$ & Name & Portrait\\ \mrule \mrule
-	\multirow{2}{*}{$\mat{\alpha & -\beta \\ \beta & \alpha}$} & $\alpha < 0,\ \beta \ne 0$ & stabil & Strudel & \pbox{3.0cm}{ \includegraphics{./img/char/PP_stableFocus.pdf} }\\ \mrule
-	& $\alpha > 0,\ \beta \ne 0$ & instabil & Strudel & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableFocus.pdf} }\\ \mrule
-	$\mat{0 & -\beta \\ \beta & 0}$ & $\alpha = 0,\ \beta \ne 0$ & stabil & Wirbel & \pbox{3.0cm}{ \includegraphics{./img/char/PP_Whirl.pdf} }\\ 
-\end{tabular}
-\vspace{1em}\\
-Zeitverlauf immer von $\vec q_j$ nach $\vec q_r$ bzw. von $\vec q_r$ nach $-\vec q_j$\\[4em]
-Lösung für \emph{inhomogene DGL}($\vec v \ne 0$) mit singulärer Matrix $\ma A$ (nicht entkoppelbar):\\
-\begin{tabular}{l|l|l|l|l}
-$\mat{0 & 0 \\ 0 & \lambda_2}$ & $\lambda_1 = 0,\ \lambda_2 < 0$ & instabil & Kamm & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableLine2.pdf} }\\
-$\mat{0 & 1 \\ 0 & 0}$ & $\lambda = 0$ & instabil & Knoten & \pbox{3.0cm}{ \includegraphics{./img/char/PP_unstableZero2.pdf} }\\
-\end{tabular}
-
-
-
-
-
-
-
-
-% Ende der Spalten
-\end{multicols}
-
-
-\setlength{\tabcolsep}{2pt}
+\section{Umrechnung von Zweitormatrizen}
+\textbf{Explizit $\ra$ Explizit}\\
+{
+\setlength{\tabcolsep}{30pt}
 \renewcommand{\arraystretch}{1.3}
-\def\mrule{\noalign{\vspace{3pt}\hrule\vspace{5pt}}}						% middle rule
+\def\mrule{\noalign{\vspace{5pt}\hrule\vspace{7pt}}}						% middle rule
 \arraycolsep=3pt
 \tabcolsep=5pt
-		\section{Zweitormatrizen}
-		\vspace{1em}
-		\begin{tabular}{ccccccc}	% {c|c|c|c|c|c|c}	% 
+\renewcommand{\frac}{\dfrac}
+		\rotatebox{270}{
+		\begin{tabular}{ccccccc}	% {c|c|c|c|c|c|c}	%
 		In $\rightarrow$ & $\ma R$ & $\ma G$ & $\ma H$ & $\ma H'$ & $\ma A$ & $\ma A'$ \\ \mrule
 		$\ma R$ & $\mat{r_{11} & r_{12} \\ r_{21} & r_{22} }$ & $\frac{1}{\det \ma G} \mat{ g_{22} & -g_{12} \\ -g_{21} & g_{11} }$ & $\frac{1}{h_{22}} \mat{ \det \ma H & -h_{12} \\ -h_{21} & 1 }$ & $\frac{1}{h'_{11}} \mat{ 1 & -h'_{12} \\ -h'_{21} & \det \ma H' }$ & $\frac{1}{a_{21}} \mat{ a_{11} & \det \ma A \\ 1 & a_{22} }$ & $\frac{1}{a'_{21}} \mat{ a'_{22} & 1 \\ \det \ma A & a'_{11} }$ \\ \mrule
 		$\ma G$ & $\frac{1}{\det \ma R} \mat{ r_{22} & -r_{12} \\ -r_{21} & r_{11} }$ & $\mat{g_{11} & g_{12} \\ g_{21} & g_{22} }$ & $\frac{1}{h_{11}} \mat{ 1 & -h_{12} \\ -h_{21} & \det \ma H }$ & $\frac{1}{h'_{22}} \mat{ \det \ma H' & -h'_{12} \\ -h'_{21} & 1 }$ & $\frac{1}{a_{12}} \mat{ a_{22} & -\det \ma A \\ -1 & a_{11} }$ & $\frac{1}{a'_{12}} \mat{ a'_{11} & -1 \\ -\det \ma A & a'_{22} }$ \\ \mrule
@@ -681,8 +828,33 @@ $\mat{0 & 1 \\ 0 & 0}$ & $\lambda = 0$ & instabil & Knoten & \pbox{3.0cm}{ \incl
 		$\ma H'$ & $\frac{1}{r_{11}} \mat{ 1 & -r_{12} \\ -r_{21} & \det \ma R }$ & $\frac{1}{g_{22}} \mat{ \det \ma G & g_{12} \\ -g_{21} & 1 }$ & $\frac{1}{\det \ma H} \mat{ h_{22} & -h_{12} \\ -h_{21} & h_{11} }$ & $\mat{h'_{11} & h'_{12} \\ h'_{21} & h'_{22} }$ & $\frac{1}{a_{11}} \mat{ a_{21} & -\det \ma A \\ 1 & a_{12} }$ & $\frac{1}{a'_{22}} \mat{ a'_{21} & -1 \\ \det \ma A & a'_{12} }$ \\ \mrule
 		$\ma A$ & $\frac{1}{r_{21}} \mat{ r_{11} & \det \ma R \\ 1 & r_{22} }$ & $\frac{1}{g_{21}} \mat{ -g_{22} & -1 \\ -\det \ma G & -g_{11} }$ & $\frac{1}{h_{21}} \mat{- \det \ma H & -h_{11} \\ -h_{22} & -1 }$ & $\frac{1}{h'_{21}} \mat{-\det H' & -h'_{22} \\ -h'_{11} & -1 }$ & $\mat{a_{11} & a_{12} \\ a_{21} & a_{22} }$ & $\frac{1}{\det \ma A'} \mat{ a'_{22} & a'_{12} \\ a'_{21} & a'_{11} }$ \\ \mrule
 		$\ma A'$ & $\frac{1}{r_{12}} \mat{r_{22} & \det \ma R \\ 1 & r_{11}}$ & $\frac{1}{g_{12}} \mat{-g_{11} & 1 \\ -\det \ma G & -g_{22}}$ & $\frac{1}{h_{12}} \mat{1 & h_{11} \\ h_{22} & \det \ma H}$ & $\frac{1}{h'_{12}} \mat{-\det \ma H' & -h'_{22} \\ -h'_{11} & -1}$ & $\frac{1}{\det \ma A} \mat{a_{22} & a_{12} \\ a_{21} & a_{11} }$ & $\mat{a'_{11} & a'_{12} \\ a'_{21} & a'_{22} }$\\
-		
+
 		\end{tabular}
+}
+}\\
+\sectionbox{
+\textbf{Implizit $\ra$ Explizit}\\
+$\ma R = -\ma M^{-1}\ma N$\quad
+$\ma G = -\ma N^{-1}\ma M$\\
+\textbf{Explizit $\ra$ Implizit}\\
+$\ma 1 \vec u - \ma R \vec i = \vec 0$\quad
+$-\ma G \vec u + \ma 1 \vec i = \vec 0$\\
+\textbf{Parametrisch $\ra$ Explizit}\\
+$\ma R = \ma U \ma I^{-1}$\quad
+$\ma G = \ma I \ma U^{-1}$\\
+\textbf{Implizit $\ra$ Parametrisch}\\
+$\mat{\ma U\\\ma I} = \mat{-\ma M^{-1}\ma N\\\ma 1}$\quad
+$\mat{\ma U\\\ma I} = \mat{\ma 1\\-\ma N^{-1}\ma M}$\\
+\textbf{Parametrisch $\ra$ Implizit}\\
+$-\ma I \ma U^{-1} \vec u + \ma 1 \vec i = 0$\quad
+$\ma 1 \vec u - \ma U \ma I^{-1} \vec i = 0$
+}
+
+
+
+% Ende der Spalten
+\end{multicols*}
+
 
 
 % Dokumentende
