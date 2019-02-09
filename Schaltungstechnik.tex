@@ -689,7 +689,9 @@ der beiden folgenden Ersatzeintore beschreiben.\\
 	\textbf{Magnetischer Fluss \textit{$\Phi$}}: Grundeigenschaft von elektr. magn. Feldern\\
 		\subsubsection{Allgemeine Zusammenhänge $u,i,q,\Phi$}
 		Ladung und Strom beschreiben den Zustand der Materie.\\
-		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\ \\
+		Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\
+		Kondensator ist u-gesteuert (q-gesteuert), falls für ein u (q) nur ein q (u)  existiert. \\
+		Induktivität ist i-gesteuert ($\phi$-gesteuert), falls für ein i ($\phi$) nur ein $\phi$ (i) existiert. \\
 		\begin{tabular}{l|l}
 			$i(t) = \dot q(t)$ & $[i]=A$\\
 			$q(t) = q(t_0) + \int_{t_0}^t i(\tau) \mathrm d\tau$	& $[q]=As=C$ \\ \hline
@@ -708,6 +710,30 @@ der beiden folgenden Ersatzeintore beschreiben.\\
 			Induktivität & \includegraphics[height=0.4cm]{./img/Induktivitat.pdf} & $f_L(i,\Phi)$ & $\Phi = \Phi_0 + L \cdot i$\\
 			Memristivität & \includegraphics[height=0.4cm]{./img/Memristivitat.pdf} & $f_M(q,\Phi)$ & $\Phi = \Phi_0 + M \cdot q$\\
 		\end{tabular}
+		\subsubsection{Zusammenhang der Bauelemente}
+		\begin{center}
+			\includegraphics[scale=0.3]{./img/reactance_overview.pdf}
+		\end{center}
+		\subsubsection{Eigenschaften von Reaktanzen}
+		\textbf{Linearität}: siehe Eintore\\
+		\textbf{Differentialgleichung}: $i(t) = C \frac{\mathrm du(t)}{\mathrm dt}, u(t) = L \frac{\mathrm di(t)}{\mathrm dt}$\\
+		\textbf{Gedächtnis}: Verhalten durch vorhergehende Klemmengrößen bestimmt.\\
+		\textbf{Stetigkeit}: $u_C(t)$, $i_L(t)$ stetig in $(t_a, t_b)$, wenn Torgrößen endlich\\
+		\textbf{Verlustfreiheit}: $W_C(t_1, t_2) = \int_{t_1}^{t_2}\! u(t)i(t)\,\mathrm dt = \int_{q_1}^{q_2}\! \mathrm{X}(q)\,\mathrm{d}t$ (Arbeit)\\
+		Falls linear: $W = \frac{Cu^2}{2} = \frac{Li^2}{2}$\\
+		Periodisch: $u(t+T) = u(t)$, $q(t+T) = q(t)$\\
+		Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hystenesefrei)\\
+		\textbf{Energie (nicht linearer Fall)}:\\
+		- Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! u(q)\, \mathrm dq$\\
+		- Induktiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! i(\Phi)\, \mathrm d\Phi$\\
+		\textbf{Energie (linearer Fall)}:\\
+		- Kapazitiv: $W_C = \frac{C}{2}u^2 = \frac{1}{2C}q^2$\\
+		- Induktiv: $W_L = \frac{L}{2}i^2 = \frac{1}{2L} \Phi^2$\\
+		Graphisch: Fläche zwischen der Kennlinie und der q-/$\Phi$-Achse\\
+		\textbf{Relaxationspunkte (=Ruhepunkte)}: Betriebspunkte, in dem die in einer Reaktanz gespeicherte Energie minimal ist. Kandidaten sind: Extremwerte, Wendepunkte, Knicke, Schnittpunkte mit q-/$\Phi$-Achse\\
+		\subsubsection{Verschaltung von Reaktanzen}
+		- Parallelschaltung: $C_p = C_1 + C_2$, $L_p = L_1 || L_2 = \frac{L_1L_2}{L_1+L_2}$\\
+		- Serienschaltung: $C_p = C_1 || C_2 = \frac{C_1C_2}{C_1+C_2}$, $L_p = L_1 + L_2$\\
 
 
 Merke: Am Kondensa\textsl{tor}, eilt der Strom \textsl{vor}, bei Induktivi\textsl{täten}, wird er sich ver\textsl{späten}\\
