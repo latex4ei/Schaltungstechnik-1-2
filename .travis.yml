@@ -14,8 +14,6 @@ before_install:
 - wget https://gitlab.kitware.com/kmorel/UseLATEX/raw/master/UseLATEX.cmake
 - CMAKE_ROOT=$(cmake --system-information | grep "CMAKE_ROOT " | cut -d' ' -f 2 | cut -d'"' -f2)
 - sudo mv UseLATEX.cmake $CMAKE_ROOT/Modules/
-- wget https://github.com/latex4ei/latex4ei-packages/archive/master.zip && unzip master.zip
-- sudo mv latex4ei-packages-master/template-files/latex4ei /usr/share/texlive/texmf-dist/tex/latex/latex4ei
 - sudo mktexlsr
 
 install: true

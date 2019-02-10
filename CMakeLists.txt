@@ -12,6 +12,7 @@ add_custom_target(
 set(IMAGE_DIRS
     img
     img/char
+    img/nodevoltageanalysis
     img/symb
 )
 
