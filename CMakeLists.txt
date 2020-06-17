@@ -4,21 +4,11 @@ project(ST12 NONE)
 include(UseLATEX)
 
 add_custom_target(
-    writegitid ALL
-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/write-gitid.sh
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-)
+  writegitid ALL
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/write-gitid.sh
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
-set(IMAGE_DIRS
-    img
-    img/char
-    img/nodevoltageanalysis
-    img/symb
-)
+set(IMAGE_DIRS img img/char img/nodevoltageanalysis img/symb)
 
-add_latex_document(
-    Schaltungstechnik.tex
-    FORCE_PDF
-    IMAGE_DIRS ${IMAGE_DIRS}
-    DEPENDS writegitid
-)
+add_latex_document(Schaltungstechnik.tex FORCE_PDF IMAGE_DIRS ${IMAGE_DIRS}
+                   DEPENDS writegitid)

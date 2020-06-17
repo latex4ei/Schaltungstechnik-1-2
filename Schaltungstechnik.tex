@@ -733,9 +733,12 @@
         \subsection{Komplexe Zeigergrößen}
         \emphbox{
             \begin{tabular}{ll}
-                \textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\phi)$                                          \\
-                \textbf{Zeiger}       & $A = \alpha + i\beta = A_m \cdot e^{i\phi} = A_m \cdot (\cos \phi+j\sin \phi)$ \\
-                \textbf{Maximum}      & $A_m = |A| = \sqrt{\alpha^2+\beta^2} = \sqrt{AA^*}$                            \\
+                \textbf{Zeitfunktion} & $a(t) = A_m \cdot\cos(\omega t+\phi)$               \\
+                \textbf{Zeiger}       & \parbox{3cm}{\begin{align*}
+                        A & = \alpha + i\beta = A_m \cdot e^{i\phi} \\
+                          & = A_m \cdot (\cos \phi+j\sin \phi)
+                    \end{align*}}            \\
+                \textbf{Maximum}      & $A_m = |A| = \sqrt{\alpha^2+\beta^2} = \sqrt{AA^*}$ \\
                 \textbf{Phase}        & $\phi = \begin{cases}
                         \arctan\frac{\beta}{\alpha}     & \alpha>0 \\
                         \arctan\frac{\beta}{\alpha}+\pi & \alpha<0
