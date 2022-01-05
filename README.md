@@ -1,6 +1,6 @@
 # Schaltungstechnik 1-2
 
-[![Build Status](https://travis-ci.org/latex4ei/Schaltungstechnik-1-2.svg?branch=master)](https://travis-ci.org/latex4ei/Schaltungstechnik-1-2)
+[![Actions Status](https://github.com/latex4ei/Schaltungstechnik-1-2/workflows/CI/badge.svg)](https://github.com/latex4ei/Schaltungstechnik-1-2)
 [![Join the chat at https://gitter.im/LaTeX4Ei/Lobby](https://badges.gitter.im/LaTeX4Ei/Lobby.svg)](https://gitter.im/LaTeX4Ei/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Formelsammlung für Latex4ei
