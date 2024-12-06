@@ -204,35 +204,35 @@
         \subsection{Resistive Eintore}
 
         \begin{itemize}
-            \item Implizite Darstellung: $f_F (u,i) = 0$
-            \item Parameterdarstellung: $u = u_F ( \lambda )$ \quad $ i = i_F (\lambda )$
-            \item Explizite Darstellung: $\underset{\ir Leitwertdarstellung}{i = g_F (u)}$ \quad $\underset{\ir Widerstandsdarstellung}{u = r_F (i)}$
-            \item Umpolung: $\overline F$ entsteht durch Punktspiegelung von $F$ am Ursprung: $(\overline u, \overline i) = (- u, - i) \in \overline F$
-            \item Dualität: $(u,i) \in F \Leftrightarrow ( R_d i, \frac{ u}{ R_d}) \in F^d$
+          \item Implizite Darstellung: $f_{\mathcal F} (u,i) = 0$
+          \item Parameterdarstellung: $u = u_{\mathcal F} ( \lambda )$ \quad $ i = i_{\mathcal F} (\lambda )$
+          \item Explizite Darstellung: $\underset{\ir Leitwertdarstellung}{i = g_{\mathcal F} (u)}$ \quad $\underset{\ir Widerstandsdarstellung}{u = r_{\mathcal F} (i)}$
+          \item Umpolung: $\overline {\mathcal F}$ entsteht durch Punktspiegelung von $\mathcal F$ am Ursprung: $(\overline u, \overline i) = (- u, - i) \in \overline {\mathcal F}$
+          \item Dualität: $(u,i) \in \mathcal F \Leftrightarrow ( R_d i, \frac{ u}{ R_d}) \in {\mathcal F}^d$
             \item Parallelschaltung von Widerstandsgeraden: $G = G_1 + G_2$ \\
                   $\Ra \frac 1 R = \frac 1 R_1 + \frac 1 R_2 \Ra R = R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2}$
             \item Serienschaltung von Widerstandsgeraden: genauso wie Parallelschaltung nur $R$ statt $G$
             \item Arbeitspunkt ermitteln:
                   \begin{enumerate}
-                      \item Schaltung aufteilen in Quelle $Q$ und Last $L$
+                      \item Schaltung aufteilen in Quelle $\mathcal Q$ und Last $\mathcal L$
                       \item Parameterdarstellung $\Ra$ Kennlinien zeichnen
                       \item Lösung: Schnittpunkte der Kennlinien! $\Ra$ ist die Funktion im AP stetig und diff'bar, kann man sie dort \emph{linearisieren}
                   \end{enumerate}
         \end{itemize}
 
-        Eigenschaften von $F$:
+        Eigenschaften von $\mathcal F$:
 
         \tablebox{
             \begin{tabular*}{\columnwidth}{@{\extracolsep\fill}ll@{}}
                 \ctrule
-                F stromgesteuert & $\exists r_F(i)$\\
-                F spannungsgesteuert & $\exists g_F(u)$\\
-                F ungepolt & Kennlinie punktsymm. zum Ursprung \\
-                F aktiv & mind. 1 Pkt. in II. od. IV. Quadr. \\
-                F verlustfrei & nur auf Koordinatenachsen \\
-                F quellenfrei & enthält den Ursprung \\
-                F streng linear & $(ku, ki) \in F$ \quad $ (u_1 + u_2, i_1 + i_2) \in F$ \\
-                F stückweise linear & Kennlinie besteht aus linearen Abschnitten\\
+                $\mathcal F$ stromgesteuert & $\exists r_{\mathcal F}(i)$\\
+                $\mathcal F$ spannungsgesteuert & $\exists g_{\mathcal F}(u)$\\
+                $\mathcal F$ ungepolt & Kennlinie punktsymm. zum Ursprung \\
+                $\mathcal F$ aktiv & mind. 1 Pkt. in II. od. IV. Quadr. \\
+                $\mathcal F$ verlustfrei & nur auf Koordinatenachsen \\
+                $\mathcal F$ quellenfrei & enthält den Ursprung \\
+                $\mathcal F$ streng linear & $(ku, ki) \in \mathcal F$ \quad $ (u_1 + u_2, i_1 + i_2) \in \mathcal F$ \\
+                $\mathcal F$ stückweise linear & Kennlinie besteht aus linearen Abschnitten\\
                 \cbrule
             \end{tabular*}
         }
@@ -264,8 +264,8 @@
         \textbf{Graphisch}: $AP = \mathcal F \cap \mathcal Q^x$\\
         \textbf{Rechnerisch}:
         $\begin{array}{l}
-                i_Q = -i_F \Rightarrow u_{AP} \\
-                u_Q = u_F \Rightarrow i_{AP}
+                i_Q = -i_{\mathcal F} \Rightarrow u_{AP} \\
+                u_Q = u_{\mathcal F} \Rightarrow i_{AP}
             \end{array}$
     }
 
@@ -297,10 +297,10 @@
     \sectionbox{
     \subsection{Linearisierung}
     Beispiel spannungsgesteuert, stromgesteuert analog\\
-    $g_{lin} = \left. \frac{\partial i_F}{\partial u_F} \right|_{AP}$\\
+    $g_{lin} = \left. \frac{\partial i_{\mathcal F}}{\partial u_{\mathcal F}} \right|_{AP}$\\
     $\Delta i = i - I_{AP}$ \quad $\Delta u = u - U_{AP}$\\
     $\Delta i = g_{lin} \Delta u$\\
-    $i_{F,lin} = \Delta i + I_{AP} = \Delta u \cdot g_{lin} + U_{AP} = g_{lin}(u_f - U_{AP}) + I_{AP}$
+    $i_{\mathcal F,lin} = \Delta i + I_{AP} = \Delta u \cdot g_{lin} + U_{AP} = g_{lin}(u_{\mathcal F} - U_{AP}) + I_{AP}$
     }
 
 
