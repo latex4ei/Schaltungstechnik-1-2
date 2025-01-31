@@ -273,21 +273,6 @@
     \section{Resistive Eintore}
     % ============================================================================================
 
-    \subsection{Liste}
-    \begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
-        \parbox{1.3cm}{ Leerlauf     \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
-        \parbox{1.3cm}{ Kurzschluss  \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\    \mrule
-        \parbox{1.3cm}{ Nullator     \\[5pt] \includegraphics{./img/symb/symb_nullator.pdf} } & \parbox{2.5cm}{$u = 0 \quad i = 0$ \\ u, sl, v, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_nullator.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Norator      \\[5pt] \includegraphics{./img/symb/symb_norator.pdf} } & \parbox{2.5cm}{$u = \mathrm{beliebig}$ \\ $i=\mathrm{beliebig}$ \\[0.5em] u, sl, a, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_norator.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Widerstand   \\[5pt] \includegraphics{./img/symb/symb_resistor.pdf} }& $\begin{array}{@{}cc} u = R \cdot i \\ i = G \cdot u \end{array} \quad G = \frac{1}{R}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_resistor.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Spannungsq.  \\[3pt] \includegraphics{./img/symb/symb_source_voltage.pdf} }& $\begin{array}{@{}ll} u = U_0 \\ i = \mathrm{beliebig}\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_voltage.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Stromquelle  \\[3pt] \includegraphics{./img/symb/symb_source_current.pdf} }& $\begin{array}{@{}ll} u = \mathrm{beliebig} \\ i = I_0 \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_current.pdf} }    \\ \mrule
-        \parbox{1.3cm}{ ideale Diode \\[5pt] \includegraphics{./img/symb/symb_diode.pdf} }& $\begin{array}{@{}ll} u = 0 & \text{falls } i > 0 \\ i = 0 & \text{falls } u < 0\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_ideal.pdf} } \\ \mrule
-        \parbox{1.3cm}{ reale Diode  \\[5pt] \includegraphics{./img/symb/symb_diode_real.pdf} }& $\begin{array}{@{}ll} u_D = u_T \cdot \ln \left(\frac{i_D}{I_S} + 1 \right) \\[0.7em] i_D = I_S \cdot \left( \exp \left(\frac{u_D}{U_T}\right) -1 \right) \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_real.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Photodiode   \\ \includegraphics{./img/symb/symb_diode_photo.pdf} }& $i = I_{\ir S} \left( e^{\frac{u_{\ir D}}{U_{\ir T}}} -1 \right) - i_L$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_photo.pdf} } \\
-    \end{tabular}
-
-
     \sectionbox{
         \subsection{Kennlinienbestimmung von verschalteten Bauteilen}
         \textbf{Parallel}: Kennlinien entlang der i-Achse addieren (Spannungen sind gleich, Ströme addieren sich\\
@@ -303,6 +288,23 @@
     $i_{\mathcal F,\text{lin}} = \Delta i + I_{AP} = \Delta u \cdot g_{\text{lin}} + U_{AP} = g_{\text{lin}}(u_{\mathcal F} - U_{AP}) + I_{AP}$
     }
 
+    \subsection{Liste}
+    \begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
+        \parbox{1.3cm}{ Leerlauf     \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
+        \parbox{1.3cm}{ Kurzschluss  \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\    \mrule
+        \parbox{1.3cm}{ Nullator     \\[5pt] \includegraphics{./img/symb/symb_nullator.pdf} } & \parbox{2.5cm}{$u = 0 \quad i = 0$ \\ u, sl, v, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_nullator.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Norator      \\[5pt] \includegraphics{./img/symb/symb_norator.pdf} } & \parbox{2.5cm}{$u = \mathrm{beliebig}$ \\ $i=\mathrm{beliebig}$ \\[0.5em] u, sl, a, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_norator.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Widerstand   \\[5pt] \includegraphics{./img/symb/symb_resistor.pdf} }& $\begin{array}{@{}cc} u = R \cdot i \\ i = G \cdot u \end{array} \quad G = \frac{1}{R}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_resistor.pdf} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{Konkaver\\Widerstand}   \\ \includegraphics{./img/symb/symb_resistor_concave.png} }& $i=\begin{cases}0&\text{, }u\le U\\ G(u-U)&\text{, }u>U\end{cases}$ & \parbox{1.8cm}{\includegraphics[width=1.8cm]{./img/char/char_resistor_concave.png} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{Konvexer\\Widerstand}   \\ \includegraphics{./img/symb/symb_resistor_convex.png} }& \shortstack{Dual zum\\\textbf{konkaven Widerstand}} & \parbox{1.8cm}{\includegraphics[width=1.6cm]{./img/char/char_resistor_convex.png} } \\ \mrule
+        \parbox{1.3cm}{ Spannungsq.  \\[3pt] \includegraphics{./img/symb/symb_source_voltage.pdf} }& $\begin{array}{@{}ll} u = U_0 \\ i = \mathrm{beliebig}\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_voltage.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Stromquelle  \\[3pt] \includegraphics{./img/symb/symb_source_current.pdf} }& $\begin{array}{@{}ll} u = \mathrm{beliebig} \\ i = I_0 \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_current.pdf} }    \\ \mrule
+        \parbox{1.3cm}{ ideale Diode \\[5pt] \includegraphics{./img/symb/symb_diode.pdf} }& $\begin{array}{@{}ll} u = 0 & \text{falls } i > 0 \\ i = 0 & \text{falls } u < 0\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_ideal.pdf} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{reale Diode\\pn Diode}  \\[5pt] \includegraphics{./img/symb/symb_diode_real.pdf} }& $\begin{array}{@{}ll} u_D = u_T \cdot \ln \left(\frac{i_D}{I_S} + 1 \right) \\[0.7em] i_D = I_S \cdot \left( \exp \left(\frac{u_D}{U_T}\right) -1 \right) \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_real.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Photodiode   \\ \includegraphics{./img/symb/symb_diode_photo.pdf} }& $i = I_{\ir S} \left( e^{\frac{u_{\ir D}}{U_{\ir T}}} -1 \right) - i_L$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_photo.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Zenerdiode   \\ \includegraphics{./img/symb/symb_diode_zener3.png} }& Durchbruch bei $u<U_Z\le 0$: im \textbf{negativen Bereich} leitend & \parbox{1.8cm}{\includegraphics[width=1.8cm]{./img/char/char_diode_zener.png} } \\ \mrule
+        \parbox{1.3cm}{ Tunneldiode   \\ \includegraphics{./img/symb/symb_diode_tunnel2.png} }& \shortstack{Im gewissen Bereich wie ein\\\textbf{negativer Widerstand}} & \parbox{1.8cm}{\includegraphics[width=1.7cm]{./img/char/char_diode_tunnel.png} }
+    \end{tabular}
 
     \columnbreak
     % SECTION ====================================================================================
