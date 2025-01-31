@@ -874,6 +874,103 @@
         ($\mat{\ma M&\ma N}$ implizite Beschreibung des lin. Zweitors)
     }
 
+    \sectionbox{
+        \subsection{Differentiation}
+        \begin{tabular}{l|l}
+            $f(x)$        & $\dot f(x)=\frac{\mathrm d}{\mathrm dx}f(x)$ \\\hline
+            $xa$ & $1$ \\
+            $x^a$ & $a\cdot x^{a-1}$ \\
+            $e^{x}$ & $a\cdot e^{x}$ \\
+            $\ln(x)$ & $\frac1x$ \\
+            $\sqrt[n]{x}=x^{\frac1n}$ & $\frac 1n x^{\frac1n-1}$ \\
+            $\sin x$ & $\cos x$ \\
+            $\cos x$ & $-\sin x$ \\
+            $a\cdot f(x)$ & $a\cdot \dot f(x)$ \\
+            $f(x)+g(x)$ & $\dot f(x)+\dot g(x)$ \\
+            $f(x)\cdot g(x)$ & $\dot f(x)\cdot g(x)+f(x)\cdot \dot g(x)$ \\
+            $\frac{f(x)}{g(x)}$ & $\frac{\dot f(x)\cdot g(x)-f(x)\cdot \dot g(x)}{g^2(x)}$ \\
+        \end{tabular}
+    }
+
+    \sectionbox{
+        \subsection{Integration}
+        \begin{tabular}{l|l}
+            $f(x)$ & $\int f(x) \mathop{\mathrm dx}$ \\\hline
+            $a$ & $a\cdot x$ \\
+            $x^a$ & $\frac{1}{a+1}x^{a+1}$ \\
+            $e^{x}$ & $e^{x}$ \\
+            $\ln(x)$ & $x\ln(x)-x$ \\
+            $\frac{1}{x}$ & $\ln(x)$ \\
+            $\sqrt[n]{x}=x^{\frac1n}$ & $\frac{n}{n+1}x^{\frac1n+1}$ \\
+            $\sin x$ & $-\cos x$ \\
+            $\cos x$ & $\sin x$ \\
+            $a\cdot f(x)$ & $a\cdot \int f(x)\mathop{\mathrm dx}$ \\
+            $f(x)+g(x)$ & $\int f(x)\mathop{\mathrm dx}+\int g(x)\mathop{\mathrm dx}$ \\
+        \end{tabular}
+    }
+
+    \sectionbox{
+        \subsection{Trigonometrie}
+        $\cos(x) = \cos(-x)$\\
+        $\sin(x) = -\sin(x)$\\
+        $\sin^2(x) + \cos^2(x) = 1$\\
+        $\cos(x) = \sin\left(x + \frac{\pi}{2}\right)$\\
+        $\sin(x) = \cos\left(x - \frac{\pi}{2}\right)$\\
+        $\cos(x+y) = \cos(x)\cos(y) - \sin(x)\sin(y)$\\
+        $\sin(x+y) = \sin(x)\cos(y) + \cos(x)\sin(y)$\\
+        $\tan(x) = \frac{\sin(x)}{\cos(x)} \in[-1,1]$\\
+        $\arctan(x) \in\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$\\
+
+        % Credit:
+        % https://tex.stackexchange.com/questions/637299/draw-trigonometric-circle-with-tikz-package
+        \definecolor{col_sectionbox}{RGB}{251, 251, 251} % for some reason the color macros from the template don't work
+        \textbf{Wichtige Sinus- und Cosinuswerte} $(\cos x, \sin x)$\\
+        \begin{tikzpicture}[scale=1.8,
+            cap = round,
+              > = latex,
+            dot/.style = {circle, fill, minimum size=1.2mm},
+            lbl/.style = {fill=col_sectionbox, inner sep=2pt, near start, sloped}
+                                    ]
+            % draw the coordinates
+            \draw[->] (-1.5,0) -- (1.7,0) node[right] {$x$};
+            \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+            % draw the unit circle
+            \draw[thick] (0,0) circle[radius=1];
+            % draw dots, labels
+            \foreach \i/\j/\k in {
+                30/\frac{\pi}{6}/{\left(\frac{\sqrt{3}}{2},\frac{1}{2}\right)},
+                45/\frac{\pi}{4}/{\left(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right)},
+                60/\frac{\pi}{3}/{\left(\frac{1}{2},\frac{\sqrt{3}}{2}\right)},
+                90/\frac{\pi}{2}/{\rotatebox{-90}{(0,1)}},
+                120/\frac{2\pi}{3}/{\left(\frac{-1}{2},\frac{\sqrt{3}}{2}\right)},
+                135/\frac{3\pi}{4}/{\left(\frac{-\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right)},
+                150/\frac{5\pi}{6}/{\left(\frac{-\sqrt{3}}{2},\frac{1}{2}\right)},
+                180/\pi/{(-1,0)},
+                210/\frac{7\pi}{6}/{\left(\frac{-1}{2},\frac{-\sqrt{3}}{2}\right)},
+                225/\frac{5\pi}{4}/{\left(\frac{-\sqrt{2}}{2},\frac{-\sqrt{2}}{2}\right)},
+                240/\frac{4\pi}{3}/{\left(\frac{-\sqrt{3}}{2},\frac{-1}{2}\right)},
+                270/\frac{3\pi}{2}/{\rotatebox{90}{(0,-1)}},
+                300/\frac{5\pi}{3}/{\left(\frac{1}{2},\frac{-\sqrt{3}}{2}\right)},
+                315/\frac{7\pi}{4}/{\left(\frac{\sqrt{2}}{2},\frac{-\sqrt{2}}{2}\right)},
+                330/\frac{11\pi}{6}/{\left(\frac{1}{2},\frac{-\sqrt{3}}{2}\right)},
+                360/2\pi/{(1,0)}
+                                }
+            {
+            \path[draw=gray]    (\i:0) -- (\i:0.4)
+                    -- node[lbl] {\tiny $\i^{\circ}$} (\i:0.77)
+                    -- node[lbl] {$\j$} (\i:1) node[dot] {};
+            \ifnum\i<270
+                \ifnum\i>90
+                    \path   (\i:1) --  node[lbl, anchor=east] {$\k$} (\i:1.4);
+                \else
+                    \path   (\i:1) --  node[lbl, anchor=west] {$\k$} (\i:1.4);
+                \fi
+            \else
+                \path   (\i:1) --  node[lbl, anchor=west] {$\k$} (\i:1.3);
+            \fi
+            }
+                \end{tikzpicture}
+    }
 
     \section{Umrechnung von Zweitormatrizen}
     \textbf{Explizit $\ra$ Explizit}\\
