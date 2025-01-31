@@ -638,6 +638,13 @@
                          & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }                                                                                                                                         \\
     \end{tabular}\\
     \normalsize
+    \subsubsection{Aufstellen des Knottenstromquellenvektors}
+    Bei dem Vektor $\vec i_{q}$ werden die \textbf{konstanten Quellenströme} eingetragen.
+    Anders als üblicherweise, trägt man in der $i$-ten Zeile den Strom $I_0$, der aus dem Knoten \textbf{rausfließt}, \textbf{negativ} ein und den Strom $I_0$, der in den Knoten \textbf{hineinfließt}, \textbf{positiv} ein.\\
+
+    Falls die Quelle auf der einen Seite mit der Masse verbunden ist, und der Strom in den Knoten hineinfließt, ergibt sich beispielhaft folgender Knotenstromquellenvektor:
+    $\vec i_{q} = \mat{0 &\cdots &I_0 &\cdots &0}^T$
+
     \subsubsection{Berechnen der Knotenspannungen}
     -\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
     -\ Cram'sche Regel: $u_{ki} = \frac{\det(\ma {Y_{ki}})}{\det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
