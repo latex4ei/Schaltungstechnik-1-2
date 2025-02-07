@@ -987,6 +987,30 @@
             }
                 \end{tikzpicture}
     }
+    \sectionbox{
+        \subsection{Komplexe Zahlen}
+        \textbf{Karthesische Darstellung}: $z = a + j b$\\
+        \textbf{Polarkoordinaten}: $z = r \cdot e^{j \varphi}$\\
+
+        Umrechnung:\\
+        $r = \sqrt{a^2 + b^2}$, $\varphi = \arctan\left(\frac{b}{a}\right)$\\
+        $a = r \cdot \cos(\varphi)$, $b = r \cdot \sin(\varphi)$\\
+
+        \textbf{Real-} und \textbf{Imaginärteil}: $\Re z = a$, $\Im z = b$\\
+
+        \textbf{Euler'sche Formel}: $e^{j \varphi} = \cos(\varphi) + j \sin(\varphi)$\\
+
+        \textbf{Komplexe Konjugation}: $z = a + jb \iff z^* = a - j b$\\
+        Distributivität: $(z_1+z_2)^*=z_1^*+z_2^*\qquad (z_1z_2)^*=z_1^*z_2^*$\\
+        Konjugation in Polardarstellung: $(r e^{j\varphi})^* = r e^{-j\varphi}$\\
+
+        \textbf{Betrag}: $|z| = |a+jb| = \sqrt{a^2+b^2}\qquad zz^* = |z|^2$\\
+
+        \textbf{Erweitern mit Komplex Konjugiertem}:\\
+        $$
+        \frac{x}{a+jb} = \frac{x(a-jb)}{a^2+b^2} = \frac{ax}{a^2+b^2} - j\frac{bx}{a^2+b^2}
+        $$
+    }
 
     \section{Umrechnung von Zweitormatrizen}
     \textbf{Explizit $\ra$ Explizit}\\
