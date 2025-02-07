@@ -858,13 +858,19 @@
 
     \section{Mathe}
     \sectionbox{
-    \subsection{2x2-Matrizen}
+    \subsection{Matrizen}
+    \subsubsection{2x2 Matrizen}
     $\det\mat{a&b\\c&d} = ad-bc$\qquad
     $\begin{bmatrix}
             a & b \\c&d
         \end{bmatrix}^{-1} =\frac{1}{ad-bc} \begin{bmatrix}
             d & -b \\-c&a
         \end{bmatrix}$
+
+    \subsubsection{Cramer'sche Regel}
+    Für ein lineares Gleichungssystem $\ma A \cdot \vec x = \vec y$ gilt:
+    $$x_i=\frac{\det \ma A_i}{\det \ma A}$$
+    wobei $\ma A_i$ aus $\ma A$ entsteht, wenn man die $i$-te Spalte mit dem Vektor $\vec y$ ersetzt.
     }
 
     \sectionbox{
