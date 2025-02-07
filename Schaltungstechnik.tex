@@ -288,6 +288,17 @@
     $i_{\mathcal F,\text{lin}} = \Delta i + I_{AP} = \Delta u \cdot g_{\text{lin}} + U_{AP} = g_{\text{lin}}(u_{\mathcal F} - U_{AP}) + I_{AP}$
     }
 
+    \sectionbox{
+        \subsection{Quellwandlung}
+        Lineare Quellen lassen sich ineinander umwandeln.\\
+        \begin{center}
+        \includegraphics[width=6cm]{./img/source_conv.png}
+        \end{center}
+        $$i_0=\frac{u_0}R=u_0\cdot G\qquad u_0=\frac{i_0}{G}=i_0\cdot R \qquad R=\frac1G \qquad G= \frac 1R$$
+
+        \textbf{Achtung}: Beachte die umgekehrte Richtung des Stromes $i_0$!
+    }
+
     \subsection{Liste}
     \begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
         \parbox{1.3cm}{ Leerlauf     \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
@@ -806,8 +817,8 @@
     % selbstausdenken begriffspaare
 
     \subsubsection{Dualwandlung}
-    $u \rightarrow R_d\cdot i$\qquad
-    $i \rightarrow \frac{1}{R_d}\cdot u$\qquad
+    $u \rightarrow R_d\cdot i^d$\qquad
+    $i \rightarrow \frac{1}{R_d}\cdot u^d$\qquad
     $\Phi \rightarrow R_d q^d$\qquad
     $q \rightarrow \frac{1}{R_d}\Phi^d$
 
