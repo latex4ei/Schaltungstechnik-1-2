@@ -654,8 +654,12 @@
     Bei dem Vektor $\vec i_{q}$ werden die \textbf{konstanten Quellenströme} eingetragen.
     Anders als üblicherweise, trägt man in der $i$-ten Zeile den Strom $I_0$, der aus dem Knoten \textbf{rausfließt}, \textbf{negativ} ein und den Strom $I_0$, der in den Knoten \textbf{hineinfließt}, \textbf{positiv} ein.\\
 
-    Ist eine Quelle auf einer Seite mit dem Masseknoten verbunden, wird nur der Wert für den gegenüberliegenden (nicht mit Masse verbundenen) Knoten im Stromquellenvektor eingetragen.
-    $\vec i_{q} = \mat{0 &\cdots &I_0 &\cdots &0}^T$
+    Ist eine Quelle auf einer Seite mit dem Masseknoten verbunden, wird nur der Wert für den gegenüberliegenden (nicht mit Masse verbundenen) Knoten im Stromquellenvektor eingetragen.\\
+
+    Beispiel: Eine Schaltung besitzt 4 Knoten (inklusive Masse) und $I_0$ fließt von Masse in Knoten 2. Der resultierende Vektor $\vec i_q$ lautet:
+    \begin{center} % using $$ adds a lot of padding in this template
+    $\vec i_{q} = \mat{0 & I_0 & 0}^T$
+    \end{center}
 
     \subsubsection{Berechnen der Knotenspannungen}
     -\ Umformung und Auflösung von $\ma {Y_k} * \vec u_k = \vec i_q$\\
