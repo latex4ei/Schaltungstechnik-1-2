@@ -377,7 +377,12 @@
     Eigenschaften: Quellenfrei, streng linear
 
     \subsubsection{Übertrager (z.B. Transformator)}
-    $A=\begin{bmatrix} \text{ü} & 0 \\ 0 & \frac{1}{\text{ü}} \end{bmatrix}$\\
+    $\ma A = \mat{\text{ü}&0\\0&\frac{1}{\text{ü}}}$\quad
+    $\ma H = \mat{0&\text{ü}\\\text{-ü}&0}$\quad
+    $\ma H' = \mat{0&-\frac{1}{\text{ü}}\\\frac{1}{\text{ü}}&0}$\quad\\
+    $\ma M = \mat{1&\text{-ü}\\0&0}$\quad
+    $\ma N = \mat{0&0\\\text{ü}&1}$\quad
+    
     $R_{in}=\frac{u_1}{i_1}=\text{ü}^2 R_L$\\
     Eigenschaften: verlustlos(ideal)
 
@@ -391,7 +396,8 @@
     Eigenschaften: streng linear, verlustlos für $R_1=R_2$\\
 
     \subsubsection{Negativ-Immitanz-Konverter}
-    $A=\begin{bmatrix} -k & 0 \\ 0 & \frac{1}{k} \end{bmatrix}$\\
+    $\ma A = \mat{-k&0\\0&\frac{1}{k}}$\quad
+    $\ma H = \mat{0&-k\\-k&0}$\\
     $R_{in}=\frac{u_1}{i_1}=-k^2R$ \quad $-k^2 R:$\ negativer Widerstand(et voilà xD)\\
     Eigenschaften: streng linear, aktiv
 
