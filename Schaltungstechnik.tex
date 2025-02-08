@@ -551,7 +551,7 @@
     ... ist ein iterativer numerischer Algorithmus zum Suchen der Nullstellen von nichtlinearen Gleichungen. Algorithmus wählt iterativ die Nullstelle der Taylorentwicklung als nächsten Bezugspunkt.\\
     Taylorentwicklung zu 0 setzen: $f(x^{(j)}) + J(x^{(j)})(x^{(j+1)}-x^{(j)})=0$\\
     Iterationsformel: $x^{(j+1)} = x^{(j)} - J^{-1}(x^{(j)})f(x^{(j)})$\\
-    1. Wähle Initialisierung $\mat{\vec u^\textbf{(0)}\\\vec i^ \textbf{(0)}}$ mit $\vec f(\vec u^\textbf{(0)}, \vec u^\textbf{(0)}) = \vec{0}$.\\
+    1. Wähle Initialisierung $\mat{\vec u^\textbf{(0)}\\\vec i^ \textbf{(0)}}$ mit $\vec f(\vec u^\textbf{(0)}, \vec i^\textbf{(0)}) = \vec{0}$.\\
     2. Im n+1-ten Schritt: Linearisieren $\vec f(\vec u, \vec i) = \vec 0$ im n-ten Kandidaten für den AP $\mat{\vec u^\textbf{(n)}\\\vec i^ \textbf{(n)}}$.\\
     3. Löse das neue lineare Gleichungssystem (z.B. Tableau).\\
     4. Finde neuen Kandidaten für AP in der Nähe $\mat{u^{(n+1)^T}, i^{(n+1)^T}}$ mit $\vec f(\vec u^\textbf{(n+1)}, \vec i^ \textbf{(n+1)}) = \vec 0$.\\
