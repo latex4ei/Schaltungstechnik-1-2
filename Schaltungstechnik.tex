@@ -377,7 +377,12 @@
     Eigenschaften: Quellenfrei, streng linear
 
     \subsubsection{Übertrager (z.B. Transformator)}
-    $A=\begin{bmatrix} \text{ü} & 0 \\ 0 & \frac{1}{\text{ü}} \end{bmatrix}$\\
+    $\ma A = \mat{\text{ü}&0\\0&\frac{1}{\text{ü}}}$\quad
+    $\ma H = \mat{0&\text{ü}\\\text{-ü}&0}$\quad
+    $\ma H' = \mat{0&-\frac{1}{\text{ü}}\\\frac{1}{\text{ü}}&0}$\quad\\
+    $\ma M = \mat{1&\text{-ü}\\0&0}$\quad
+    $\ma N = \mat{0&0\\\text{ü}&1}$\quad
+    
     $R_{in}=\frac{u_1}{i_1}=\text{ü}^2 R_L$\\
     Eigenschaften: verlustlos(ideal)
 
