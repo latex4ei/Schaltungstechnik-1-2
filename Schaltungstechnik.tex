@@ -242,7 +242,7 @@
 
     \sectionbox{
         \subsection{Dualwandlung}
-        $u \rightarrow R_d\cdot i$\qquad $i \rightarrow \frac{1}{R_d    }\cdot u$
+        $u \rightarrow R_d\cdot i^d$\qquad $i \rightarrow \frac{1}{R_d}\cdot u^d$
         \\
         Im Schaltbild:\\
         $R \rightarrow G = \frac{R}{R_d^2}$\qquad $G \rightarrow R = R_d^2G$
@@ -273,21 +273,6 @@
     \section{Resistive Eintore}
     % ============================================================================================
 
-    \subsection{Liste}
-    \begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
-        \parbox{1.3cm}{ Leerlauf     \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
-        \parbox{1.3cm}{ Kurzschluss  \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\    \mrule
-        \parbox{1.3cm}{ Nullator     \\[5pt] \includegraphics{./img/symb/symb_nullator.pdf} } & \parbox{2.5cm}{$u = 0 \quad i = 0$ \\ u, sl, v, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_nullator.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Norator      \\[5pt] \includegraphics{./img/symb/symb_norator.pdf} } & \parbox{2.5cm}{$u = \mathrm{beliebig}$ \\ $i=\mathrm{beliebig}$ \\[0.5em] u, sl, a, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_norator.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Widerstand   \\[5pt] \includegraphics{./img/symb/symb_resistor.pdf} }& $\begin{array}{@{}cc} u = R \cdot i \\ i = G \cdot u \end{array} \quad G = \frac{1}{R}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_resistor.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Spannungsq.  \\[3pt] \includegraphics{./img/symb/symb_source_voltage.pdf} }& $\begin{array}{@{}ll} u = U_0 \\ i = \mathrm{beliebig}\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_voltage.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Stromquelle  \\[3pt] \includegraphics{./img/symb/symb_source_current.pdf} }& $\begin{array}{@{}ll} u = \mathrm{beliebig} \\ i = I_0 \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_current.pdf} }    \\ \mrule
-        \parbox{1.3cm}{ ideale Diode \\[5pt] \includegraphics{./img/symb/symb_diode.pdf} }& $\begin{array}{@{}ll} u = 0 & \text{falls } i > 0 \\ i = 0 & \text{falls } u < 0\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_ideal.pdf} } \\ \mrule
-        \parbox{1.3cm}{ reale Diode  \\[5pt] \includegraphics{./img/symb/symb_diode_real.pdf} }& $\begin{array}{@{}ll} u_D = u_T \cdot \ln \left(\frac{i_D}{I_S} + 1 \right) \\[0.7em] i_D = I_S \cdot \left( \exp \left(\frac{u_D}{U_T}\right) -1 \right) \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_real.pdf} } \\ \mrule
-        \parbox{1.3cm}{ Photodiode   \\ \includegraphics{./img/symb/symb_diode_photo.pdf} }& $i = I_{\ir S} \left( e^{\frac{u_{\ir D}}{U_{\ir T}}} -1 \right) - i_L$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_photo.pdf} } \\
-    \end{tabular}
-
-
     \sectionbox{
         \subsection{Kennlinienbestimmung von verschalteten Bauteilen}
         \textbf{Parallel}: Kennlinien entlang der i-Achse addieren (Spannungen sind gleich, Ströme addieren sich\\
@@ -303,6 +288,35 @@
     $i_{\mathcal F,\text{lin}} = \Delta i + I_{AP} = \Delta u \cdot g_{\text{lin}} + U_{AP} = g_{\text{lin}}(u_{\mathcal F} - U_{AP}) + I_{AP}$
     }
 
+    \sectionbox{
+        \subsection{Quellwandlung}
+        Lineare Quellen lassen sich ineinander umwandeln.\\
+        \begin{center}
+        \includegraphics[width=6cm]{./img/source_conv.png}
+        \end{center}
+        \[i_0=\frac{u_0}R=u_0\cdot G\qquad u_0=\frac{i_0}{G}=i_0\cdot R \qquad R=\frac1G \qquad G= \frac 1R\]
+
+        \textbf{Achtung}: Beachte die umgekehrte Richtung des Stromes $i_0$!
+    }
+
+    \subsection{Liste}
+    \begin{tabular}{@{}p{1.1cm}p{2.9cm}l}
+        \parbox{1.3cm}{ Leerlauf     \\[5pt] \includegraphics{./img/opencircuit.pdf} } & \parbox{2.5cm}{$u=\mathrm{beliebig}$ \\ $i=0$ \\ u, sl, v} & \parbox{1.8cm}{\includegraphics{./img/char/char_opencircuit.pdf} }  \\ \mrule
+        \parbox{1.3cm}{ Kurzschluss  \\[5pt] \includegraphics{./img/shortcircuit.pdf}  } & \parbox{2.5cm}{$u = 0$ \\ $i = \mathrm{beliebig}$ \\ u, sl, v} & \parbox{1.8cm}{ \includegraphics{./img/char/char_shortcircuit.pdf} } \\    \mrule
+        \parbox{1.3cm}{ Nullator     \\[5pt] \includegraphics{./img/symb/symb_nullator.pdf} } & \parbox{2.5cm}{$u = 0 \quad i = 0$ \\ u, sl, v, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_nullator.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Norator      \\[5pt] \includegraphics{./img/symb/symb_norator.pdf} } & \parbox{2.5cm}{$u = \mathrm{beliebig}$ \\ $i=\mathrm{beliebig}$ \\[0.5em] u, sl, a, dual zu sich selbst} & \parbox{1.8cm}{\includegraphics{./img/char/char_norator.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Widerstand   \\[5pt] \includegraphics{./img/symb/symb_resistor.pdf} }& $\begin{array}{@{}cc} u = R \cdot i \\ i = G \cdot u \end{array} \quad G = \frac{1}{R}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_resistor.pdf} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{Konkaver\\Widerstand}   \\ \includegraphics{./img/symb/symb_resistor_concave.png} }& $i=\begin{cases}0&\text{, }u\le U\\ G(u-U)&\text{, }u>U\end{cases}$ & \parbox{1.8cm}{\includegraphics[width=1.8cm]{./img/char/char_resistor_concave.png} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{Konvexer\\Widerstand}   \\ \includegraphics{./img/symb/symb_resistor_convex.png} }& \shortstack{ \shortstack{Dual zum\\\textbf{konkaven Widerstand}} \\ $u=\begin{cases}0&\text{, }i\le I\\ R(i-I)&\text{, }i>I\end{cases}$ }& \parbox{1.8cm}{\includegraphics[width=1.6cm]{./img/char/char_resistor_convex.png} } \\ \mrule
+
+        \parbox{1.3cm}{ Spannungsq.  \\[3pt] \includegraphics{./img/symb/symb_source_voltage.pdf} }& $\begin{array}{@{}ll} u = U_0 \\ i = \mathrm{beliebig}\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_voltage.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Stromquelle  \\[3pt] \includegraphics{./img/symb/symb_source_current.pdf} }& $\begin{array}{@{}ll} u = \mathrm{beliebig} \\ i = I_0 \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_source_current.pdf} }    \\ \mrule
+        \parbox{1.3cm}{ ideale Diode \\[5pt] \includegraphics{./img/symb/symb_diode.pdf} }& $\begin{array}{@{}ll} u = 0 & \text{falls } i > 0 \\ i = 0 & \text{falls } u < 0\end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_ideal.pdf} } \\ \mrule
+        \parbox{1.3cm}{ \shortstack{reale Diode\\pn Diode}  \\[5pt] \includegraphics{./img/symb/symb_diode_real.pdf} }& $\begin{array}{@{}ll} u_D = u_T \cdot \ln \left(\frac{i_D}{I_S} + 1 \right) \\[0.7em] i_D = I_S \cdot \left( \exp \left(\frac{u_D}{U_T}\right) -1 \right) \end{array}$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_real.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Photodiode   \\ \includegraphics{./img/symb/symb_diode_photo.pdf} }& $i = I_{\ir S} \left( e^{\frac{u_{\ir D}}{U_{\ir T}}} -1 \right) - i_L$ & \parbox{1.8cm}{\includegraphics{./img/char/char_diode_photo.pdf} } \\ \mrule
+        \parbox{1.3cm}{ Zenerdiode   \\ \includegraphics{./img/symb/symb_diode_zener3.png} }&\shortstack{ Durchbruch bei $u=U_Z$:\\ für $u\leq U_z$ stark leitend} & \parbox{1.8cm}{\includegraphics[width=1.8cm]{./img/char/char_diode_zener.png} } \\ \mrule
+        \parbox{1.3cm}{ Tunneldiode   \\ \includegraphics{./img/symb/symb_diode_tunnel2.png} }& \shortstack{Im gewissen Bereich wie ein\\\textbf{negativer Widerstand}} & \parbox{1.8cm}{\includegraphics[width=1.7cm]{./img/char/char_diode_tunnel.png} }
+    \end{tabular}
 
     \columnbreak
     % SECTION ====================================================================================
@@ -543,7 +557,7 @@
     ... ist ein iterativer numerischer Algorithmus zum Suchen der Nullstellen von nichtlinearen Gleichungen. Algorithmus wählt iterativ die Nullstelle der Taylorentwicklung als nächsten Bezugspunkt.\\
     Taylorentwicklung zu 0 setzen: $f(x^{(j)}) + J(x^{(j)})(x^{(j+1)}-x^{(j)})=0$\\
     Iterationsformel: $x^{(j+1)} = x^{(j)} - J^{-1}(x^{(j)})f(x^{(j)})$\\
-    1. Wähle Initialisierung $\mat{\vec u^\textbf{(0)}\\\vec i^ \textbf{(0)}}$ mit $\vec f(\vec u^\textbf{(0)}, \vec u^\textbf{(0)}) = \vec{0}$.\\
+    1. Wähle Initialisierung $\mat{\vec u^\textbf{(0)}\\\vec i^ \textbf{(0)}}$ mit $\vec f(\vec u^\textbf{(0)}, \vec i^\textbf{(0)}) = \vec{0}$.\\
     2. Im n+1-ten Schritt: Linearisieren $\vec f(\vec u, \vec i) = \vec 0$ im n-ten Kandidaten für den AP $\mat{\vec u^\textbf{(n)}\\\vec i^ \textbf{(n)}}$.\\
     3. Löse das neue lineare Gleichungssystem (z.B. Tableau).\\
     4. Finde neuen Kandidaten für AP in der Nähe $\mat{u^{(n+1)^T}, i^{(n+1)^T}}$ mit $\vec f(\vec u^\textbf{(n+1)}, \vec i^ \textbf{(n+1)}) = \vec 0$.\\
@@ -642,9 +656,20 @@
                          & \vdots & \\}$ & \hspace{-2em}\parbox{3cm}{\includegraphics[scale=0.15]{./img/nodevoltageanalysis/vccs_a_y_gnd.png} }                                                                                                                                         \\
     \end{tabular}\\
     \normalsize
+    \subsubsection{Aufstellen des Knotenstromquellenvektors}
+    Bei dem Vektor $\vec i_{q}$ werden die \textbf{konstanten Quellenströme} eingetragen.
+    Anders als üblicherweise, trägt man in der jeweiligen Zeile des Knotens \textbf{herausfließende} Ströme \textbf{negativ} ein und \textbf{hineinfließende} Ströme \textbf{positiv} ein.\\
+
+    Ist eine Quelle auf einer Seite mit dem Masseknoten verbunden, wird nur der Wert für den gegenüberliegenden (nicht mit Masse verbundenen) Knoten im Stromquellenvektor eingetragen.\\
+
+    Beispiel: Eine Schaltung besitzt 4 Knoten (inklusive Masse) und $I_0$ fließt von Masse in Knoten 2. Der resultierende Vektor $\vec i_q$ lautet:
+    \begin{center} % using $$ adds a lot of padding in this template
+    $\vec i_{q} = \mat{0 & I_0 & 0}^T$
+    \end{center}
+
     \subsubsection{Berechnen der Knotenspannungen}
-    -\ Umformung und Auflösung von $\ma {Y_k} * \vec{u_k} = \vec{i_q}$\\
-    -\ Cram'sche Regel: $u_{ki} = \frac{\det(\ma {Y_{ki}})}{\det(\ma{Y_k})}$ wobei $\ma {Y_{ki}}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec{i_q}$.\\
+    -\ Umformung und Auflösung von $\ma {Y_k} * \vec u_k = \vec i_q$\\
+    -\ Cram'sche Regel: $u_{ki} = \frac{\det(\ma Y_{ki})}{\det(\ma Y_k)}$ wobei $\ma Y_{ki}$ durch Ersetzen der i-ten Spalte von $\ma {Y_k}$ mit $\vec i_q$.\\
 
     \subsection{Dualwandlung}
     $\vec u \xrightarrow{R_d} R_d\vec i^d$\qquad$\vec i \xrightarrow{R_d} \frac{1}{R_d}\vec u^d$\\
@@ -753,8 +778,8 @@
     \subsubsection{Allgemeine Zusammenhänge $u,i,q,\Phi$}
     Ladung und Strom beschreiben den Zustand der Materie.\\
     Spannung und magn. Fluss beschreiben den Zustand des elekt. magn. Feldes.\\
-    Kondensator ist u-gesteuert (q-gesteuert), falls für ein u (q) nur ein q (u)  existiert. \\
-    Induktivität ist i-gesteuert ($\phi$-gesteuert), falls für ein i ($\phi$) nur ein $\phi$ (i) existiert. \\
+    Kondensator ist u-gesteuert (q-gesteuert), falls für ein u (q) nur ein q (u)  existiert: $q=c(u)$ ($u=\chi(q)$) \\
+    Induktivität ist i-gesteuert ($\phi$-gesteuert), falls für ein i ($\phi$) nur ein $\phi$ (i) existiert: $\Phi=l(i)$ ($i=\lambda(\Phi)$) \\
     \begin{tabular}{l|l}
         $i(t) = \dot q(t)$                                      & $[i]=A$        \\
         $q(t) = q(t_0) + \int_{t_0}^t i(\tau) \mathrm d\tau$    & $[q]=As=C$     \\ \hline
@@ -784,8 +809,8 @@
     Periodisch: $u(t+T) = u(t)$, $q(t+T) = q(t)$\\
     Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hystenesefrei)\\
     \textbf{Energie (nicht linearer Fall)}:\\
-    - Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! u(q)\, \mathrm dq$\\
-    - Induktiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! i(\Phi)\, \mathrm d\Phi$\\
+    - Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! \chi(q)\, \mathrm dq$, $u=\chi(q)$\\
+    - Induktiv: $W_L(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! \lambda(\Phi)\, \mathrm d\Phi$, $i=\lambda(\Phi)$\\
     \textbf{Energie (linearer Fall)}:\\
     - Kapazitiv: $W_C = \frac{C}{2}u^2 = \frac{1}{2C}q^2$\\
     - Induktiv: $W_L = \frac{L}{2}i^2 = \frac{1}{2L} \Phi^2$\\
@@ -800,6 +825,13 @@
     Merke: Ist das Mädchen brav, bleibt der Bauch konkav, hat das Mädchen Sex, wird der Bauch konvex.\\
     % Liste mit Eselsbrücken für Ingenieure
     % selbstausdenken begriffspaare
+
+    \subsubsection{Dualwandlung}
+    $u \rightarrow R_d\cdot i^d$\qquad
+    $i \rightarrow \frac{1}{R_d}\cdot u^d$\qquad
+    $\Phi \rightarrow R_d q^d$\qquad
+    $q \rightarrow \frac{1}{R_d}\Phi^d$
+
     \columnbreak
     \section{Komplexe Wechselstromrechnung}
     Vorraussetzung: lineares, eingeschwungenes System mit sinusförmiger Erregung $x(t) = \hat x \cdot \cos(\omega t + \varphi)$\\
@@ -823,6 +855,7 @@
         % ---------------------------------------------------------
         Differentialoperator: $\frac{\diff}{\diff t} = j \omega$\qquad
         $\frac{d}{dt} e^{j(\omega t + \phi)} = j\omega\cdot e^{j(\omega t + \phi)}$\\
+        Kreisfrequenz: $\omega = 2\pi f = \frac{2\pi}{T}$\\
         \tablebox{
             \begin{tabular*}{\columnwidth}{l@{\extracolsep\fill}cccc} \ctrule
                 & \textbf{Widerstand} & \textbf{Kondensator} & \textbf{Spule} & \textbf{Memristor}\\ \cmrule
@@ -841,19 +874,25 @@
         \textbf{Leistungsmittelwert}: $P_w = \frac{1}{T} \int_0^T u(t)i(t)dt$\\
         \textbf{Komplexe Leistung}: $P = \frac{1}{2}UI^* = \frac{1}{2}U_m\cdot e^{j\phi_u}\cdot I_m\cdot e^{-j\phi_i} = U_{eff}\cdot I_{eff}\cdot e^{j(\phi_u-\phi_i)}$\\
         \textbf{Scheinleistung}: $S = |P|$\\
-        \textbf{Wirkleistung}: $P_w = Re{P}$\\
-        \textbf{Blindleistung}: $P_B = Im{P}$
+        \textbf{Wirkleistung}: $P_w = \Re{P}$\\
+        \textbf{Blindleistung}: $P_B = \Im{P}$
     }
 
     \section{Mathe}
     \sectionbox{
-    \subsection{2x2-Matrizen}
+    \subsection{Matrizen}
+    \subsubsection{2x2 Matrizen}
     $\det\mat{a&b\\c&d} = ad-bc$\qquad
     $\begin{bmatrix}
             a & b \\c&d
         \end{bmatrix}^{-1} =\frac{1}{ad-bc} \begin{bmatrix}
             d & -b \\-c&a
         \end{bmatrix}$
+
+    \subsubsection{Cramer'sche Regel}
+    Für ein lineares Gleichungssystem $\ma A \cdot \vec x = \vec y$ gilt:
+    \[x_i=\frac{\det \ma A_i}{\det \ma A}\]
+    wobei $\ma A_i$ aus $\ma A$ entsteht, wenn man die $i$-te Spalte mit dem Vektor $\vec y$ ersetzt.
     }
 
     \sectionbox{
@@ -873,6 +912,130 @@
         ($\mat{\ma M&\ma N}$ implizite Beschreibung des lin. Zweitors)
     }
 
+    \sectionbox{
+        \subsection{Differentiation}
+        \begin{tabular}{l|l}
+            $f(x)$        & $\dot f(x)=\frac{\mathrm d}{\mathrm dx}f(x)$ \\\hline
+            $ax$ & $a$ \\
+            $x^a$ & $a\cdot x^{a-1}$ \\
+            $e^{ax}$ & $a\cdot e^{x}$ \\
+            $\ln(x)$ & $\frac1x$ \\
+            $\sqrt[n]{x}=x^{\frac1n}$ & $\frac 1n x^{\frac1n-1}$ \\
+            $\sin x$ & $\cos x$ \\
+            $\cos x$ & $-\sin x$ \\
+            $a\cdot f(x)$ & $a\cdot \dot f(x)$ \\
+            $f(x)+g(x)$ & $\dot f(x)+\dot g(x)$ \\
+            $f(x)\cdot g(x)$ & $\dot f(x)\cdot g(x)+f(x)\cdot \dot g(x)$ \\
+            $\frac{f(x)}{g(x)}$ & $\frac{\dot f(x)\cdot g(x)-f(x)\cdot \dot g(x)}{g^2(x)}$ \\
+        \end{tabular}
+    }
+
+    \sectionbox{
+        \subsection{Integration}
+        \begin{tabular}{l|l}
+            $f(x)$ & $\int f(x) \mathop{\mathrm dx}$ \\\hline
+            $a$ & $a\cdot x$ \\
+            $x^a$ & $\frac{1}{a+1}x^{a+1}$ \\
+            $e^{x}$ & $e^{x}$ \\
+            $\ln(x)$ & $x\ln(x)-x$ \\
+            $\frac{1}{x}$ & $\ln\left|x\right|$ \\
+            $\sqrt[n]{x}=x^{\frac1n}$ & $\frac{n}{n+1}x^{\frac1n+1}$ \\
+            $\sin x$ & $-\cos x$ \\
+            $\cos x$ & $\sin x$ \\
+            $a\cdot f(x)$ & $a\cdot \int f(x)\mathop{\mathrm dx}$ \\
+            $f(x)+g(x)$ & $\int f(x)\mathop{\mathrm dx}+\int g(x)\mathop{\mathrm dx}$ \\
+        \end{tabular}
+    }
+
+    \sectionbox{
+        \subsection{Trigonometrie}
+        $\cos(x) = \cos(-x)$\\
+        $\sin(-x) = -\sin(x)$\\
+        $\sin^2(x) + \cos^2(x) = 1$\\
+        $\cos(x) = \sin\left(x + \frac{\pi}{2}\right)$\\
+        $\sin(x) = \cos\left(x - \frac{\pi}{2}\right)$\\
+        $\cos(x+y) = \cos(x)\cos(y) - \sin(x)\sin(y)$\\
+        $\sin(x+y) = \sin(x)\cos(y) + \cos(x)\sin(y)$\\
+        $\tan(x) = \frac{\sin(x)}{\cos(x)} \in[-1,1]$\\
+        $\arctan(x) \in\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$\\
+
+        % Credit:
+        % https://tex.stackexchange.com/questions/637299/draw-trigonometric-circle-with-tikz-package
+        \definecolor{col_sectionbox}{RGB}{251, 251, 251} % for some reason the color macros from the template don't work
+        \textbf{Wichtige Sinus- und Cosinuswerte} $(\cos x, \sin x)$\\
+        \begin{tikzpicture}[scale=1.8,
+            cap = round,
+              > = latex,
+            dot/.style = {circle, fill, minimum size=1.2mm},
+            lbl/.style = {fill=col_sectionbox, inner sep=2pt, near start, sloped}
+                                    ]
+            % draw the coordinates
+            \draw[->] (-1.5,0) -- (1.7,0) node[right] {$x$};
+            \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$};
+            % draw the unit circle
+            \draw[thick] (0,0) circle[radius=1];
+            % draw dots, labels
+            \foreach \i/\j/\k in {
+                30/\frac{\pi}{6}/{\left(\frac{\sqrt{3}}{2},\frac{1}{2}\right)},
+                45/\frac{\pi}{4}/{\left(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right)},
+                60/\frac{\pi}{3}/{\left(\frac{1}{2},\frac{\sqrt{3}}{2}\right)},
+                90/\frac{\pi}{2}/{\rotatebox{-90}{(0,1)}},
+                120/\frac{2\pi}{3}/{\left(\frac{-1}{2},\frac{\sqrt{3}}{2}\right)},
+                135/\frac{3\pi}{4}/{\left(\frac{-\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right)},
+                150/\frac{5\pi}{6}/{\left(\frac{-\sqrt{3}}{2},\frac{1}{2}\right)},
+                180/\pi/{(-1,0)},
+                210/\frac{7\pi}{6}/{\left(\frac{-1}{2},\frac{-\sqrt{3}}{2}\right)},
+                225/\frac{5\pi}{4}/{\left(\frac{-\sqrt{2}}{2},\frac{-\sqrt{2}}{2}\right)},
+                240/\frac{4\pi}{3}/{\left(\frac{-\sqrt{3}}{2},\frac{-1}{2}\right)},
+                270/\frac{3\pi}{2}/{\rotatebox{90}{(0,-1)}},
+                300/\frac{5\pi}{3}/{\left(\frac{1}{2},\frac{-\sqrt{3}}{2}\right)},
+                315/\frac{7\pi}{4}/{\left(\frac{\sqrt{2}}{2},\frac{-\sqrt{2}}{2}\right)},
+                330/\frac{11\pi}{6}/{\left(\frac{1}{2},\frac{-\sqrt{3}}{2}\right)},
+                360/2\pi/{(1,0)}
+                                }
+            {
+            \path[draw=gray]    (\i:0) -- (\i:0.4)
+                    -- node[lbl] {\tiny $\i^{\circ}$} (\i:0.77)
+                    -- node[lbl] {$\j$} (\i:1) node[dot] {};
+            \ifnum\i<270
+                \ifnum\i>90
+                    \path   (\i:1) --  node[lbl, anchor=east] {$\k$} (\i:1.4);
+                \else
+                    \path   (\i:1) --  node[lbl, anchor=west] {$\k$} (\i:1.4);
+                \fi
+            \else
+                \path   (\i:1) --  node[lbl, anchor=west] {$\k$} (\i:1.3);
+            \fi
+            }
+                \end{tikzpicture}
+    }
+    \sectionbox{
+        \subsection{Komplexe Zahlen}
+        \textbf{Kartesische Darstellung}: $z = a + j b$\\
+        \textbf{Polarkoordinaten}: $z = r \cdot e^{j \varphi}$\\
+
+        Umrechnung:\\
+        $r = \sqrt{a^2 + b^2}$, $\varphi = \begin{cases}
+                        \arctan\frac{b}{a}     & a>0 \\
+                        \arctan\frac{b}{a}+\pi & a<0
+                    \end{cases}$\\
+        $a = r \cdot \cos(\varphi)$, $b = r \cdot \sin(\varphi)$\\
+
+        \textbf{Real-} und \textbf{Imaginärteil}: $\Re z = a$, $\Im z = b$\\
+
+        \textbf{Euler'sche Formel}: $e^{j \varphi} = \cos(\varphi) + j \sin(\varphi)$\\
+
+        \textbf{Komplexe Konjugation}: $z = a + jb \iff z^* = a - j b$\\
+        Distributivität: $(z_1+z_2)^*=z_1^*+z_2^*\qquad (z_1z_2)^*=z_1^*z_2^*$\\
+        Konjugation in Polardarstellung: $(r e^{j\varphi})^* = r e^{-j\varphi}$\\
+
+        \textbf{Betrag}: $|z| = |a+jb| = \sqrt{a^2+b^2}\qquad zz^* = |z|^2$\\
+
+        \textbf{Erweitern mit Komplex Konjugiertem}:\\
+        \[
+        \frac{x}{a+jb} = \frac{x(a-jb)}{a^2+b^2} = \frac{ax}{a^2+b^2} - j\frac{bx}{a^2+b^2}
+        \]
+    }
 
     \section{Umrechnung von Zweitormatrizen}
     \textbf{Explizit $\ra$ Explizit}\\
