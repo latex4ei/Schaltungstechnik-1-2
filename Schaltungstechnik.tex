@@ -1009,7 +1009,10 @@
         \textbf{Polarkoordinaten}: $z = r \cdot e^{j \varphi}$\\
 
         Umrechnung:\\
-        $r = \sqrt{a^2 + b^2}$, $\varphi = \arctan\left(\frac{b}{a}\right)$\\
+        $r = \sqrt{a^2 + b^2}$, $\varphi = \begin{cases}
+                        \arctan\frac{b}{a}     & a>0 \\
+                        \arctan\frac{b}{a}+\pi & a<0
+                    \end{cases}$\\
         $a = r \cdot \cos(\varphi)$, $b = r \cdot \sin(\varphi)$\\
 
         \textbf{Real-} und \textbf{Imaginärteil}: $\Re z = a$, $\Im z = b$\\
