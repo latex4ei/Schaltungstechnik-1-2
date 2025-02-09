@@ -167,8 +167,10 @@
         \subsection{Baumkonzept}
         \textbf{Baum}: zusammenhängender azyklischer Teilgraph des Netzwerkgraphen, der alle Knoten enthält.\\
         \textbf{Nummerierung}: erst Baumkanten nummerieren, dann übrige.\\
-        \textbf{KVL}: Pro Verbindungskante eine Masche, die sonst nur Baumkanten enthält:    $\mat{\ma B_b& \ma 1_s}\mat{\vec u_b\\ \vec u_v} = \vec{0}$\\
+        \textbf{KVL}: Pro Verbindungskante eine Masche, die sonst nur Baumkanten enthält:    $\mat{\ma B_b& \ma 1_s}\mat{\vec u_b\\ \vec u_v} = \vec{0}$
+        \hfill($b-(n-1)$ Gleichungen)\\
         \textbf{KCL}: Pro Baumkante je einen Superknoten, der sonst nur Verbindungskanten enthält, Vorzeichen der Baumkante ist positiv: $\mat{\ma 1_{n-1}&\ma A_v}\mat{\vec i_b\\ \vec i_v} = \vec 0$
+        \hfill($n-1$ Gleichungen)\\
     }
 
     \sectionbox{
@@ -739,9 +741,9 @@
 
         \includegraphics{./img/opamp.pdf} \qquad \includegraphics{./img/char/char_opamp.pdf}\\[2em]
         \begin{tabular}{lll}
-            \parbox{3cm}{\textbf{\large ESB I}   \\ Sättigungsbereich \\ $u_{\ir d} < 0$  \\ $u_{\ir out} = - U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_1.pdf} }\\[4em]
+            \parbox{3cm}{\textbf{\large ESB I}   \\ negativer Sättigungsbereich \\ $u_{\ir d} < 0$  \\ $u_{\ir out} = - U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_1.pdf} }\\[4em]
             \parbox{3cm}{\large \textbf{ESB II}  \\ streng linearer Bereich \\ $u_{\ir d} = 0$ \\ $\abs{ u_{\ir out} } \le \abs{ U_{\ir sat}}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_2.pdf} }\\[4em]
-            \parbox{3cm}{\textbf{\large ESB III} \\ Sättigungsbereich \\ $u_{\ir d} > 0$  \\ $u_{\ir out} = + U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_3.pdf} }
+            \parbox{3cm}{\textbf{\large ESB III} \\ positiver Sättigungsbereich \\ $u_{\ir d} > 0$  \\ $u_{\ir out} = + U_{\ir sat}$} & \parbox{3cm}{\includegraphics[scale = 0.9]{./img/opamp_esb_3.pdf} }
         \end{tabular}
     }
 
