@@ -366,8 +366,8 @@
         Verschaltung & Bild                                                        \\ \hline
         \parbox{3cm}{Parallel: $g_{ges}=g_{\mathcal F1}+g_{\mathcal F2}$           \\ linear: $\ma G_{\ir ges} = \ma G_1 + \ma G_2$ \\ Umrechnung: } & \parbox{2.5cm}{\includegraphics{./img/ztv_leitwert.pdf}}\\[2em]
         \parbox{3cm}{Serie: $r_{ges}=r_{\mathcal F1}+r_{\mathcal F2}$              \\ linear: $\ma R_{\ir ges} = \ma R_1 + \ma R_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_widerstand.pdf}}\\[2em]
-        \parbox{3cm}{Hybrid: $h_{ges}=h_{\mathcal F1}+h_{\mathcal F2}$             \\ linear: $\ma H_{\ir ges} = \ma H_1 + \ma H_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_hybrid.pdf}}\\[2em]
-        \parbox{3.5cm}{Hybrid Inv.: $h'_{ges}=h_{\mathcal F1}+h'_{\mathcal F2}$    \\ linear: $\ma H'_{\ir ges} = \ma H'_1 + \ma H'_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_hybrid_inv.pdf}}\\[2em]
+        \parbox{3cm}{Hybrid: $h_{ges}=h_{\mathcal F1}+h_{\mathcal F2}$             \\ linear: $\ma H_{\ir ges} = \ma H_1 + \ma H_2$ \\ auch genannt: Serien-Parallel} & \parbox{2.5cm}{\includegraphics{./img/ztv_hybrid.pdf}}\\[2em]
+        \parbox{3.5cm}{Hybrid Inv.: $h'_{ges}=h_{\mathcal F1}+h'_{\mathcal F2}$    \\ linear: $\ma H'_{\ir ges} = \ma H'_1 + \ma H'_2$ \\ auch genannt: Parellel-Serie} & \parbox{2.5cm}{\includegraphics{./img/ztv_hybrid_inv.pdf}}\\[2em]
         \parbox{3cm}{Kette: $a_{ges}=a_{\mathcal F1} \cdot a_{\mathcal F2}$        \\ linear: $\ma A_{\ir ges} = \ma A_1 \cdot \ma A_2$} & \parbox{2.5cm}{\includegraphics{./img/ztv_kette.pdf}}\\[2em]
         \parbox{3cm}{Kette Inv: $a'_{ges}=a'_{\mathcal F2} \cdot a'_{\mathcal F1}$ \\ linear: $\ma A'_{\ir ges} = \ma A'_2 \cdot \ma A'_1$} & \parbox{2.5cm}{\includegraphics{./img/ztv_kette_inv.pdf}}\\
     \end{tabular}
@@ -809,7 +809,7 @@
     \textbf{Verlustfreiheit}: $W_C(t_1, t_2) = \int_{t_1}^{t_2}\! u(t)i(t)\,\mathrm dt = \int_{q_1}^{q_2}\! \mathrm{X}(q)\,\mathrm{d}t$ (Arbeit)\\
     Falls linear: $W = \frac{Cu^2}{2} = \frac{Li^2}{2}$\\
     Periodisch: $u(t+T) = u(t)$, $q(t+T) = q(t)$\\
-    Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hystenesefrei)\\
+    Graphisch: Falls keine geschlossenen Schleifen in q/u, $\Phi$/i-Diagramm existiert (Hysteresefrei)\\
     \textbf{Energie (nicht linearer Fall)}:\\
     - Kapazitiv: $W_C(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{q_1}^{q_2} \! \chi(q)\, \mathrm dq$, $u=\chi(q)$\\
     - Induktiv: $W_L(t_1, t_2) = \int_{t_1}^{t_2} \! u(t)i(t)\, \mathrm dt = \int_{\Phi_1}^{\Phi_2} \! \lambda(\Phi)\, \mathrm d\Phi$, $i=\lambda(\Phi)$\\
