@@ -10,11 +10,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v7
       with:
-        python-version: '3.12.2'
+        python-version: '3.14'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     container: makeappdev/uselatex:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: 
           fetch-depth: 0
           
@@ -77,14 +77,14 @@ jobs:
 
       # Upload the PDFs produced by build.
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build-artifact
           path: build/*.pdf
 
       # Upload the diff PDFs produced by latexdiff.
       - name: Upload latexdiff artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: latexdiff-artifact
           path: diff/*.pdf
@@ -92,7 +92,7 @@ jobs:
       - name: Comment on PR with artifact link
         if: ${{ github.event_name == 'pull_request' }}
         continue-on-error: true
-        uses: actions/github-script@v6
+        uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -114,7 +114,7 @@ jobs:
           cp build/git.id export
       - name: Deploy
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
           branch: gh-pages
           folder: export
